@@ -56,7 +56,7 @@
     <div class="property" :class="{collapsed: prop.collapsed}">
       <div class="collapse-arrow" @click="prop.toggleCollapsed"></div>
       <input type="checkbox" v-model="prop.checked" :id="prop.id" :indeterminate="prop.indeterminate" @change="prop.cycleValue">
-      <label :for="prop.id">{{i18n(prop.id)}}</label>
+      <label :for="prop.id">{{prop.id}}</label>
 	  <svg class="icon icon-preview" width="30" height="30" viewbox="0 0 128 128">
         <use :href="'#icon-' + prop.id"/>
       </svg>
