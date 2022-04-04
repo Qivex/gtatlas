@@ -1,0 +1,96 @@
+<html>
+  <head>
+
+    <title>Icon Test</title>
+
+    <script src="libs/petite-vue.js"></script>
+
+    <script defer>
+      function setOrgColor(colstring) {
+        // Check if input is valid as color
+        if (!CSS.supports("color", colstring)) return
+        // Update all Icons
+        for (let icon of document.getElementsByClassName("org-icon")) {
+          icon.setAttribute("color", colstring)
+        }
+      }
+      
+      var toId = name => "#icon-" + name
+      var toPath = name => "icons/control/" + name + ".png"
+      
+      var icons = []
+      var switched = false;
+      
+      fetch("icons/spritesheet.svg")
+        .then(res => res.text())
+        .then(data => {
+          // Add to spritesheet
+          document.getElementById("spritesheet").innerHTML = data
+          // Parse Icons
+          document.querySelectorAll("#icons symbol").forEach(el => icons.push(el.id.replace("icon-", "")))
+          // Mount
+          PetiteVue.createApp({icons, toId, toPath, switched}).mount("#body")
+          // Set color
+          setOrgColor("#F79F7B")
+        })
+    </script>
+
+    <style>
+      body {
+        margin: 0px;
+        padding: 0px;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #999999;
+      }
+      
+      .comp {
+        display: grid;
+        grid-template-columns: repeat(2, 90px);
+        grid-auto-rows: 90px;
+        grid-template-areas: "icon img";
+      }
+      
+      .switched .comp {
+        grid-template-areas: "img icon";
+      }
+      
+      .icon {
+        grid-area: icon;
+      }
+      
+      .img {
+        grid-area: img;
+      }
+      
+      .comp * {
+        margin: auto;
+      }
+      
+      #spritesheet {
+        display: none;
+      }
+      
+      ::selection {
+        display: none;
+      }
+    </style>
+
+  <head>
+  <body id="body" @click="switched=!switched" v-scope>
+
+    <div :class="{switched: switched}">
+      <div class="comp" v-for="name in icons">
+        <svg class="icon" width="90" height="90">
+          <use :href="toId(name)" class="org-icon"/>
+        </svg>
+        <img class="img" :src="toPath(name)"/>
+      </div>
+    </div>
+
+    <div id="spritesheet"></div>
+
+  </body>
+</html>

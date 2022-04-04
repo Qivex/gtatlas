@@ -1,0 +1,34 @@
+/* Left Sidebar */
+#selection {
+	width: 100%;
+	height: 50%;
+	position: absolute;
+	bottom: 0px;
+	left: 0px;
+	background-color: red;
+	transition: transform 0.5s;
+}
+
+#selection.hidden {
+	transform: translateY(100%);
+}
+
+/* Toggle */
+#selection-hider {
+	width: 8rem;
+	height: 4rem;
+	top: -4rem;
+	left: calc(50% - 4rem);
+	border-radius: 1rem 1rem 0 0;
+}
+
+/* Arrow */
+#selection-hider::after {
+	top: 1rem;
+	left: 3rem;
+	transform: rotate(-90deg);
+}
+
+.hidden > #selection-hider::after {
+	transform: rotate(90deg);
+}

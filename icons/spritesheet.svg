@@ -1,0 +1,163 @@
+<svg xmlns="http://www.w3.org/2000/svg">
+
+	<style>
+		:root {
+			--gta-red: #E03232;
+			--gta-yellow: #F0C850;
+			--gta-green: #72CC72;
+			--gta-blue: #5DB6E5;
+			--gta-purple: #9C6EAF;
+			--gta-pink: #FC73C9;
+			--gta-white: #F0F0F0;	/* properties */
+			--gta-grey1: #CDCDCD;	/* weaponrange, mask */
+			--gta-grey2: #B9B9B9;	/* rail */
+			--gta-grey3: #989898;	/* streets */
+			--gta-grey4: #535353;	/* light buildings */
+			--gta-grey5: #373737;	/* dark buildings */
+			--gta-grey6: #181818;	/* background */
+			--org-orange: #FFFFFF;
+			--org-pink: #FFFFFF;
+			--org-yellow: #FFFFFF;
+			--org-cyan: #FFFFFF;
+			--org-purple: #FFFFFF;
+			--org-mint: #FFFFFF;
+			--org-lblue: #FFFFFF;
+			--org-brown: #FFFFFF;
+			--org-green: #FFFFFF;
+			--org-red: #FFFFFF;
+		}
+		
+		.race {
+			fill: var(--gta-blue);
+		}
+		
+		.freetime {
+			fill: black;
+			stroke: var(--gta-white);	/* Todo: Ammunation isnt .freetime -> same but --gta-grey1 */
+			stroke-linejoin: round;
+			stroke-width: 3;
+		}
+	</style>
+
+	<defs id="components">
+
+		<!-- rescaling in use tag (width,height) requires viewbox => symbol -->
+
+		<!--<use href="#grid" x="0" y="0"/>-->
+		<path id="grid" d="M16,0 v128 M32,0 v128 M48,0 v128 M64,0 v128 M80,0 v128 M96,0 v128 M112,0 v128 M0,16 h128 M0,32 h128 M0,48 h128 M0,64 h128 M0,80 h128 M0,96 h128 M0,112 h128" fill="none" stroke="red" stroke-width="0.5"/>
+
+		<path id="bullet" d="m0,0 q6,7 9,27 v10 l2,2 v23 h-2 v5 h2 v6 h-22 v-6 h2 v-5 h-2 v-23 l2,-2 v-10 h18 h-18 q3,-20 9,-27 z" stroke="black" stroke-width="3"/>
+
+		<path id="house" d="m0,0 v36 q0,8 8,8 h50 q8,0 8,-8 v-36 q10,0 10,-10 v-6 q-1,-3 -4,-5 l-33,-24 q-7,-5 -14,0 l-33,24 q-3,2 -4,5 v6 q0,10 10,10 h2 z" stroke-width="4"/>
+
+		<symbol id="flag">
+			<path d="m2,2 v86 h13 v-34 h60 v-52 h-73 z" stroke="black" stroke-width="4"/>
+			<g fill="black">
+				<rect x="33" y="4"  width="22" height="48"/>
+				<rect x="13" y="19" width="60" height="18"/>
+			</g>
+			<rect x="35" y="21" width="18" height="14"/>
+		</symbol>
+
+	</defs>
+
+	<defs id="icons">
+
+		<symbol id="icon-default" viewbox="0 0 128 128">
+			<circle cx="64" cy="64" r="34" fill="#F0C850" stroke="black" stroke-width="5"/>
+		</symbol>
+
+		<symbol id="icon-vehicle-personal" viewbox="0 0 128 128">
+			<path d="M22,82 v11 c0,11 19,11 19,0 v-11 h46 v11 c0,11 19,11 19,0 v-11 q5,-1 6,-6 v-13 q-2,-6 -8,-6 l-3,-25 q-2,-6 -8,-6 h-58 q-6,0 -8,6 l-3,25 q-6,0 -8,6 v13 q1,5 6,6 z" fill="var(--gta-white)" stroke="black" stroke-width="4"/>
+			<path d="M32,54 l2,-18 q1,-3 6,-3 h48 q5,0 6,3 l2,18 h-64 z" fill="black"/>
+		</symbol>
+
+		<symbol id="icon-race-stunt" class="race" viewbox="0 0 128 128">
+			<use href="#flag" x="18" y="17"/>
+			<path d="M55,110 h55 v-42 q-10,30 -55,42 z" stroke="black" stroke-width="4" stroke-linejoin="round"/>
+		</symbol>
+
+		<symbol id="icon-race-car" class="race" viewbox="0 0 128 128">
+			<use href="#flag" x="18" y="17"/>
+			<!-- not accurate (different stroke-width & color) -->
+			<use href="#icon-vehicle-personal" x="50" y="57" width="70" height="70"/>
+		</symbol>
+
+		<symbol id="icon-apartment" viewbox="0 0 128 128">
+			<use href="#house" x="32" y="65" fill="#72CC72" stroke="black"/>
+			<rect x="43" y="55" width="19" height="19"/>
+			<rect x="69" y="86" width="19" height="23"/>
+		</symbol>
+
+		<symbol id="icon-garage" viewbox="0 0 128 128">
+			<use href="#house" x="32" y="65" fill="var(--gta-white)" stroke="black"/>
+			<path d="M44,69 h42 M44,86 h42 M44,103 h42" stroke="black" stroke-width="9"/>
+		</symbol>
+
+		<symbol id="icon-ammunation" class="freetime" viewbox="0 0 128 128">
+			<path d="M26,38 h71 v-4 h9 v4 h3 v17 h-9 v5 h-28 l-6,15 h-14 l-5,18 h-29 l8,-33 h-3 v-11 h3 v-11 z"/>
+			<path d="M53,66 h8 l2,-7 h-8 l-2,7 z" stroke="none" fill="white"/>
+		</symbol>
+
+		<symbol id="icon-clothing" class="freetime" viewbox="0 0 128 128">
+			<path d="M64,38 q-11,-6 -10,-14 h-7 l-30,26 l17,18 l7,-8 v43 h46 v-43 l7,8 l17,-18 l-30,-26 h-7 q1,8 -10,14 z"/>
+		</symbol>
+
+		<symbol id="icon-store" class="freetime" viewbox="0 0 128 128">
+			<path d="M20,49 q-5,0 -5,5 v6 q1,4 6,4 l6,36 q2,4 5,4 h64 q3,0 5,-4 l6,-36 q5,0 6,-4 v-6 q0,-5 -5,-5 h-13 l-25,-25 q-6,-5 -12,0 l-25,25 h-13 z M64,38 l11,11 h-22 l11,-11 z" fill-rule="evenodd"/>
+			<path d="M42,67 v18 M64,67 v18 M86,67 v18" stroke-width="9.5" stroke-linecap="round"/>
+		</symbol>
+
+		<symbol id="icon-dart" class="freetime" viewbox="0 0 128 128">
+			<circle cx="64" cy="64" r="45" fill="var(--gta-white)"/>
+			<circle cx="64" cy="64" r="37" fill="none" stroke="black" stroke-width="12"/>
+			<circle cx="64" cy="64" r="14" fill="none" stroke="black" stroke-width="11"/>
+		</symbol>
+
+		<symbol id="icon-office" viewbox="0 0 128 128">
+			<rect x="29" y="16" width="70" height="96" fill="var(--gta-white)" stroke="black" stroke-width="5"/>
+			<rect x="55" y="91" width="18" height="19"/>
+			<rect x="40" y="32" width="48" height="48"/>
+			<path d="M55,31 v50 M73,31 v50 M39,47 h50 M39,65 h50" stroke="var(--gta-white)" stroke-width="6"/>
+		</symbol>
+
+		<symbol id="icon-nightclub" viewbox="0 0 128 128">
+			<rect x="27" y="16" width="74" height="96" rx="6" fill="currentcolor" stroke="black" stroke-width="5"/>
+			<circle cx="64" cy="54" r="30"/>
+			<circle cx="64" cy="54" r="5" stroke="currentcolor" stroke-width="8"/>
+			<circle cx="64" cy="54" r="19" fill="none" stroke="currentcolor" stroke-width="12" pathLength="18" stroke-dasharray="2 7" stroke-dashoffset="8"/>
+			<circle cx="45" cy="96" r="8.5"/>
+			<rect x="59" y="91" width="32" height="10"/>
+		</symbol>
+
+		<symbol id="icon-bunker-sell" viewbox="0 0 128 128" fill="#5DB6E5">
+			<use href="#bullet" x="40" y="25"/>
+			<use href="#bullet" x="64" y="29"/>
+			<use href="#bullet" x="88" y="25"/>
+		</symbol>
+
+		<symbol id="icon-molotovguys" viewbox="0 0 128 128">
+			<path d="M64,107 q40,-3 38,-40 q-2,-20 -15,-30 q0,10 -4,19 q-10,-30 -30,-33 q8,22 -6,37 q-3,-6 -9,-12 l-11,25 q-5,30 37,34 z" fill="#E03232" stroke="black" stroke-width="5"/>
+			<path d="M74,107 q18,-25 -2,-43 q0,12 -10,24 q-10,-4 -15,-9 q-2,15 7,28 z"/>
+		</symbol>
+
+	</defs>
+
+	<script>
+		// Simple script to cycle all icons if opened standalone
+		window.addEventListener("load", () => {
+			let ids = []
+			document.querySelectorAll("#icons symbol").forEach(el => ids.push("#" + el.id))
+			let demo = document.getElementById("demo")
+			demo.setAttribute("href", ids[0])
+			let pointer = 1
+			demo.addEventListener("click", () => {
+				demo.setAttribute("href", ids[pointer++])
+				if (pointer >= ids.length) pointer = 0
+			})
+		})
+	</script>
+
+	<use id="demo" color="white"><title>click to cycle</title></use>
+
+</svg>

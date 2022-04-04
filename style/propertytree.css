@@ -1,0 +1,86 @@
+/** PROPERTY TREE **/
+
+/* Basic property styling */
+.propertytree {
+	position: absolute;
+	background-color: #205080;
+	color: white;
+	font-family: Verdana;
+}
+
+.property {
+	display: flex;
+	align-items: center;
+}
+
+.property:hover {
+	background-color: #306090;
+}
+
+/* Custom list margin & padding */
+.propertytree ul {
+	list-style-type: none;
+	margin: 0px;
+	margin-left: 20px;
+	padding: 0px;
+}
+
+
+
+/** COLLAPSING **/
+
+/* Collapse-arrow */
+.property .collapse-arrow {
+	background-image: url(/icons/collapse-arrow.svg);
+	content: "";
+	margin: 10px;
+	width: 20px;
+	height: 20px;
+	cursor: pointer;
+	transition: transform 0.5s;
+}
+
+/* No arrow on atomic properties */
+.property:only-child .collapse-arrow {
+	background-image: url(/icons/list-dot.svg);
+	cursor: default;
+}
+
+/* Hide collapsed subelements */
+.property.collapsed + ul {
+	display: none;
+}
+
+/* Rotate arrow when collapsing */
+.property.collapsed .collapse-arrow {
+	transform: rotate(-90deg);
+}
+
+
+
+/** CHECKBOX **/
+
+/* Custom checkbox hides the real one */
+.property input {
+	display: none;
+}
+
+/* Checkbox background */
+.property .styled-checkbox {
+	content: "";
+	width: 20px;
+	height: 20px;
+	position: absolute;
+	right: 10px;
+	cursor: pointer;
+	background-color: white;
+}
+
+/* Checkbox content */
+.property input:checked ~ .styled-checkbox {
+	background-image: url(/icons/check-true.svg);
+}
+
+.property input:indeterminate ~ .styled-checkbox {
+	background-image: url(/icons/check-mixed.svg);
+}

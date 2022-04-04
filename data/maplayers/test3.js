@@ -1,0 +1,1 @@
+export default Leaflet.featureGroup([Leaflet.marker([-240,100])])
