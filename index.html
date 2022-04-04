@@ -42,10 +42,6 @@
     <div id="selection-hider" @click="toggleHidden"></div>
     <div id="selection-content" class="propertytree">
       <div v-for="property in model" v-scope="PropertyScope(property, null, setMapLayer)"></div>
-      <!-- TEMP -->
-      <svg class="icon" width="31" height="31" viewbox="0 0 100 100">
-        <use href="#icon-nightclub" class="org-icon"/>
-      </svg>
     </div>
   </div>
 
@@ -60,7 +56,10 @@
     <div class="property" :class="{collapsed: prop.collapsed}">
       <div class="collapse-arrow" @click="prop.toggleCollapsed"></div>
       <input type="checkbox" v-model="prop.checked" :id="prop.id" :indeterminate="prop.indeterminate" @change="prop.cycleValue">
-      <label :for="prop.id">{{prop.id}}</label>
+      <label :for="prop.id">{{i18n(prop.id)}}</label>
+	  <svg class="icon icon-preview" width="30" height="30" viewbox="0 0 128 128">
+        <use :href="'#icon-' + prop.id"/>
+      </svg>
       <div class="styled-checkbox" @click="prop.cycleValue"></div>
     </div>
 

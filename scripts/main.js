@@ -21,4 +21,14 @@ marker(4200,4000,"garage").addTo(gtamap)
 
 // Property Tree
 let toggleHidden = event => event.target.parentNode.classList.toggle("hidden")
-PetiteVue.createApp({PropertyScope, model, toggleHidden, setMapLayer}).mount("#selection")
+
+// Temporary test for live update of i18n-function
+window.seti18n = function(language) {
+	window.i18n = function(text) {
+		return "i18n-" + language + "-" + text
+	}
+}
+seti18n("de")	// Doesnt update already rendered HTML -> How?
+
+// Scope
+PetiteVue.createApp({PropertyScope, model, toggleHidden, setMapLayer, i18n}).mount("#selection")

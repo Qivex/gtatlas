@@ -11,6 +11,7 @@
 .property {
 	display: flex;
 	align-items: center;
+	width: 100%;
 }
 
 .property:hover {
@@ -54,6 +55,14 @@
 /* Rotate arrow when collapsing */
 .property.collapsed .collapse-arrow {
 	transform: rotate(-90deg);
+}
+
+
+
+/** ICON PREVIEW **/
+.icon-preview {
+	position: absolute;
+	right: 40px;
 }
 
 
