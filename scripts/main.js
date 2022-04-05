@@ -22,14 +22,3 @@ marker(4200,4000,"garage").addTo(gtamap)
 // Property Tree
 let toggleHidden = event => event.target.parentNode.classList.toggle("hidden")
 PetiteVue.createApp({PropertyScope, model, toggleHidden, setMapLayer}).mount("#selection")
-
-
-// i18n
-let currentLanguage = "en"
-let updateLanguage = language => currentLanguage = language
-let i18nLookup = {}
-let t = text => {return "i18n-" + currentLanguage + "-" + text}
-// PetiteVue.createApp({currentLanguage, updateLanguage, i18nLookup, t}).mount("body")
-/* Problems:
-- nested v-scopes dont work
-- reactified scope required to allow dynamic updates*/
