@@ -1,0 +1,81 @@
+/** CONTAINER **/
+
+/* Basics */
+.propertytree {
+	background: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.4));
+	color: white;
+	font-family: arial;
+}
+
+/* Clear list defaults */
+.propertytree ul {
+	list-style-type: none;
+	margin: 0px;
+	padding: 0px;
+}
+
+
+
+/** GROUP **/
+
+/* Left margin for tree structure */
+.propertygroup ul {
+	margin-left: 20px;
+}
+
+
+
+/** ITEMS **/
+
+.property {
+	display: flex;
+	align-items: center;
+	/* Todo: Size in rem for other resolutions */
+	width: 432px;
+	height: 38px;
+	padding-left: 10px;
+}
+
+.property:is(:hover,:focus,:active) {
+	background: linear-gradient(90deg, #F0F0F0, #C4C4C4);
+	color: black;
+}
+
+
+
+/** ICON **/
+
+.preview-icon {
+	position: absolute;
+	right: 46px;
+}
+
+
+
+/** CHECKBOX **/
+
+/* Hide real checkbox */
+.property input {
+	display: none;
+}
+
+/* Checkbox background */
+.property .styled-checkbox {
+	content: "";
+	width: 20px;
+	height: 20px;
+	position: absolute;
+	right: 16px;
+	cursor: pointer;
+	background-color: white;
+}
+
+/* Checkbox content */
+.property input:checked ~ .styled-checkbox {
+	background-image: url(/icons/check-true.svg);
+}
+
+/* Filter */
+.property:is(:hover,:focus,:active) .styled-checkbox {
+	filter: invert(1)
+}

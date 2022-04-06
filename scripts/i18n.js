@@ -27,13 +27,14 @@ function setLocale(countryID) {
 
 
 // Fetch localizations
-Promise.all(
+await Promise.all(
 	countryList.map(countryID => {
 		return fetch(`data/i18n/${countryID}.json`)
 			.then(res => res.json())
 			.then(data => localizationStrings[countryID] = data)
 	})
-).then(() => setLocale(fallbackCountryID))
+)
+//.then(() => setLocale(fallbackCountryID))
 
 
 export default setLocale

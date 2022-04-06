@@ -1,0 +1,39 @@
+<html>
+<head>
+
+	<title>Property Test</title>
+  <link rel="stylesheet" href="style/property.css"/>
+	<script src="libs/petite-vue.js"></script>
+	<script type="module">
+		import {Property} from "/scripts/property.js"
+    import "/scripts/iconinit.js"
+    let testdata = [
+      {id:"apartment",icon:"apartment",init:true},
+      {id:"garage",icon:"garage",init:true},
+      {id:"default",icon:"default",init:true}
+    ]
+    PetiteVue.createApp({Property, testdata}).mount("#property-test")
+	</script>
+  <style>
+    body {
+      background: #dddddd;
+    }
+    .propertytree {
+      position: absolute;
+      top: 20px;
+      left: 28px;
+    }
+  </style>
+
+</head>
+<body>
+
+	<div id="property-test" class="propertytree">
+    <ul>
+      <li v-for="item in testdata" v-scope="Property(item.id, item.icon, item.init)"></li>
+    </ul>
+  </div>
+  <div id="spritesheet"></div>
+
+</body>
+</html>

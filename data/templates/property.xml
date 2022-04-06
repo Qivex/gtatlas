@@ -1,0 +1,10 @@
+<div class="property" tabindex="0">
+	<input type="checkbox" :id="id" v-model="value" @click.prevent/>
+	<label :for="id" :data-i18n="id">temporary-{{id}}</label>
+	<div class="preview-icon">
+		<svg class="icon" width="30" height="30" viewbox="0 0 128 128">
+			<use :href="`#icon-${icon}`"/>
+		</svg>
+	</div>
+	<div class="styled-checkbox" @click="nextValue"></div>
+</div>
