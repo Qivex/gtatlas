@@ -14,8 +14,12 @@ function Property(id, icon, initial) {
 
 
 // Create v-scope for PropertyGroup
-function PropertyGroup() {
-	console.log("nyi")
+function PropertyGroup(id, children) {
+	return {
+		$template: "#propertygroup-template",
+		id: id,
+		children: children
+	}
 }
 
 

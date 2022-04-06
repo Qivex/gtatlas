@@ -5,14 +5,18 @@
   <link rel="stylesheet" href="style/property.css"/>
 	<script src="libs/petite-vue.js"></script>
 	<script type="module">
-		import {Property} from "/scripts/property.js"
+		import {Property, PropertyGroup} from "/scripts/property.js"
     import "/scripts/iconinit.js"
     let testdata = [
       {id:"apartment",icon:"apartment",init:true},
       {id:"garage",icon:"garage",init:true},
-      {id:"default",icon:"default",init:true}
+      {id:"default",icon:"default",init:true},
+      {id:"subgroup",children:[
+        {id:"child1",icon:"nightclub",init:false},
+        {id:"child2",icon:"nightclub",init:true}
+      ]}
     ]
-    PetiteVue.createApp({Property, testdata}).mount("#property-test")
+    PetiteVue.createApp({Property, PropertyGroup, testdata}).mount("#property-test")
 	</script>
   <style>
     body {
@@ -29,9 +33,10 @@
 <body>
 
 	<div id="property-test" class="propertytree">
-    <ul>
+    <div v-scope="PropertyGroup('groupid', testdata)"></div>
+    <!--<ul>
       <li v-for="item in testdata" v-scope="Property(item.id, item.icon, item.init)"></li>
-    </ul>
+    </ul>-->
   </div>
   <div id="spritesheet"></div>
 

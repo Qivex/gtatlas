@@ -1,6 +1,6 @@
 <div class="property" tabindex="0">
 	<input type="checkbox" :id="id" v-model="value" @click.prevent/>
-	<label :for="id" :data-i18n="id">temporary-{{id}}</label>
+	<p :data-i18n="id">temporary-{{id}}</p><!-- was label, but no longer needed-->
 	<div class="preview-icon">
 		<svg class="icon" width="30" height="30" viewbox="0 0 128 128">
 			<use :href="`#icon-${icon}`"/>

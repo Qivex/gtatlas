@@ -1,3 +1,7 @@
-<div class="propertygroup">
-	<p>Group</p>
+<div class="propertygroup" tabindex="0">
+	<p>Group {{id}}</p>
+	<ul>
+		<!-- https://vuejs.org/guide/essentials/list.html#v-for-with-v-if -->
+		<li v-for="child in children" v-scope="child.children ? PropertyGroup(child.id, child.children) : Property(child.id, child.icon, child.init)"></li>
+	</ul>
 </div>
