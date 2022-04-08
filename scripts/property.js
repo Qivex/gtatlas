@@ -2,24 +2,22 @@ const templateList = ["property", "propertygroup"]
 
 
 // Create v-scope for Property
-function Property(id, icon, initial) {
-	return {
+function Property(context) {
+	Object.assign(context, {
 		$template: "#property-template",
-		id: id,
-		icon: icon,
-		value: (initial === undefined ? false : initial),
-		nextValue: function() {this.value = !this.value}
-	}
+		state: (context.initial === undefined ? false : context.initial),
+		nextState: function() {this.state = !this.state}
+	})
+	return context
 }
 
 
 // Create v-scope for PropertyGroup
-function PropertyGroup(id, children) {
-	return {
-		$template: "#propertygroup-template",
-		id: id,
-		children: children
-	}
+function PropertyGroup(context) {
+	Object.assign(context, {
+		$template: "#propertygroup-template"
+	})
+	return context
 }
 
 
