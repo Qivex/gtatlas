@@ -12,8 +12,16 @@
       {id:"garage",icon:"garage",initial:true},
       {id:"default",icon:"default",initial:true},
       {id:"subgroup",children:[
-        {id:"child1",icon:"nightclub",initial:false},
-        {id:"child2",icon:"nightclub",initial:true}
+        {id:"child1",children:[
+          {id:"child1a",icon:"nightclub",initial:false},
+          {id:"child1b",icon:"nightclub",initial:false},
+          {id:"child1c",icon:"nightclub",initial:false}
+        ]},
+        {id:"child2",children:[
+          {id:"child2a",icon:"nightclub",initial:false},
+          {id:"child2b",icon:"nightclub",initial:false},
+          {id:"child2c",icon:"nightclub",initial:false}
+        ]}
       ]}
     ]
     PetiteVue.createApp({Property, PropertyGroup, testdata}).mount("#property-test")
