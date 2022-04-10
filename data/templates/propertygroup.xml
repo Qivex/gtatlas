@@ -1,4 +1,4 @@
-<div class="propertygroup" tabindex="0">
+<div class="propertygroup" tabindex="0" @vue:mounted="onMount">
 	<p @click.left="nextState" @click.right.prevent="debugClick">Group {{id}}, State {{state}}</p>
 	<ul>
 		<!-- https://vuejs.org/guide/essentials/list.html#v-for-with-v-if -->

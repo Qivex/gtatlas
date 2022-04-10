@@ -1,4 +1,4 @@
-<div class="property" tabindex="0" @vue:mounted="updateParentRef">
+<div class="property" tabindex="0" @vue:mounted="onMount">
 	<input type="checkbox" :id="id" v-model="state"/>
 	<p :data-i18n="id">temporary-{{id}}</p><!-- was label, but no longer needed-->
 	<div class="preview-icon" @click="debugClick">

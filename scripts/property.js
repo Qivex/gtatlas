@@ -19,7 +19,8 @@ function Property(context, parent) {
 		isReactive: function() {return this !== this.self},	//Equal by default, but broken after used in v-scope!
 		self: context,
 		parent: parent,
-		updateParentRef: function() {
+		onMount: function() {
+			console.log("First? " + this.id)
 			/* Explanation:
 			- When used as scope this context gets reactified
 			- But parents ref isn't updated -> still points at non-reactified version of this
@@ -39,7 +40,12 @@ function PropertyGroup(context, parent) {
 	context = Property(context, parent)	//Reuse most of the props & functions
 	Object.assign(context, {
 		$template: "#propertygroup-template",
-		debugClick: function() {window.mygroup = this}
+		debugClick: function() {
+			window.mygroup = this
+		},
+		onMount: function() {
+			console.log("Second? " + this.id)
+		}
 	})
 	/*
 	Object.assign(context, {
