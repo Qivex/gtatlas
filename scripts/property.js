@@ -8,7 +8,14 @@ function Property(context, parent) {
 		$template: "#property-template",
 		state: (context.initial === undefined ? false : context.initial),
 		nextState: function() {this.state = !this.state},	//Todo: Update parent group state recusively
-		logState: function() {console.log(this.state)},
+		debugClick: function() {
+			window.myprop = this
+			/* Problem:
+			myprop.parent != mygroup, trotz mygroup.children[i] = myprop
+			-> this.parent hat falsche ref
+			-> Todo: ref-Attribut, sodass Parent sich mittels this.$refs selbst als parent setzt?
+			*/
+		},
 		isReactive: function() {return this !== this.self},	//Equal by default, but broken after used in v-scope!
 		self: context,
 		parent: parent,
@@ -29,8 +36,11 @@ function Property(context, parent) {
 
 // Create v-scope for PropertyGroup
 function PropertyGroup(context, parent) {
-	context = Property(context)	//Reuse most of the props & functions
-	context.$template = "#propertygroup-template"
+	context = Property(context, parent)	//Reuse most of the props & functions
+	Object.assign(context, {
+		$template: "#propertygroup-template",
+		debugClick: function() {window.mygroup = this}
+	})
 	/*
 	Object.assign(context, {
 		$template: "#propertygroup-template",

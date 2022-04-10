@@ -1,7 +1,7 @@
 <div class="property" tabindex="0" @vue:mounted="updateParentRef">
 	<input type="checkbox" :id="id" v-model="state"/>
 	<p :data-i18n="id">temporary-{{id}}</p><!-- was label, but no longer needed-->
-	<div class="preview-icon" @click="logState">
+	<div class="preview-icon" @click="debugClick">
 		<svg class="icon" width="30" height="30" viewbox="0 0 128 128">
 			<use :href="`#icon-${icon}`"/>
 		</svg>
