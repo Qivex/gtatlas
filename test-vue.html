@@ -1,0 +1,109 @@
+<html>
+<head>
+
+	<title>Simple Property Test</title>
+
+  <script src="https://unpkg.com/vue@3"></script>
+
+	<script type="module">
+    var mydata = {
+      id: "root",
+      children: [
+        {
+          id: "child1",
+          children: [
+            {id: "child1a", initial:2},
+            {id: "child1b", initial:4},
+            {id: "child1c", initial:6}
+          ]
+        },
+        {
+          id: "child2",
+          children: [
+            {id: "child2a", initial:1},
+            {id: "child2b", initial:2},
+            {id: "child2c", initial:3}
+          ]
+        }
+      ]
+    }
+    
+    function Property(context) {
+      Object.assign(context, {
+        $template: "#property-template",
+        n: context.initial,
+        inc: function() { this.n++ },
+        dec: function() { this.n-- },
+      })
+      return context
+    }
+    
+    function Group(context) {
+      Object.assign(context, {
+        $template: "#group-template",
+        inc: function() { this.children.forEach(c => c.inc()) },
+        dec: function() { this.children.forEach(c => c.dec()) }
+      })
+      Object.defineProperty(context, "n", {
+        get: function() {
+          return this.children.reduce((sum, child) => sum + child.n, 0)
+        },
+        // Never really used
+        set: function(newN) {
+          for (let index in this.children) {
+            this.children[index] = (index === 0 ? newN : 0)
+          }
+        }
+      })
+      return context
+    }
+    
+    Vue.createApp({
+      data() {
+        return {
+          data: mydata
+        }
+      },
+      components: {
+        Property: {
+          
+        },
+        Group: {
+          
+        }
+      }
+    }).mount("#root")
+	</script>
+
+	<style>
+		ul {
+			margin-left: 20px
+		}
+	</style>
+
+</head>
+<body>
+
+  <div id="root" v-scope="Group(mydata)"></div>
+
+  <template id="property-template">
+    <span>
+      <button @click="inc()">+</button>
+      <button @click="dec()">-</button>
+      {{id}} = {{n}}
+    </span>
+  </template>
+
+  <template id="group-template">
+    <span>
+      <button @click="inc()">+</button>
+      <button @click="dec()">-</button>
+      {{id}} = {{n}}
+    </span>
+    <ul>
+      <li v-for="child in children" v-scope="child.children ? Group(child) : Property(child)"></li>
+    </ul>
+  </template>
+
+</body>
+</html>
