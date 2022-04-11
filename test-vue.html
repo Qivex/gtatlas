@@ -3,7 +3,7 @@
 
 	<title>Simple Property Test</title>
 
-  <script src="https://unpkg.com/vue@3"></script>
+  <script src="libs/vue.js"></script>
 
 	<script type="module">
     var mydata = {
@@ -28,51 +28,58 @@
       ]
     }
     
-    function Property(context) {
-      Object.assign(context, {
-        $template: "#property-template",
-        n: context.initial,
-        inc: function() { this.n++ },
-        dec: function() { this.n-- },
-      })
-      return context
-    }
-    
-    function Group(context) {
-      Object.assign(context, {
-        $template: "#group-template",
-        inc: function() { this.children.forEach(c => c.inc()) },
-        dec: function() { this.children.forEach(c => c.dec()) }
-      })
-      Object.defineProperty(context, "n", {
-        get: function() {
-          return this.children.reduce((sum, child) => sum + child.n, 0)
-        },
-        // Never really used
-        set: function(newN) {
-          for (let index in this.children) {
-            this.children[index] = (index === 0 ? newN : 0)
-          }
-        }
-      })
-      return context
-    }
-    
-    Vue.createApp({
+    var Property = {
+      template: "#property-template",
+      props: {
+        id: String,
+        initial: Number
+      },
       data() {
         return {
-          data: mydata
+          n: this.initial
         }
       },
-      components: {
-        Property: {
-          
-        },
-        Group: {
-          
-        }
+      methods: {
+        inc: function() { this.n++ },
+        dec: function() { this.n-- }
       }
-    }).mount("#root")
+    }
+    
+    var Group = {
+      template: "#group-template",
+      props: {
+        id: String,
+        children: Array
+      },
+      computed: {
+        /* Todo:
+        https://vuejs.org/api/options-state.html#data
+        => children as computed using this.$data?
+        */
+        n: {
+          get() {
+            return this.children.reduce((sum, child) => sum + child.n, 0)
+          },
+          set(v) {
+            for (let index in this.children) {
+              this.children[index].n = (index === 0 ? newN : 0)
+            }
+          }
+        }
+      },
+      methods: {
+        inc: function() { this.children.forEach(c => c.inc()) },
+        dec: function() { this.children.forEach(c => c.dec()) }
+      },
+      created() {
+        console.log(this.children)  // Returns Proxy!
+      }
+    }
+    
+    Vue.createApp({data() { return {mydata} }})
+      .component("Property", Property)
+      .component("Group", Group)
+      .mount("#root")
 	</script>
 
 	<style>
@@ -84,7 +91,13 @@
 </head>
 <body>
 
-  <div id="root" v-scope="Group(mydata)"></div>
+  <div id="root">
+    <!-- was v-bind for context -->
+    <!--
+    <property v-for="prop in data.children[0].children" v-bind="prop"></property>
+    -->
+    <group v-bind="mydata"></group>
+  </div>
 
   <template id="property-template">
     <span>
@@ -101,7 +114,9 @@
       {{id}} = {{n}}
     </span>
     <ul>
-      <li v-for="child in children" v-scope="child.children ? Group(child) : Property(child)"></li>
+      <li v-for="child in children">
+        <component :is="child.children ? 'Group' : 'Property'" v-bind="child"></component>
+      </li>
     </ul>
   </template>
 
