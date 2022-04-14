@@ -37,12 +37,15 @@
       },
       data() {
         return {
-          n: this.initial
+          count: this.initial
         }
       },
+      watch: {
+        count: function() { this.$parent.update() }
+      },
       methods: {
-        inc: function() { this.n++ },
-        dec: function() { this.n-- }
+        inc: function() { this.count++ },
+        dec: function() { this.count-- }
       }
     }
     
@@ -57,29 +60,18 @@
         id: String,
         children: Array
       },
-      computed: {
-        /* Todo:
-        https://vuejs.org/api/options-state.html#data
-        => children as computed using this.$data?
-        */
-        n: {
-          get() {
-            return this.children.reduce((sum, child) => sum + child.n, 0)
-          },
-          set(v) {
-            for (let index in this.children) {
-              this.children[index].n = (index === 0 ? newN : 0)
-            }
-          }
-        }
+      data() {
+        return {count: 0}
+      },
+      watch: {
+        count: function() { if (this.$parent !== this.$root) this.$parent.update() }
       },
       methods: {
-        inc: function() { this.children.forEach(c => c.inc()) },
-        dec: function() { this.children.forEach(c => c.dec()) }
+        inc: function() { this.$refs.childcomponents.forEach(c => c.inc()) },
+        dec: function() { this.$refs.childcomponents.forEach(c => c.dec()) },
+        update: function() { this.count = this.$refs.childcomponents.reduce((sum, child) => sum + child.count, 0) }
       },
-      created() {
-        console.log(this.children)  // Returns Proxy!
-      }
+      mounted: function() { this.update() }
     }
     
     Vue.createApp({
@@ -103,7 +95,6 @@
 <body>
 
   <div id="root">
-    <!--<property v-for="prop in data.children[0].children" v-bind="prop"></property>-->
     <group v-bind="mydata"></group>
   </div>
 
@@ -111,7 +102,7 @@
     <span>
       <button @click="inc()">+</button>
       <button @click="dec()">-</button>
-      {{id}} = {{n}}
+      {{id}} = {{count}}
     </span>
   </template>
 
@@ -119,11 +110,11 @@
     <span>
       <button @click="inc()">+</button>
       <button @click="dec()">-</button>
-      {{id}} = {{n}}
+      {{id}} = {{count}}
     </span>
     <ul>
       <li v-for="child in children">
-        <component :is="child.children ? 'Group' : 'Property'" v-bind="child"></component>
+        <component :is="child.children ? 'Group' : 'Property'" v-bind="child" ref="childcomponents"></component>
       </li>
     </ul>
   </template>

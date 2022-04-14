@@ -31,9 +31,9 @@
     function Property(context) {
       Object.assign(context, {
         $template: "#property-template",
-        n: context.initial,
-        inc: function() { this.n++ },
-        dec: function() { this.n-- },
+        count: context.initial,
+        inc: function() { this.count++ },
+        dec: function() { this.count-- },
       })
       return context
     }
@@ -41,18 +41,12 @@
     function Group(context) {
       Object.assign(context, {
         $template: "#group-template",
+        count: 0,
         inc: function() { this.children.forEach(c => c.inc()) },
-        dec: function() { this.children.forEach(c => c.dec()) }
-      })
-      Object.defineProperty(context, "n", {
-        get: function() {
-          return this.children.reduce((sum, child) => sum + child.n, 0)
-        },
-        // Never really used
-        set: function(newN) {
-          for (let index in this.children) {
-            this.children[index] = (index === 0 ? newN : 0)
-          }
+        dec: function() { this.children.forEach(c => c.dec()) },
+        update: function() {
+          this.count = this.$refs.childcomponents.reduce((sum, child) => sum + child.count, 0)
+          if (this.parent) this.parent.update()
         }
       })
       return context
@@ -76,7 +70,7 @@
     <span>
       <button @click="inc()">+</button>
       <button @click="dec()">-</button>
-      {{id}} = {{n}}
+      {{id}} = {{count}}
     </span>
   </template>
 
@@ -84,10 +78,10 @@
     <span>
       <button @click="inc()">+</button>
       <button @click="dec()">-</button>
-      {{id}} = {{n}}
+      {{id}} = {{count}}
     </span>
     <ul>
-      <li v-for="child in children" v-scope="child.children ? Group(child) : Property(child)"></li>
+      <li v-for="child in children" v-scope="child.children ? Group(child) : Property(child)" ref="childcomponents" @vue:mounted="update"></li>
     </ul>
   </template>
 
