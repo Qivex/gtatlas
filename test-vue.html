@@ -49,6 +49,10 @@
     var Group = {
       name: "Group",
       template: "#group-template",
+      components: {
+        Group,
+        Property
+      },
       props: {
         id: String,
         children: Array
@@ -78,8 +82,15 @@
       }
     }
     
-    Vue.createApp({data() { return {mydata} }})
-      .mount("#root")
+    Vue.createApp({
+      data() {
+        return {mydata}
+      },
+      components: {
+        Group,
+        Property
+      }
+    }).mount("#root")
 	</script>
 
 	<style>
