@@ -29,6 +29,7 @@
     }
     
     var Property = {
+      name: "Property",
       template: "#property-template",
       props: {
         id: String,
@@ -46,6 +47,7 @@
     }
     
     var Group = {
+      name: "Group",
       template: "#group-template",
       props: {
         id: String,
@@ -77,8 +79,6 @@
     }
     
     Vue.createApp({data() { return {mydata} }})
-      .component("Property", Property)
-      .component("Group", Group)
       .mount("#root")
 	</script>
 
@@ -92,10 +92,7 @@
 <body>
 
   <div id="root">
-    <!-- was v-bind for context -->
-    <!--
-    <property v-for="prop in data.children[0].children" v-bind="prop"></property>
-    -->
+    <!--<property v-for="prop in data.children[0].children" v-bind="prop"></property>-->
     <group v-bind="mydata"></group>
   </div>
 
