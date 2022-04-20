@@ -1,10 +1,10 @@
-<div class="property" tabindex="0" @vue:mounted="onMount">
+<div class="property" tabindex="0">
 	<input type="checkbox" :id="id" v-model="state"/>
-	<p :data-i18n="id">temporary-{{id}}</p><!-- was label, but no longer needed-->
-	<div class="preview-icon" @click="debugClick">
+	<p :data-i18n="id">temp-{{id}}</p>
+	<div class="preview-icon>
 		<svg class="icon" width="30" height="30" viewbox="0 0 128 128">
 			<use :href="`#icon-${icon}`"/>
 		</svg>
 	</div>
-	<div class="styled-checkbox" @click="nextState"></div>
+	<div class="styled-checkbox" @click="cycle"></div>
 </div>
