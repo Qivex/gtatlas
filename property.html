@@ -3,28 +3,43 @@
 
 	<title>Property Test</title>
   <link rel="stylesheet" href="style/property.css"/>
-	<script src="libs/petite-vue.js"></script>
+	<script src="libs/vue.js"></script>
 	<script type="module">
-		import {Property, PropertyGroup} from "/scripts/property.js"
+		import PropertyTree from "/scripts/components/propertytree.js"
     import "/scripts/iconinit.js"
-    window.testdata = [
-      {id:"apartment",icon:"apartment",initial:true},
-      {id:"garage",icon:"garage",initial:true},
-      {id:"default",icon:"default",initial:true},
-      {id:"subgroup",children:[
-        {id:"child1",children:[
-          {id:"child1a",icon:"nightclub",initial:false},
-          {id:"child1b",icon:"nightclub",initial:false},
-          {id:"child1c",icon:"nightclub",initial:false}
-        ]},
-        {id:"child2",children:[
-          {id:"child2a",icon:"nightclub",initial:false},
-          {id:"child2b",icon:"nightclub",initial:false},
-          {id:"child2c",icon:"nightclub",initial:false}
-        ]}
-      ]}
-    ]
-    PetiteVue.createApp({Property, PropertyGroup, testdata}).mount("#property-test")
+    window.testdata = {
+      structure: {
+        id: "root",
+        children:[
+          {id:"apartment",icon:"apartment",initial:true},
+          {id:"garage",icon:"garage",initial:true},
+          {id:"default",icon:"default",initial:true},
+          {id:"subgroup",children:[
+            {id:"child1",children:[
+              {id:"child1a",icon:"nightclub",initial:false},
+              {id:"child1b",icon:"nightclub",initial:false},
+              {id:"child1c",icon:"nightclub",initial:false}
+            ]},
+            {id:"child2",children:[
+              {id:"child2a",icon:"nightclub",initial:false},
+              {id:"child2b",icon:"nightclub",initial:false},
+              {id:"child2c",icon:"nightclub",initial:false}
+            ]}
+          ]}
+        ]
+      },
+      onchange: function(id, state) {
+        console.log(`${id} changed to ${state}`)
+      }
+    }
+    Vue.createApp({
+      data() {
+        return {testdata}
+      },
+      components: {
+        PropertyTree
+      }
+    }).mount("#property-test")
 	</script>
   <style>
     body {
@@ -40,9 +55,8 @@
 </head>
 <body>
 
-  <div id="property-test" class="propertytree">
-    <div v-scope="PropertyGroup({id:'groupid', children:testdata})"></div>
-    <!--<ul><li v-for="item in testdata" v-scope="Property(item)"></li></ul>-->
+  <div id="property-test">
+    <property-tree v-bind="testdata"></property-tree>
   </div>
   <div id="spritesheet"></div>
 

@@ -1,18 +1,13 @@
 // Fetch templates
-let templateList = [""]
-let body = document.querySelector("body")
+let templateList = ["property", "propertygroup", "propertytree"]
+let templates = {}
 // https://stackoverflow.com/questions/45285129
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/await#top_level_await
 await Promise.all(
 	templateList.map(templateID => {
 		return fetch(`data/templates/${templateID}.xml`)
 			.then(res => res.text())
-			.then(templateString => {
-				let template = document.createElement("template")
-				template.setAttribute("id", `${templateID}-template`)
-				template.innerHTML = templateString
-				body.appendChild(template)
-			})
+			.then(templateString => templates[templateID] = templateString)
 	})
 )
 
@@ -20,12 +15,17 @@ await Promise.all(
 // Define components
 var Property = {
 	name: "Property",
-	template: "#property-template",
+	template: templates["property"],
+	inject: {
+		onchange: {
+			from: "updatehandler",
+			default: function() {}
+		}
+	},
 	props: {
 		id: String,
 		initial: Boolean,
-		icon: String,
-		onchange: Function
+		icon: String
 	},
 	data() {
 		return {
@@ -38,18 +38,17 @@ var Property = {
 		}
 	},
 	methods: {
-		cycle: function() {
+		cycleState: function() {
 			this.state = !this.state
-			this.$parent.update()
+			this.$parent.update()	// Can't do this in watch: infinite update loop
 		}
 	}
 }
 
-var Group = {
-	name: "Group",
-	template: "#group-template",
+var PropertyGroup = {
+	name: "PropertyGroup",
+	template: templates["propertygroup"],
 	components: {
-		Group,
 		Property
 	},
 	props: {
@@ -58,31 +57,31 @@ var Group = {
 	},
 	data() {
 		return {
-			state: 0
+			state: false
 		}
 	},
 	watch: {
 		state: function() {
-			// Chain up
-			if (this.$parent !== this.$root) this.$parent.update()
 			// Chain down
-			if (this.state !== undefined) {
+			if (this.state !== undefined) {	// Don't update children to undefined
 				this.$refs.childcomponents.forEach(child => child.state = this.state)
 			}
 		}
 	},
 	methods: {
-		cycle: function() {
+		cycleState: function() {
 			switch(this.state) {
 				case false:
 					this.state = true
 					break
 				default:
 					this.state = false
+			}
+			this.$parent.update()
 		},
 		update: function() {
 			let targetState
-			this.$refs.childcomponents.forEach(child => {
+			for (let child of this.$refs.childcomponents) {
 				// Skip if any child is already undefined
 				if (child.state === undefined) {
 					targetState = undefined
@@ -98,8 +97,10 @@ var Group = {
 					targetState = undefined
 					break
 				}
-			})
+			}
 			this.state = targetState
+			// Chain up
+			this.$parent.update()
 		}
 	},
 	mounted: function() {
@@ -107,17 +108,25 @@ var Group = {
 	}
 }
 
-var SelectionTree = {
-	name: "SelectionTree",
-	template: "#tree-template",
+var PropertyTree = {
+	name: "PropertyTree",
+	template: templates["propertytree"],
 	components: {
-		Group,
-		Property
+		Property,
+		PropertyGroup
 	},
 	props: {
 		structure: Object,
 		onchange: Function
 	},
+	methods: {
+		update: function() { console.log("Avoid this!") }
+	},
+	provide() {
+		return {
+			updatehandler: this.onchange
+		}
+	}
 }
 
-export {Property, Group, SelectionTree}
+export default PropertyTree

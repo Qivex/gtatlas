@@ -1,7 +1,8 @@
-<div class="propertygroup" tabindex="0" @vue:mounted="onMount">
-	<p @click.left="nextState" @click.right.prevent="debugClick">Group {{id}}, State {{state}}</p>
+<div class="propertygroup" tabindex="0">
+	<p @click.left="cycleState">Group {{id}}, State {{state}}</p>
 	<ul>
-		<!-- https://vuejs.org/guide/essentials/list.html#v-for-with-v-if -->
-		<li v-for="child in children" v-scope="child.children ? PropertyGroup(child, self) : Property(child, self)"></li>
+		<li v-for="child in children">
+			<component :is="child.children ? 'PropertyGroup' : 'Property'" v-bind="child" ref="childcomponents"></component>
+		</li>
 	</ul>
 </div>
