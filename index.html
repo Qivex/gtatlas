@@ -15,12 +15,12 @@
   <script src="libs/leaflet-arrowheads.js"></script>
   <script>const Leaflet = L.noConflict()</script>
 
-  <!-- Petite Vue -->
-  <script src="libs/petite-vue.js"></script>
+  <!-- Vue -->
+  <script src="libs/vue.js"></script>
 
   <!-- Common Style -->
   <link rel="stylesheet" href="style/common.css"/>
-  <link rel="stylesheet" href="style/propertytree.css"/>
+  <link rel="stylesheet" href="style/property.css"/>
 
   <!-- Responsive Style -->
   <!-- Note: Conditional @import is slower than media attribute -->
@@ -40,8 +40,8 @@
 
   <div id="selection" v-scope>
     <div id="selection-hider" @click="toggleHidden"></div>
-    <div id="selection-content" class="propertytree">
-      <div v-for="property in model" v-scope="PropertyScope(property, null, setMapLayer)"></div>
+    <div id="selection-content">
+      <property-tree :structure="model" :onchange="setMapLayer"></property-tree>
     </div>
   </div>
 
@@ -50,24 +50,6 @@
   </div>-->
 
   <div id="spritesheet"></div>
-
-  <template id="property-template">
-
-    <div class="property" :class="{collapsed: prop.collapsed}">
-      <div class="collapse-arrow" @click="prop.toggleCollapsed"></div>
-      <input type="checkbox" v-model="prop.checked" :id="prop.id" :indeterminate="prop.indeterminate" @change="prop.cycleValue">
-      <label :for="prop.id">{{prop.id}}</label>
-	  <svg class="icon icon-preview" width="30" height="30" viewbox="0 0 128 128">
-        <use :href="'#icon-' + prop.id"/>
-      </svg>
-      <div class="styled-checkbox" @click="prop.cycleValue"></div>
-    </div>
-
-    <ul v-if="model.children">
-      <li v-for="child in model.children" v-scope="PropertyScope(child, prop, setMapLayer)"></li>
-    </ul>
-
-  </template>
 
 </body>
 </html>

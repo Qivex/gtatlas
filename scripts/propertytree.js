@@ -29,7 +29,7 @@ var Property = {
 	},
 	data() {
 		return {
-			state: this.initial
+			state: !!this.initial
 		}
 	},
 	watch: {

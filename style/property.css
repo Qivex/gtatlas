@@ -7,7 +7,7 @@
 	background: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.4));
 	color: white;
 	font-family: arial;
-	width: 300px;
+	min-width: 300px;
 }
 
 
