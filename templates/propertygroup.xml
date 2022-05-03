@@ -1,6 +1,11 @@
-<div class="propertygroup" tabindex="0">
-	<p @click.left="cycleState">Group {{id}}, State {{state}}</p>
-	<ul>
+<div class="propertygroup">
+	<div class="property" tabindex="0">
+		<input type="checkbox" :id="id" :indeterminate="indeterminate" v-model="state" @click.left="cycleState"/>
+		<div class="styled-checkbox" @click.left="cycleState"></div>
+		<p :data-i18n="id">temp-{{id}}</p>
+		<div class="collapse-icon" :class="{collapsed: collapsed}" @click.left="cycleCollapse"></div>
+	</div>
+	<ul v-if="!collapsed">
 		<li v-for="child in children">
 			<component :is="child.children ? 'PropertyGroup' : 'Property'" v-bind="child" ref="childcomponents"></component>
 		</li>

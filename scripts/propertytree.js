@@ -55,9 +55,15 @@ var PropertyGroup = {
 		id: String,
 		children: Array
 	},
+	computed: {
+		indeterminate: function() {
+			return this.state === undefined;
+		}
+	},
 	data() {
 		return {
-			state: false
+			state: false,
+			collapsed: false
 		}
 	},
 	watch: {
@@ -69,6 +75,9 @@ var PropertyGroup = {
 		}
 	},
 	methods: {
+		cycleCollapse: function() {
+			this.collapsed = !this.collapsed
+		},
 		cycleState: function() {
 			switch(this.state) {
 				case false:

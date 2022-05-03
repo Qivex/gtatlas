@@ -1,10 +1,10 @@
 <div class="property" tabindex="0">
 	<input type="checkbox" :id="id" v-model="state" @click.left="cycleState"/>
+	<div class="styled-checkbox" @click.left="cycleState"></div>
 	<p :data-i18n="id">temp-{{id}}</p>
 	<div class="preview-icon">
-		<svg class="icon" width="30" height="30" viewbox="0 0 128 128">
+		<svg class="icon" viewbox="0 0 128 128">
 			<use :href="`#icon-${icon}`"/>
 		</svg>
 	</div>
-	<div class="styled-checkbox" @click.left="cycleState"></div>
 </div>
