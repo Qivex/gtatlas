@@ -5,7 +5,7 @@ let templates = {}
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/await#top_level_await
 await Promise.all(
 	templateList.map(templateID => {
-		return fetch(`data/templates/${templateID}.xml`)
+		return fetch(`templates/${templateID}.xml`)
 			.then(res => res.text())
 			.then(templateString => templates[templateID] = templateString)
 	})
