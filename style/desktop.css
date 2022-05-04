@@ -33,14 +33,12 @@
 
 /* TODO Custom Scrollbar */
 #selection-content::-webkit-scrollbar {
-	width: 0em;
+	width: 1em;
 }
 
-/*
 #selection-content::-webkit-scrollbar-thumb {
-	background: white;
+	background: #9AAAAA;
 	background-clip: padding-box;
 	border: 0.3em solid transparent;
 	border-radius: 1em;
 }
-*/
