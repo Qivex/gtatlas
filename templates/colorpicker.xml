@@ -1,0 +1,3 @@
+<div class="colorpicker">
+	<coloroption v-for="color in colors" :color="color"></coloroption>
+</div>
