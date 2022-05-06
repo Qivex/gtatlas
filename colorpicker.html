@@ -1,0 +1,28 @@
+<html>
+<head>
+	<title>ColorPicker Test</title>
+	<script src="libs/vue.js"></script>
+	<script type="module">
+		import ColorPicker from "/scripts/colorpicker.js"
+    
+    let testdata = {
+      colors: ["red", "yellow", "green", "blue", "black"],
+      onchange: function(newcol) {console.log("Updated to " + newcol)}
+    }
+    
+    Vue.createApp({
+      data() {
+        return {testdata}
+      },
+      components: {
+        ColorPicker
+      }
+    }).mount("#root")
+	</script>
+</head>
+<body>
+<div id="root">
+	<color-picker v-bind="testdata"></color-picker>
+</div>
+</body>
+</html>

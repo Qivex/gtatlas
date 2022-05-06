@@ -1,73 +1,46 @@
 //TODO Simplify into single component, the split is useless & coordination unnecessarily difficult
 
-// Fetch templates
-let templateList = ["coloroption", "colorpicker"]
-let templates = {}
-// https://stackoverflow.com/questions/45285129
-// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/await#top_level_await
-await Promise.all(
-	templateList.map(templateID => {
-		return fetch(`templates/${templateID}.xml`)
-			.then(res => res.text())
-			.then(templateString => templates[templateID] = templateString)
-	})
-)
-
-var ColorOption = {
-	name: "ColorOption",
-	template: templates["coloroption"],
-	inject: {
-		onselect: {
-			from: "updatehandler",
-			default: function() {}
-		}
-	},
-	props: {
-		color: String
-	},
-	data: function() {
-		return {
-			selected: false
-		}
-	},
-	methods: {
-		select: function() {
-			if (!this.selected) {
-				// TODO: deselect all other colors like: this.$parent.$refs.childcomponents.forEach(child => child.deselect())
-				this.selected = true
-				this.onselect(this.color)
-			}
-		},
-		deselect: function() {
-			this.selected = false
-		}
-	}
-}
+// Fetch template
+let template
+await fetch(`templates/colorpicker.xml`)
+	.then(res => res.text())
+	.then(templateString => template = templateString)
 
 var ColorPicker = {
 	name: "ColorPicker",
-	template: templates["colorpicker"],
+	template: template,
 	props: {
 		colors: Array,
 		onchange: Function
 	},
 	data: function() {
 		return {
-			colorIndex: 0
+			selectedIndex: 0
 		}
 	},
-	provide() {
-		return {
-			updatehandler: this.onchange
+	computed: {
+		pathRadius: function() {
+			
+		},
+		circleRadius: function() {
+			
 		}
 	},
 	methods: {
 		selectColor: function(index) {
-			this.colorIndex = index	// TODO check valid
-			// TODO Select this color option
+			if (this.selectedIndex != index) {
+				this.selectedIndex = index
+				this.onchange(this.colors[index])
+			}
 		},
-		deselectAll: function() {
-			this.$refs.coloroptions.forEach(color => color.deselect())
+		getKeyPoints(index) {
+			let part = index / this.colors.length
+			return part + ';' + part
+		},
+		getRadius() {
+			let n = this.colors.length
+			const r = 48
+			return r * Math.sin(Math.PI / n)
 		}
 	}
 }
