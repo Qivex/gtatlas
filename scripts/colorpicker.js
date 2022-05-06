@@ -12,6 +12,7 @@ var ColorPicker = {
 	props: {
 		colors: Array,	// TODO: Flawed calculation if length=1
 		gapRatio: Number,
+		showIndicator: Boolean,
 		onchange: Function
 	},
 	data() {
