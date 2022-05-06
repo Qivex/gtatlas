@@ -6,8 +6,9 @@
 		import ColorPicker from "/scripts/colorpicker.js"
     
     let testdata = {
-      colors: ["red", "yellow", "green", "blue", "black"],
-      onchange: function(newcol) {console.log("Updated to " + newcol)}
+      colors: ["red"],
+      onchange: function(newcol) {console.log("Updated to " + newcol)},
+      gapRatio: 0.2
     }
     
     Vue.createApp({
