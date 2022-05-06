@@ -1,8 +1,6 @@
 <div class="colorpicker">
 	<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100%" height="100%" preserveAspectRatio="xMinYMin meet">
-		<defs>
-			<path id="colorpicker-path" :d="pathCommand"/>
-		</defs>
+		<path id="colorpicker-path" :d="pathCommand" fill="none" :stroke="colors[selectedIndex]" stroke-width="3"/>
 		<circle v-for="(color,index) in colors" :fill="color" :r="circleRadius" @click.left="selectColor(index)">
 			<animateMotion calcMode="discrete" :keyPoints="keyPoints(index)" keyTimes="0;1">
 				<mpath href="#colorpicker-path"/>
