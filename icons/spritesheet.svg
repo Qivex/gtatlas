@@ -45,7 +45,7 @@
 		}
 
 		.organisation {
-			fill: currentColor;
+			fill: currentcolor;
 			stroke: black;
 			stroke-linejoin: round;
 			stroke-width: 4;
@@ -189,6 +189,39 @@
 			<rect x="72" y="58" width="42" height="46" class="black"/>
 		</symbol>
 
+		<symbol viewbox="0 0 128 128" id="icon-mc-counterfeit" class="organisation">
+			<rect x="18" y="40" width="92" height="57"/>
+			<rect x="57" y="29" width="14" height="22"/>
+			<path d="M67,61 h34 M67,70 h34 M67,79 h34 M29,86 c5,-18 25,-18 30,0 z" fill="black" stroke="black" stroke-width="5"/>
+			<circle cx="44" cy="63" r="12" fill="black" stroke="currentcolor"/>
+		</symbol>
+
+		<symbol viewbox="0 0 128 128" id="icon-mc-weed" class="organisation">
+			<path d="M64,18 l11,43 l31,-22 l-17,34 l20,1 l-21,16 l6,7 l-24,1 l-6,12"/>
+			<use href="#grid"/>
+		</symbol>
+
+		<symbol viewbox="0 0 128 128" id="icon-mc-cash" class="organisation">
+			<rect x="22" y="40" width="91" height="56"/>
+			<rect x="15" y="33" width="91" height="56"/>
+			<rect x="24" y="42" width="73" height="38"/>
+			<circle cx="60.5" cy="61" r="23" fill="black" stroke="currentcolor" stroke-width="3"/>
+			<text x="49.5" y="73" style="font:600 34px arial" stroke="none">S</text>
+			<path d="M60.5,46 v5 m0,20 v5" stroke="currentcolor"/>
+		</symbol>
+
+		<symbol viewbox="0 0 128 128" id="icon-mc-meth" class="organisation">
+			<path d="M20,107 l26,-55 v-19 h-8 v-14 h52 v14 h-8 v19 l26,55 z"/>
+			<path d="M34,98 l14,-30 h32 l14,30 z" class="black"/>
+			<circle cx="60" cy="42" r="6" class="black"/>
+			<circle cx="70" cy="58" r="6" class="black"/>
+		</symbol>
+
+		<symbol viewbox="0 0 128 128" id="icon-mc-cocaine" class="organisation">
+			<path d="M17,32 h94 l-6,9 h8 v44 h-8 l6,11 h-94 l6,-11 h-8 v-44 h8 z"/>
+			<path d="M27,51 q6,0 7,8 h6 v-8 h5 v8 h8 a12,12 0,0,1 22,0 h8 v-8 h5 v8 h6 q1,-8 7,-8 v25 q-6,0 -7,-8 h-6 v8 h-5 v-8 h-8 a12,12 0,0,1 -22,0 h-8 v8 h-5 v-8 h-6 q-1,8 -7,8" class="black"/>
+		</symbol>
+
 		<symbol viewbox="0 0 128 128"  id="icon-bunker" class="organisation">
 			<path d="M16,94 v-11 c-2,-64 100,-64 98,0 v11 z"/>
 			<rect x="36" y="58" width="56" height="35" class="black"/>
@@ -234,6 +267,11 @@
 			<path d="M39,30 h50 M39,46 h50 M39,62 h50 M39,78 h50" stroke="black" stroke-width="8"/>
 			<rect x="52" y="91" width="24" height="21" class="black"/>
 			<path d="M47,93 h34" stroke="black" stroke-width="5"/>
+		</symbol>
+
+		<symbol viewbox="0 0 128 128" id="icon-exotic-export">
+			<path d="M56,51 a17,17 0,1,1 16,0 v44 a24,24 0,0,0 17,-18 q-9,-2 -4,-8 l15,-13 l8,19 q1,6 -7,5 a38,38 0,0,1 -74,0 q-8,1 -7,-5 l8,-19 l15,13 q5,6 -4,8 a24,24 0,0,0 17,18 z" fill="var(--gta-yellow)" stroke="black" stroke-width="4" stroke-linejoin="round"/>
+			<circle cx="64" cy="36" r="6"/>
 		</symbol>
 
 		<symbol viewbox="0 0 128 128" id="icon-supplies-bunker" fill="#5DB6E5">
