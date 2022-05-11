@@ -270,7 +270,7 @@
 		</symbol>
 
 		<symbol viewbox="0 0 128 128" id="icon-exotic-export">
-			<path d="M56,51 a17,17 0,1,1 16,0 v44 a24,24 0,0,0 17,-18 q-9,-2 -4,-8 l15,-13 l8,19 q1,6 -7,5 a38,38 0,0,1 -74,0 q-8,1 -7,-5 l8,-19 l15,13 q5,6 -4,8 a24,24 0,0,0 17,18 z" fill="var(--gta-yellow)" stroke="black" stroke-width="4" stroke-linejoin="round"/>
+			<path d="M56,51 a17,17 0,1,1 16,0 v44 a24,24 0,0,0 17,-18 q-9,-2 -4,-8 l15,-13 l8,19 q1,7 -7,5 a38,38 0,0,1 -74,0 q-8,2 -7,-5 l8,-19 l15,13 q5,6 -4,8 a24,24 0,0,0 17,18 z" fill="var(--gta-yellow)" stroke="black" stroke-width="4" stroke-linejoin="round"/>
 			<circle cx="64" cy="36" r="6"/>
 		</symbol>
 
