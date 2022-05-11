@@ -1,12 +1,11 @@
-//TODO Simplify into single component, the split is useless & coordination unnecessarily difficult
-
 // Fetch template
 let template
 await fetch(`templates/colorpicker.xml`)
 	.then(res => res.text())
 	.then(templateString => template = templateString)
 
-var ColorPicker = {
+// Component
+let ColorPicker = {
 	name: "ColorPicker",
 	template: template,
 	props: {
