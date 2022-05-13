@@ -44,7 +44,7 @@
 			stroke: none;
 		}
 
-		.organisation {
+		.business {
 			fill: currentcolor;
 			stroke: black;
 			stroke-linejoin: round;
@@ -55,13 +55,31 @@
 			fill: black;
 			stroke: none;
 		}
+
+		@keyframes rotate {
+			0% {
+				transform: rotate(0deg);
+			}
+			100% {
+				transform: rotate(360deg);
+			}
+		}
+
+		.rotate {
+			animation: rotate 2s linear infinite;
+			transform-origin: 64px 64px;
+		}
+
+		.rotate-reverse {
+			animation: rotate 2s reverse linear infinite;
+			transform-origin: 64px 64px;
+		}
 	</style>
 
 	<defs id="components">
 
-		<!-- rescaling in use tag (width,height) requires viewbox => symbol -->
+		<!-- rescaling in use tag (width,height) requires viewBox => symbol -->
 
-		<!--<use href="#grid" x="0" y="0"/>-->
 		<path id="grid" d="M16,0 v128 M32,0 v128 M48,0 v128 M64,0 v128 M80,0 v128 M96,0 v128 M112,0 v128 M0,16 h128 M0,32 h128 M0,48 h128 M0,64 h128 M0,80 h128 M0,96 h128 M0,112 h128" fill="none" stroke="red" stroke-width="0.5"/>
 
 		<path id="bullet" d="M0,0 q6,7 9,27 v10 l2,2 v23 h-2 v5 h2 v6 h-22 v-6 h2 v-5 h-2 v-23 l2,-2 v-10 h18 h-18 q3,-20 9,-27 z" stroke="black" stroke-width="3"/>
@@ -79,129 +97,139 @@
 			<rect x="35" y="21" width="18" height="14"/>
 		</symbol>
 
+		<!-- stackoverflow.com/questions/2465405 -->
+		<symbol viewBox="0 0 128 128" id="conic-gradient">
+			<foreignObject width="128" height="128">
+				<div xmlns="http://www.w3.org/1999/xhtml" style="width:100%;height:100%;background:conic-gradient(white,hsla(0,0%,100%,0)270deg)"></div>
+			</foreignObject>
+		</symbol>
+
 	</defs>
 
 	<defs id="icons">
 
-		
+		<!-- works only in firefox for now -->
+		<symbol viewBox="0 0 128 128"  id="icon-loading">
+			<use href="#conic-gradient" class="rotate-reverse" clip-path="path('M34,64 a30,30 0,0,0 60,0 a30,30 0,0,0 -60,0 M48,64 a16,16 0,0,1 32,0 a16,16 0,0,1 -32,0')"/>
+		</symbol>
 
-		<symbol viewbox="0 0 128 128"  id="icon-casino" class="freetime">
+		<symbol viewBox="0 0 128 128"  id="icon-casino" class="freetime">
 			<polygon points="64,16 104,64 64,112 24,64"/>
 			<path d="M64,25 v33 q1,5 5,6 h27 M32,64 h27 q4,1 5,6 v33" fill="var(--gta-white)" stroke="none"/>
 		</symbol>
 
-		<symbol viewbox="0 0 128 128" id="icon-casino-cashier" class="freetime">
+		<symbol viewBox="0 0 128 128" id="icon-casino-cashier" class="freetime">
 			<use href="#ellipse" x="64" y="64"/>
 			<use href="#ellipse" x="64" y="45"/>
 			<use href="#ellipse" x="64" y="26"/>
 		</symbol>
 
-		<symbol viewbox="0 0 128 128" id="icon-casino-table" class="freetime">
+		<symbol viewBox="0 0 128 128" id="icon-casino-table" class="freetime">
 			<rect x="33" y="18" width="62" height="92" rx="6"/>
 			<polygon points="64,48 80,64 64,80 48,64" fill="var(--gta-white)" stroke="none"/>
 			<text class="card" x="38" y="40">A</text>
 			<text class="card" x="74" y="103">A</text>
 		</symbol>
 
-		<symbol viewbox="0 0 128 128" id="icon-casino-wheel" class="freetime">
+		<symbol viewBox="0 0 128 128" id="icon-casino-wheel" class="freetime">
 			<circle cx="64" cy="64" r="48"/>
 			<circle cx="64" cy="64" r="26" stroke-width="29" pathLength="16" stroke-dasharray="1"/>
 		</symbol>
 
-		<symbol viewbox="0 0 128 128" id="icon-default">
+		<symbol viewBox="0 0 128 128" id="icon-default">
 			<circle cx="64" cy="64" r="34" fill="#F0C850" stroke="black" stroke-width="5"/>
 		</symbol>
 
-		<symbol viewbox="0 0 128 128" id="icon-vehicle-personal">
+		<symbol viewBox="0 0 128 128" id="icon-vehicle-personal">
 			<path d="M22,93 c0,11 19,11 19,0 v-11 h46 v11 c0,11 19,11 19,0 v-11 q5,-1 6,-6 v-13 q-2,-6 -8,-6 l-3,-25 q-2,-6 -8,-6 h-58 q-6,0 -8,6 l-3,25 q-6,0 -8,6 v13 q1,5 6,6 z" fill="var(--gta-white)" stroke="black" stroke-width="4"/>
 			<path d="M32,54 l2,-18 q1,-3 6,-3 h48 q5,0 6,3 l2,18" fill="black"/>
 		</symbol>
 
-		<symbol viewbox="0 0 128 128" id="icon-race-stunt" class="race">
+		<symbol viewBox="0 0 128 128" id="icon-race-stunt" class="race">
 			<use href="#flag" x="18" y="17"/>
 			<path d="M110,110 v-42 q-10,30 -55,42 z" stroke="black" stroke-width="4" stroke-linejoin="round"/>
 		</symbol>
 
-		<symbol viewbox="0 0 128 128" id="icon-race-car" class="race">
+		<symbol viewBox="0 0 128 128" id="icon-race-car" class="race">
 			<use href="#flag" x="18" y="17"/>
 			<!-- not accurate (different stroke-width & color) -->
 			<use href="#icon-vehicle-personal" x="50" y="57" width="70" height="70"/>
 		</symbol>
 
-		<symbol viewbox="0 0 128 128" id="icon-apartment">
+		<symbol viewBox="0 0 128 128" id="icon-apartment">
 			<use href="#house" x="32" y="65" fill="#72CC72" stroke="black"/>
 			<rect x="43" y="55" width="19" height="19"/>
 			<rect x="69" y="86" width="19" height="23"/>
 		</symbol>
 
-		<symbol viewbox="0 0 128 128" id="icon-garage">
+		<symbol viewBox="0 0 128 128" id="icon-garage">
 			<use href="#house" x="32" y="65" fill="var(--gta-white)" stroke="black"/>
 			<path d="M44,69 h42 M44,86 h42 M44,103 h42" stroke="black" stroke-width="9"/>
 		</symbol>
 
-		<symbol viewbox="0 0 128 128" id="icon-ammunation" class="freetime">
+		<symbol viewBox="0 0 128 128" id="icon-ammunation" class="freetime">
 			<path d="M26,38 h71 v-4 h9 v4 h3 v17 h-9 v5 h-28 l-6,15 h-14 l-5,18 h-29 l8,-33 h-3 v-11 h3 z"/>
 			<path d="M53,66 h8 l2,-7 h-8 z" stroke="none" fill="white"/>
 		</symbol>
 
-		<symbol viewbox="0 0 128 128" id="icon-clothing" class="freetime">
+		<symbol viewBox="0 0 128 128" id="icon-clothing" class="freetime">
 			<path d="M64,38 q-11,-6 -10,-14 h-7 l-30,26 l17,18 l7,-8 v43 h46 v-43 l7,8 l17,-18 l-30,-26 h-7 q1,8 -10,14 z"/>
 		</symbol>
 
-		<symbol viewbox="0 0 128 128" id="icon-store" class="freetime">
+		<symbol viewBox="0 0 128 128" id="icon-store" class="freetime">
 			<path d="M20,49 q-5,0 -5,5 v6 q1,4 6,4 l6,36 q2,4 5,4 h64 q3,0 5,-4 l6,-36 q5,0 6,-4 v-6 q0,-5 -5,-5 h-13 l-25,-25 q-6,-5 -12,0 l-25,25 z M64,38 l11,11 h-22 z" fill-rule="evenodd"/>
 			<path d="M42,67 v18 M64,67 v18 M86,67 v18" stroke-width="9.5" stroke-linecap="round"/>
 		</symbol>
 
-		<symbol viewbox="0 0 128 128" id="icon-cinema" class="freetime">
+		<symbol viewBox="0 0 128 128" id="icon-cinema" class="freetime">
 			<path d="M87,58 v7 l20,-7 v41 l-20,-7 v7 h-66 v-41 h4 a17.5,17.5 0,1,1 29,-18 a17.5,17.5 0,1,1 29,18 z"/>
 			<circle cx="37" cy="46" r="6" fill="var(--gta-white)"/>
 			<circle cx="70" cy="46" r="6" fill="var(--gta-white)"/>
 		</symbol>
 
-		<symbol viewbox="0 0 128 128" id="icon-golf" class="freetime">
+		<symbol viewBox="0 0 128 128" id="icon-golf" class="freetime">
 			<path d="M35,20 h12 l30,16 l-30,16 v45 a20,6 0,1,1 -12,1.5 z"/>
 			<circle cx="87" cy="97" r="11"/>
 		</symbol>
 
-		<symbol viewbox="0 0 128 128" id="icon-dart" class="freetime">
+		<symbol viewBox="0 0 128 128" id="icon-dart" class="freetime">
 			<circle cx="64" cy="64" r="45" fill="var(--gta-white)"/>
 			<circle cx="64" cy="64" r="37" fill="none" stroke="black" stroke-width="12"/>
 			<circle cx="64" cy="64" r="14" fill="none" stroke="black" stroke-width="11"/>
 		</symbol>
 
-		<symbol viewbox="0 0 128 128" id="icon-office" class="organisation">
+		<symbol viewBox="0 0 128 128" id="icon-office" class="business">
 			<rect x="29" y="16" width="70" height="96"/>
 			<rect x="55" y="91" width="18" height="20" class="black"/>
 			<rect x="40" y="32" width="48" height="48" class="black"/>
 			<path d="M55,31 v50 M73,31 v50 M39,47 h50 M39,65 h50" stroke="currentcolor" stroke-width="6"/>
 		</symbol>
 
-		<symbol viewbox="0 0 128 128" id="icon-warehouse-crates" class="organisation">
+		<symbol viewBox="0 0 128 128" id="icon-warehouse-crates" class="business">
 			<path d="M17,103 v-55 l47,-21 l47,21 v55 z"/>
 			<rect x="34" y="61" width="60" height="41" class="black"/>
 		</symbol>
 
-		<symbol viewbox="0 0 128 128" id="icon-mc-clubhouse" class="organisation">
+		<symbol viewBox="0 0 128 128" id="icon-mc-clubhouse" class="business">
 			<path id="house" d="M15,97 q0,8 8,8 h93 q8,0 8,-8 v-52 h-46 l-29,-21 q-4,-3 -8,0 l-29,21 q-8,5 -8,10 v4 q1,5 6,6 h5 z"/>
 			<rect x="25" y="58" width="16" height="16" class="black"/>
 			<rect x="46" y="83" width="16" height="20" class="black"/>
 			<rect x="72" y="58" width="42" height="46" class="black"/>
 		</symbol>
 
-		<symbol viewbox="0 0 128 128" id="icon-mc-counterfeit" class="organisation">
+		<symbol viewBox="0 0 128 128" id="icon-mc-counterfeit" class="business">
 			<rect x="18" y="40" width="92" height="57"/>
 			<rect x="57" y="29" width="14" height="22"/>
 			<path d="M67,61 h34 M67,70 h34 M67,79 h34 M29,86 c5,-18 25,-18 30,0 z" fill="black" stroke="black" stroke-width="5"/>
 			<circle cx="44" cy="63" r="12" fill="black" stroke="currentcolor"/>
 		</symbol>
 
-		<symbol viewbox="0 0 128 128" id="icon-mc-weed" class="organisation">
+		<symbol viewBox="0 0 128 128" id="icon-mc-weed" class="business">
 			<path d="M64,18 l11,43 l31,-22 l-17,34 l20,1 l-21,16 l6,7 l-24,1 l-6,12"/>
 			<use href="#grid"/>
 		</symbol>
 
-		<symbol viewbox="0 0 128 128" id="icon-mc-cash" class="organisation">
+		<symbol viewBox="0 0 128 128" id="icon-mc-cash" class="business">
 			<rect x="22" y="40" width="91" height="56"/>
 			<rect x="15" y="33" width="91" height="56"/>
 			<rect x="24" y="42" width="73" height="38"/>
@@ -210,36 +238,36 @@
 			<path d="M60.5,46 v5 m0,20 v5" stroke="currentcolor"/>
 		</symbol>
 
-		<symbol viewbox="0 0 128 128" id="icon-mc-meth" class="organisation">
+		<symbol viewBox="0 0 128 128" id="icon-mc-meth" class="business">
 			<path d="M20,107 l26,-55 v-19 h-8 v-14 h52 v14 h-8 v19 l26,55 z"/>
 			<path d="M34,98 l14,-30 h32 l14,30 z" class="black"/>
 			<circle cx="60" cy="42" r="6" class="black"/>
 			<circle cx="70" cy="58" r="6" class="black"/>
 		</symbol>
 
-		<symbol viewbox="0 0 128 128" id="icon-mc-cocaine" class="organisation">
+		<symbol viewBox="0 0 128 128" id="icon-mc-cocaine" class="business">
 			<path d="M17,32 h94 l-6,9 h8 v44 h-8 l6,11 h-94 l6,-11 h-8 v-44 h8 z"/>
 			<path d="M27,51 q6,0 7,8 h6 v-8 h5 v8 h8 a12,12 0,0,1 22,0 h8 v-8 h5 v8 h6 q1,-8 7,-8 v25 q-6,0 -7,-8 h-6 v8 h-5 v-8 h-8 a12,12 0,0,1 -22,0 h-8 v8 h-5 v-8 h-6 q-1,8 -7,8" class="black"/>
 		</symbol>
 
-		<symbol viewbox="0 0 128 128"  id="icon-bunker" class="organisation">
+		<symbol viewBox="0 0 128 128"  id="icon-bunker" class="business">
 			<path d="M16,94 v-11 c-2,-64 100,-64 98,0 v11 z"/>
 			<rect x="36" y="58" width="56" height="35" class="black"/>
 		</symbol>
 
-		<symbol viewbox="0 0 128 128" id="icon-hangar" class="organisation">
+		<symbol viewBox="0 0 128 128" id="icon-hangar" class="business">
 			<path d="M64,31 l29,7 l22,20 l-6,-5 v44 h-90 v-44 l-6,5 l22,-20 z M36,97 v-30 h56 v30 v-10 h-56 v-10 h56"/>
 			<rect x="41" y="44" width="12" height="12" class="black"/>
 			<rect x="58" y="44" width="12" height="12" class="black"/>
 			<rect x="75" y="44" width="12" height="12" class="black"/>
 		</symbol>
 
-		<symbol viewbox="0 0 128 128" id="icon-facility" class="organisation">
+		<symbol viewBox="0 0 128 128" id="icon-facility" class="business">
 			<circle cx="64" cy="64" r="44" stroke-width="5"/>
 			<path d="M64,20 c-34,20 -34,68 0,88 c34,-20 34,-68 0,-88 v88 M20,64 h88 M27,42 h74 M27,86 h74" stroke="black" stroke-width="5" stroke-linejoin="bevel"/>
 		</symbol>
 
-		<symbol viewbox="0 0 128 128" id="icon-nightclub" class="organisation">
+		<symbol viewBox="0 0 128 128" id="icon-nightclub" class="business">
 			<rect x="27" y="16" width="74" height="96" rx="6" fill="currentcolor" stroke="black" stroke-width="5"/>
 			<circle cx="64" cy="54" r="30" class="black"/>
 			<circle cx="64" cy="54" r="5" fill="none" stroke="currentcolor" stroke-width="8"/>
@@ -248,13 +276,13 @@
 			<rect x="59" y="91" width="32" height="10" class="black"/>
 		</symbol>
 
-		<symbol viewbox="0 0 128 128" id="icon-arcade" class="organisation">
+		<symbol viewBox="0 0 128 128" id="icon-arcade" class="business">
 			<path d="M28,89 q-6,1 -7,7 h-1 v7 q0,4 4,4 h80 q4,0 4,-4 v-7 h-1 q-1,-6 -7,-7 z q0,-6 7,-9 q1,-6 8,-8 h14 l10,-30 h14 l-10,30 h14 q7,2 8,8 q7,3 7,9"/>
 			<circle cx="74" cy="39" r="18"/>
 			<path d="M77,26 q-12,0 -16,10 q-1,3 3,3 l13,-8 q3,-3 0,-5" class="black"/>
 		</symbol>
 
-		<symbol viewbox="0 0 128 128" id="icon-autoshop" class="organisation">
+		<symbol viewBox="0 0 128 128" id="icon-autoshop" class="business">
 			<use href="#house" x="32" y="65"/>
 			<path d="M50,64 l20,20 l10,-10 l-20,-20 z" class="black"/>
 			<circle cx="49" cy="53" r="12" class="black"/>
@@ -262,25 +290,25 @@
 			<path d="M46,50 l-5,-5 M84,88 l5,5" stroke="currentcolor" stroke-width="11" stroke-linecap="round"/>
 		</symbol>
 
-		<symbol viewbox="0 0 128 128" id="icon-agency" class="organisation">
+		<symbol viewBox="0 0 128 128" id="icon-agency" class="business">
 			<path d="M29,16 h70 v67 l8,12 v18 h-86 v-18 l8,-12 z"/>
 			<path d="M39,30 h50 M39,46 h50 M39,62 h50 M39,78 h50" stroke="black" stroke-width="8"/>
 			<rect x="52" y="91" width="24" height="21" class="black"/>
 			<path d="M47,93 h34" stroke="black" stroke-width="5"/>
 		</symbol>
 
-		<symbol viewbox="0 0 128 128" id="icon-exotic-export">
+		<symbol viewBox="0 0 128 128" id="icon-exotic-export">
 			<path d="M56,51 a17,17 0,1,1 16,0 v44 a24,24 0,0,0 17,-18 q-9,-2 -4,-8 l15,-13 l8,19 q1,7 -7,5 a38,38 0,0,1 -74,0 q-8,2 -7,-5 l8,-19 l15,13 q5,6 -4,8 a24,24 0,0,0 17,18 z" fill="var(--gta-yellow)" stroke="black" stroke-width="4" stroke-linejoin="round"/>
 			<circle cx="64" cy="36" r="6"/>
 		</symbol>
 
-		<symbol viewbox="0 0 128 128" id="icon-supplies-bunker" fill="#5DB6E5">
+		<symbol viewBox="0 0 128 128" id="icon-supplies-bunker" fill="#5DB6E5">
 			<use href="#bullet" x="40" y="25"/>
 			<use href="#bullet" x="64" y="29"/>
 			<use href="#bullet" x="88" y="25"/>
 		</symbol>
 
-		<symbol viewbox="0 0 128 128" id="icon-molotovguys" >
+		<symbol viewBox="0 0 128 128" id="icon-molotovguys" >
 			<path d="M64,107 q40,-3 38,-40 q-2,-20 -15,-30 q0,10 -4,19 q-10,-30 -30,-33 q8,22 -6,37 q-3,-6 -9,-12 l-11,25 q-5,30 37,34 z" fill="#E03232" stroke="black" stroke-width="5"/>
 			<path d="M74,107 q18,-25 -2,-43 q0,12 -10,24 q-10,-4 -15,-9 q-2,15 7,28 z"/>
 		</symbol>
@@ -289,20 +317,29 @@
 
 	<script>
 		// Simple script to cycle all icons if opened standalone
+		// TODO: Darkmode background, right click to reverse
 		window.addEventListener("load", () => {
 			let ids = []
-			document.querySelectorAll("#icons symbol").forEach(el => ids.push("#" + el.id))
-			let demo = document.getElementById("demo")
-			demo.setAttribute("href", ids[0])
-			let pointer = 1
-			demo.addEventListener("click", () => {
-				demo.setAttribute("href", ids[pointer++])
+			document.querySelectorAll("#icons symbol").forEach(el => ids.push(el.id))
+			let pointer = 0
+			function nextIcon() {
+				let id = ids[pointer++]
 				if (pointer >= ids.length) pointer = 0
-			})
+				document.getElementById("demo-icon").setAttribute("href", "#" + id)
+				document.getElementById("demo-title").innerHTML = id
+			}
+			window.addEventListener("click", nextIcon)
+			nextIcon()
 		})
 	</script>
 
-	<!-- color attribute sets color of organisation -->
-	<use id="demo" color="var(--gta-pink)"><title>click to cycle</title></use>
+	<g id="demo">
+		<pattern id="demo-bg" viewBox="0 0 2 2" height="40" width="40" patternUnits="userSpaceOnUse">
+			<path d="M0,0 v1 h2 v1 h-1 v-2z" fill-opacity="10%"/>
+		</pattern>
+		<rect width="100%" height="100%" fill="url(#demo-bg)"/>
+		<use id="demo-icon" color="var(--gta-pink)" width="100%" height="100%" preserveAspectRatio="xMinYMin meet"/>
+		<title id="demo-title"/>
+	</g>
 
 </svg>
