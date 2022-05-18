@@ -73,13 +73,10 @@ window.setMapLayer = function(id, value) {
 }
 
 window.setOrgColor = function(colstring) {
-	// Check if input is valid as color
+	// Check if input is valid color
 	if (!CSS.supports("color", colstring)) return
-	// Update all Icons
-	for (let icon of document.getElementsByClassName("org-icon")) {
-		icon.setAttribute("color", colstring)
-	}
-	//TODO: Assign class instead of changing color-attribute?
+	// Update CSS variable (https://css-tricks.com/updating-a-css-variable-with-javascript)
+	document.documentElement.style.setProperty("--org-color", colstring)
 }
 
 function paint2crs(x, y) {
@@ -95,7 +92,7 @@ window.createIcon = function(name) {
 	- icon.options.iconSize doesnt affect already rendered ones
 	- SVG can be resized, but anchor will be wrong */
 	return Leaflet.divIcon({
-		html: `<svg width="35" height="35"><use href="#icon-${name}"/></svg>`,
+		html: `<svg width="35" height="35"><use href="#icon-${name}" class="org-color"/></svg>`,
 		iconSize: [35,35],
 		iconAnchor: [18,18]
 	})

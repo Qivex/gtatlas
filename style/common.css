@@ -1,3 +1,7 @@
+:root {
+	--org-color: white;	/* Default when not set */
+}
+
 /** TAGS **/
 body {
 	position: fixed; /* Fixes shifting viewport on mobile (https://stackoverflow.com/a/68359419) */
@@ -14,6 +18,10 @@ p {
 .leaflet-div-icon {
 	background: none;
 	border: none;
+}
+
+.org-color {
+	color: var(--org-color);
 }
 
 
