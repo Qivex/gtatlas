@@ -2,6 +2,8 @@
 import PropertyTree from "/scripts/propertytree.js"
 import model from "/data/properties.js"	//TODO: fetch JSON instead
 
+import Popup from "/scripts/popup.js"
+
 import "/scripts/mapinit.js"
 import "/scripts/iconinit.js"
 
@@ -24,17 +26,19 @@ Vue.createApp({
 Vue.createApp({
 	data() {
 		return {
-			text: "This is the text",
-			img: "/path/to/img.jpg"
+			type: "SpecialPopup",
+			data: {
+				title: "Interactive Popup"
+			}
 		}
 	},
 	methods: {
-		change: function() {
-			this.text = "changed",
-			this.img = "/path/to/another.jpg"
+		updatePopup: function(type, data) {
+			this.type = type
+			this.data = data
 		}
 	},
 	components: {
-		// Different popup layouts for generic, crate etc.
+		Popup
 	}
 }).mount("#popup")

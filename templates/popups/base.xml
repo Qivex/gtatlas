@@ -1,0 +1,3 @@
+<div class="popup">
+	<component :is="type" v-bind="data"></component>
+</div>
