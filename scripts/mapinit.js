@@ -43,7 +43,7 @@ let files = [
 		// Can be factory method or Leaflet.featureGroup
 		let layer = module.default
 		if (typeof layer === "function") {
-			layer = layer(Leaflet, marker)
+			layer = layer(Leaflet, marker, document.getElementById("popup"))
 		}
 		// Add to lookup & map
 		maplayers[id] = layer

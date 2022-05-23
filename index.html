@@ -45,9 +45,14 @@
     </div>
   </div>
 
-  <!--<div id="settings">
-    <div id="settings-hide"></div>
-  </div>-->
+  <!--<div id="zoom"></div>-->
+  <!--<div id="settings"></div>-->
+
+  <div id="popup">
+    <!-- content: custom component depending on :is (updated on "popupopen", methods getElement() & update()) -->
+    <p>{{text}}</p>
+    <img @click="change" :src="img"></img>
+  </div>
 
   <div id="spritesheet"></div>
 

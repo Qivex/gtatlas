@@ -20,3 +20,21 @@ Vue.createApp({
 		PropertyTree
 	}
 }).mount("#selection")
+
+Vue.createApp({
+	data() {
+		return {
+			text: "This is the text",
+			img: "/path/to/img.jpg"
+		}
+	},
+	methods: {
+		change: function() {
+			this.text = "changed",
+			this.img = "/path/to/another.jpg"
+		}
+	},
+	components: {
+		// Different popup layouts for generic, crate etc.
+	}
+}).mount("#popup")
