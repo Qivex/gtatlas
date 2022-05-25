@@ -194,9 +194,9 @@
 		</symbol>
 
 		<symbol viewBox="0 0 128 128" id="icon-tattoo">
-			<path d="M24,49 l40,-12 l40,17 l8,8 v17 l-8,8 l-24,1 l-16,12 l-24,-20" fill="black" stroke="var(--gta-grey1)" stroke-width="3"/>
-			<path d="M24,58 q28,-9 50,2 q15,6 29,2 v17 q-14,4 -29,-2 q-24,-11 -50,-2 z" fill="var(--gta-grey1)"/>
-			<path d="" fill="var(--gta-grey1)"/>
+			<path d="M24,49 a21.5,21.5 0,0,1 40,-12 a21.5,21.5 0,0,1 39,17 q8,0 9,8 v17 q0,6 -8,8 q-12,3 -24,0 q-8,8 -16,13 q-16,-10 -24,-21 l-15,4 q-7,0 -8,-7 v-19 q0,-6 7,-8 z" fill="black" stroke="var(--gta-grey1)" stroke-width="3"/>
+			<path d="M24,58 q28,-9 50,2 q15,6 30,2 v17 q-14,4 -30,-2 q-24,-11 -50,-2 z" fill="var(--gta-grey1)"/>
+			<path d="M45,31 q-14,4 -14,17 q3,4 5,-2 q0,-10 9,-15" fill="var(--gta-grey1)"/>
 		</symbol>
 
 		<symbol viewBox="0 0 128 128" id="icon-cinema" class="freetime">
@@ -243,8 +243,7 @@
 		</symbol>
 
 		<symbol viewBox="0 0 128 128" id="icon-mc-weed" class="business">
-			<path d="M64,18 l11,43 l31,-22 l-17,34 l20,1 l-21,16 l6,7 l-24,1 l-6,12"/>
-			<use href="#grid"/>
+			<path d="M64,16 q13,20 8,51 q14,-20 32,-28 q2,16 -22,39 q16,-7 28,-4 q-6,12 -26,16 q8,2 10,7 q-14,4 -25,-3 q0,15 -5,17 q-5,-2 -5,-17 q-11,7 -25,3 q2,-5 10,-7 q-20,-4 -26,-16 q12,-3 28,4 q-24,-23 -22,-39 q17,7 32,28 q-4,-30 8,-51 z"/>
 		</symbol>
 
 		<symbol viewBox="0 0 128 128" id="icon-mc-cash" class="business">
