@@ -57,21 +57,16 @@
 		}
 
 		@keyframes rotate {
-			0% {
-				transform: rotate(0deg);
-			}
-			100% {
-				transform: rotate(360deg);
-			}
+			from {transform: rotate(360deg)}
+			to {transform: rotate(0deg)}
 		}
-
-		.rotate {
+		
+		.loading {
+			width: 100%;
+			height: 100%;
+			background: conic-gradient(#FFF, hsla(0,0%,100%,0) 270deg);
+			clip-path: path('M34,64 a30,30 0,0,0 60,0 a30,30 0,0,0 -60,0 M48,64 a16,16 0,0,1 32,0 a16,16 0,0,1 -32,0');
 			animation: rotate 2s linear infinite;
-			transform-origin: 64px 64px;
-		}
-
-		.rotate-reverse {
-			animation: rotate 2s reverse linear infinite;
 			transform-origin: 64px 64px;
 		}
 	</style>
@@ -97,21 +92,9 @@
 			<rect x="35" y="21" width="18" height="14"/>
 		</symbol>
 
-		<!-- stackoverflow.com/questions/2465405 -->
-		<symbol viewBox="0 0 128 128" id="conic-gradient">
-			<foreignObject width="128" height="128">
-				<div xmlns="http://www.w3.org/1999/xhtml" style="width:100%;height:100%;background:conic-gradient(white,hsla(0,0%,100%,0)270deg)"></div>
-			</foreignObject>
-		</symbol>
-
 	</defs>
 
 	<defs id="icons">
-
-		<!-- works only in firefox for now -->
-		<symbol viewBox="0 0 128 128"  id="icon-loading">
-			<use href="#conic-gradient" class="rotate-reverse" clip-path="path('M34,64 a30,30 0,0,0 60,0 a30,30 0,0,0 -60,0 M48,64 a16,16 0,0,1 32,0 a16,16 0,0,1 -32,0')"/>
-		</symbol>
 
 		<symbol viewBox="0 0 128 128"  id="icon-casino" class="freetime">
 			<polygon points="64,16 104,64 64,112 24,64"/>
@@ -328,6 +311,14 @@
 		<symbol viewBox="0 0 128 128" id="icon-molotovguys" >
 			<path d="M64,107 q40,-3 38,-40 q-2,-20 -15,-30 q0,10 -4,19 q-10,-30 -30,-33 q8,22 -6,37 q-3,-6 -9,-12 l-11,25 q-5,30 37,34 z" fill="#E03232" stroke="black" stroke-width="5"/>
 			<path d="M74,107 q18,-25 -2,-43 q0,12 -10,24 q-10,-4 -15,-9 q-2,15 7,28 z"/>
+		</symbol>
+
+		<!-- rendered only in Firefox (foreignObject in use-tag) -->
+		<symbol viewBox="0 0 128 128"  id="icon-loading">
+			<foreignObject width="128" height="128">
+				<!-- stackoverflow.com/questions/2465405 -->
+				<div xmlns="http://www.w3.org/1999/xhtml" class="loading"></div>
+			</foreignObject>
 		</symbol>
 
 	</defs>
