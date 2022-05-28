@@ -51,6 +51,12 @@
 			stroke-width: 4;
 		}
 
+		.target {
+			fill: var(--gta-red);
+			stroke: black;
+			stroke-width: 4.5;
+		}
+
 		.black {
 			fill: black;
 			stroke: none;
@@ -302,15 +308,31 @@
 				<circle cx="64" cy="36" r="6"/>
 			</symbol>
 
-			<symbol viewBox="0 0 128 128" id="icon-supplies-bunker" fill="#5DB6E5">
+			<symbol viewBox="0 0 128 128" id="icon-supplies-bunker" fill="var(--gta-blue)">
 				<use href="#bullet" x="40" y="25"/>
 				<use href="#bullet" x="64" y="29"/>
 				<use href="#bullet" x="88" y="25"/>
 			</symbol>
 
-			<symbol viewBox="0 0 128 128" id="icon-molotovguys" >
-				<path d="M64,107 q40,-3 38,-40 q-2,-20 -15,-30 q0,10 -4,19 q-10,-30 -30,-33 q8,22 -6,37 q-3,-6 -9,-12 l-11,25 q-5,30 37,34 z" fill="#E03232" stroke="black" stroke-width="5"/>
-				<path d="M74,107 q18,-25 -2,-43 q0,12 -10,24 q-10,-4 -15,-9 q-2,15 7,28 z"/>
+			<symbol viewBox="0 0 128 128" id="icon-target" class="target">
+				<path d="M57,22 v-12 h14 v12 a43,43 0,0,1 35,35 h12 v14 h-12 a43,43 0,0,1 -35,35 v12 h-14 v-12 a43,43 0,0,1 -35,-35 h-12 v-14 h12 a43,43 0,0,1 35,-35 z"/>
+				<path d="M57,37 v17 h14 v-17 a28,28 0,0,1 20,20 h-17 v14 h17 a28,28 0,0,1 -20,20 v-17 h-14 v17 a28,28 0,0,1 -20,-20 h17 v-14 h-17 a28,28 0,0,1 20,-20 z" fill="black"/>
+			</symbol>
+
+			<symbol viewBox="0 0 128 128" id="icon-radar" class="target">
+				<path d="M59,67 v20 l20,20 l-7,7 l-18,-18 l-18,18 l-7,-7 l20,-20 v-20" stroke-linejoin="round"/>
+				<path d="M42,15 l12,12 l24,-1 l6,-6 l10,10 l-6,6 l-1,24 l12,12 a41,41 0,0,1 -57,-57 z M63,36 l16,-1 l-1,16 z" fill-rule="evenodd" stroke-linejoin="round"/>
+			</symbol>
+
+			<symbol viewBox="0 0 128 128" id="icon-camera" class="target">
+				<path d="M75,40 v-12 h28 v12 q7,0 7,7 v46 q0,7 -7,7 h-78 q-7,0 -7,-7 v-46 q0,-7 7,-7 z" stroke-linejoin="round"/>
+				<circle cx="64" cy="71" r="19" stroke-width="9"/>
+				<circle cx="95" cy="54" r="7" fill="black" stroke="none"/>
+			</symbol>
+
+			<symbol viewBox="0 0 128 128" id="icon-flame" class="target">
+				<path d="M64,107 q40,-3 38,-40 q-2,-20 -15,-30 q0,10 -4,19 q-10,-30 -30,-33 q8,22 -6,37 q-3,-6 -9,-12 l-11,25 q-5,30 37,34 z"/>
+				<path d="M74,107 q18,-25 -2,-43 q0,12 -10,24 q-10,-4 -15,-9 q-2,15 7,28 z" fill="black" stroke="none"/>
 			</symbol>
 
 			<!-- rendered only in Firefox (foreignObject in use-tag) -->
