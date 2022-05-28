@@ -1,6 +1,6 @@
 // Load icons
-await fetch("icons/spritesheet.svg")
+await fetch("icons/gtaicons.svg")
 	.then(res => res.text())
 	.then(data => {
-		document.getElementById("spritesheet").innerHTML = data
+		document.getElementById("mapicons").innerHTML = data
 	})

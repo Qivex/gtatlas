@@ -21,11 +21,11 @@
       var icons = []
       var switched = false;
       
-      fetch("icons/spritesheet.svg")
+      fetch("icons/gtaicons.svg")
         .then(res => res.text())
         .then(data => {
           // Add to spritesheet
-          document.getElementById("spritesheet").innerHTML = data
+          document.getElementById("mapicons").innerHTML = data
           // Parse Icons
           document.querySelectorAll("#icons symbol").forEach(el => icons.push(el.id.replace("icon-", "")))
           // Mount
@@ -70,7 +70,7 @@
         margin: auto;
       }
       
-      #spritesheet {
+      #mapicons {
         display: none;
       }
       
@@ -91,7 +91,7 @@
       </div>
     </div>
 
-    <div id="spritesheet"></div>
+    <div id="mapicons"></div>
 
   </body>
 </html>
