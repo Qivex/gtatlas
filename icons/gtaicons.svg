@@ -36,7 +36,14 @@
 		
 		.freetime {
 			fill: black;
-			stroke: var(--gta-white);	/* Todo: Ammunation isnt .freetime -> same but --gta-grey1 */
+			stroke: var(--gta-white);
+			stroke-linejoin: round;
+			stroke-width: 3;
+		}
+
+		.service {
+			fill: black;
+			stroke: var(--gta-grey1);
 			stroke-linejoin: round;
 			stroke-width: 3;
 		}
@@ -60,11 +67,6 @@
 			stroke-width: 4.5;
 		}
 
-		.black {
-			fill: black;
-			stroke: none;
-		}
-
 		@keyframes rotate {
 			from {transform: rotate(360deg)}
 			to {transform: rotate(0deg)}
@@ -86,7 +88,7 @@
 
 			<path id="grid" d="M16,0 v128 M32,0 v128 M48,0 v128 M64,0 v128 M80,0 v128 M96,0 v128 M112,0 v128 M0,16 h128 M0,32 h128 M0,48 h128 M0,64 h128 M0,80 h128 M0,96 h128 M0,112 h128" fill="none" stroke="red" stroke-width="0.5"/>
 
-			<path id="bullet" d="M0,0 q6,7 9,27 v10 l2,2 v23 h-2 v5 h2 v6 h-22 v-6 h2 v-5 h-2 v-23 l2,-2 v-10 h18 h-18 q3,-20 9,-27 z" stroke="black" stroke-width="3"/>
+			<path id="bullet" d="M0,0 q8,10 9,20 v16 l3,7 v18 l-2,2 v3 h3 v7 h-26 v-7 h3 v-3 l-2,-2 v-18 l3,-7 v-16 q1,-10 9,-20 z M-9,26 h18" stroke="black" stroke-width="3"/>
 
 			<path id="house" d="M0,0 v36 q0,8 8,8 h50 q8,0 8,-8 v-36 q10,0 10,-10 v-6 q-1,-3 -4,-5 l-33,-24 q-7,-5 -14,0 l-33,24 q-3,2 -4,5 v6 q0,10 10,10 z" stroke-width="4"/>
 
@@ -151,7 +153,22 @@
 
 			<symbol viewBox="0 0 128 128" id="icon-survival" class="mission">
 				<path d="M64,19 l36,13 q-4,57 -36,76 q-32,-19 -36,-76 z"/>
-				<path d="M64,36 v50 M44,56 h40" stroke-width="12"/>
+				<path d="M64,36 v50 M44,56 h40" stroke-width="13"/>
+			</symbol>
+
+			<symbol viewBox="0 0 128 128" id="icon-capture" class="mission">
+				<path d="M24,59 q0,-8 8,-8 h9 a16,16 0,0,1 15,-17 h16 a16,16 0,0,1 15,17 h9 q8,0 8,8 v36 h-80 z"/>
+				<path d="M50,53 v-3 q0,-7 7,-7 h14 q7,0 7,7 v3 z" fill="black" stroke="none"/>
+			</symbol>
+
+			<symbol viewBox="0 0 128 128" id="icon-kingofthehill" class="mission">
+				<path d="M33,97 l-9,-45 a7.5,7.5 0,1,1 7,-3 l17,16 l11,-22 a7.5,7.5 0,1,1 10,0 l11,22 l17,-16 a7.5,7.5 0,1,1 7,3 l-9,45 z"/>
+			</symbol>
+
+			<symbol viewBox="0 0 128 128" id="icon-lastteamstanding" class="mission">
+				<path d="M35,108 v-10 h9 v-8 h40 v8 h9 v10 z"/>
+				<path d="M57,36 h14 l13,-14 l6,6 l-15,17 v50 h-10 v-26 h-2 v26 h-10 v-50 l-15,-17 l6,-6 z"/>
+				<circle cx="64" cy="27" r="8"/>
 			</symbol>
 
 			<symbol viewBox="0 0 128 128" id="icon-parachute" class="mission">
@@ -187,9 +204,23 @@
 				<path d="M14,53 q10,20 24,39 h76 v-12 q-60,-27 -100,-27 z" fill="var(--gta-white)" stroke="black" stroke-width="4" stroke-linejoin="round"/>
 			</symbol>
 
-			<symbol viewBox="0 0 128 128" id="icon-ammunation">
-				<path d="M26,38 h71 v-4 h9 v4 h3 v17 h-9 v5 h-28 l-6,15 h-14 l-5,18 h-29 l8,-33 h-3 v-11 h3 z" fill="black" stroke="var(--gta-grey1)" stroke-width="3"/>
-				<path d="M53,66 h8 l2,-7 h-8 z" fill="var(--gta-grey1)"/>
+			<symbol viewBox="0 0 128 128" id="icon-ammunation" class="service">
+				<path d="M26,38 h71 v-4 h9 v4 h3 v17 h-9 v5 h-28 l-6,15 h-14 l-5,18 h-29 l8,-33 h-3 v-11 h3 z"/>
+				<path d="M53,66 h8 l2,-7 h-8 z" fill="var(--gta-grey1)" stroke="none"/>
+			</symbol>
+
+			<symbol viewBox="0 0 128 128" id="icon-ammunation-range" class="service">
+				<g transform="rotate(45,64,64)" stroke-linejoin="miter">
+					<path d="M57,19 v-9 h14 v9 a46,46 0,0,1 38,38 h9 v14 h-9 a46,46 0,0,1 -38,38 v9 h-14 v-9 a46,46 0,0,1 -38,-38 h-9 v-14 h9 a46,46 0,0,1 38,-38 z"/>
+					<path d="M57,32 v3 h14 v-3 a33,33 0,0,1 25,25 h-3 v14 h3 a33,33 0,0,1 -25,25 v-3 h-14 v3 a33,33 0,0,1 -25,-25 h3 v-14 h-3 a33,33 0,0,1 25,-25 z" fill="var(--gta-grey1)"/>
+				</g>
+				<use href="#icon-ammunation" x="25" y="25" width="78" height="78"/>
+			</symbol>
+
+			<symbol viewBox="0 0 128 128" id="icon-lsc" class="service">
+				<rect x="22" y="56" width="39" height="53"/>
+				<rect x="31" y="30" width="21" height="23"/>
+				<path d="M59,33 c-7,2 -7,15 0,17 l48,15 v-47 l-48,15 c-13,2 -13,15 0,17"/>
 			</symbol>
 
 			<symbol viewBox="0 0 128 128" id="icon-clothing" class="freetime">
@@ -201,22 +232,28 @@
 				<path d="M42,67 v18 M64,67 v18 M86,67 v18" stroke-width="9.5" stroke-linecap="round"/>
 			</symbol>
 
-			<symbol viewBox="0 0 128 128" id="icon-barber">
-				<path d="M61,76 a24,18 24,1,1 -11,-26 a18,24 -24,1,1 26,11 l28,13 c12,5 6,21 -6,15 l-16,-7 l7,16 c5,12 -9,18 -15,6 z" fill="black" stroke="var(--gta-grey1)" stroke-width="3"/>
-				<ellipse cx="40" cy="65" rx="14" ry="8" transform="rotate(24,40,65)" fill="var(--gta-grey1)"/>
-				<ellipse cx="65" cy="40" rx="8" ry="14" transform="rotate(-24,65,40)" fill="var(--gta-grey1)"/>
+			<symbol viewBox="0 0 128 128" id="icon-barber" class="service">
+				<path d="M61,76 a24,18 24,1,1 -11,-26 a18,24 -24,1,1 26,11 l28,13 c12,5 6,21 -6,15 l-16,-7 l7,16 c5,12 -9,18 -15,6 z" stroke-linejoin="miter"/>
+				<g fill="var(--gta-grey1)" stroke="none">
+					<ellipse cx="40" cy="65" rx="14" ry="8" transform="rotate(24,40,65)"/>
+					<ellipse cx="65" cy="40" rx="8" ry="14" transform="rotate(-24,65,40)"/>
+				</g>
 			</symbol>
 
-			<symbol viewBox="0 0 128 128" id="icon-tattoo">
-				<path d="M24,49 a21.5,21.5 0,0,1 40,-12 a21.5,21.5 0,0,1 39,17 q8,0 9,8 v17 q0,6 -8,8 q-12,3 -24,0 q-8,8 -16,13 q-16,-10 -24,-21 l-15,4 q-7,0 -8,-7 v-19 q0,-6 7,-8 z" fill="black" stroke="var(--gta-grey1)" stroke-width="3"/>
-				<path d="M24,58 q28,-9 50,2 q15,6 30,2 v17 q-14,4 -30,-2 q-24,-11 -50,-2 z" fill="var(--gta-grey1)"/>
-				<path d="M45,31 q-14,4 -14,17 q3,4 5,-2 q0,-10 9,-15" fill="var(--gta-grey1)"/>
+			<symbol viewBox="0 0 128 128" id="icon-tattoo" class="service">
+				<path d="M24,49 a21.5,21.5 0,0,1 40,-12 a21.5,21.5 0,0,1 39,17 q8,0 9,8 v17 q0,6 -8,8 q-12,3 -24,0 q-8,8 -16,13 q-16,-10 -24,-21 l-15,4 q-7,0 -8,-7 v-19 q0,-6 7,-8 z" stroke-linejoin="miter"/>
+				<g fill="var(--gta-grey1)" stroke="none">
+					<path d="M24,58 q28,-9 50,2 q15,6 30,2 v17 q-14,4 -30,-2 q-24,-11 -50,-2 z"/>
+					<path d="M45,31 q-14,4 -14,17 q3,4 5,-2 q0,-10 9,-15"/>
+				</g>
 			</symbol>
 
 			<symbol viewBox="0 0 128 128" id="icon-cinema" class="freetime">
 				<path d="M87,58 v7 l20,-7 v41 l-20,-7 v7 h-66 v-41 h4 a17.5,17.5 0,1,1 29,-18 a17.5,17.5 0,1,1 29,18 z"/>
-				<circle cx="37" cy="46" r="6" fill="var(--gta-white)"/>
-				<circle cx="70" cy="46" r="6" fill="var(--gta-white)"/>
+				<g fill="var(--gta-white)" stroke="none">
+					<circle cx="37" cy="46" r="8"/>
+					<circle cx="70" cy="46" r="8"/>
+				</g>
 			</symbol>
 
 			<symbol viewBox="0 0 128 128" id="icon-golf" class="freetime">
@@ -225,28 +262,32 @@
 			</symbol>
 
 			<symbol viewBox="0 0 128 128" id="icon-dart" class="freetime">
-				<circle cx="64" cy="64" r="45" fill="var(--gta-white)"/>
-				<circle cx="64" cy="64" r="37" fill="none" stroke="black" stroke-width="12"/>
-				<circle cx="64" cy="64" r="14" fill="none" stroke="black" stroke-width="11"/>
+				<circle cx="64" cy="64" r="45"/>
+				<circle cx="64" cy="64" r="25" stroke-width="12"/>
+				<circle cx="64" cy="64" r="4" stroke-width="8"/>
 			</symbol>
 
 			<symbol viewBox="0 0 128 128" id="icon-office" class="business">
 				<rect x="29" y="16" width="70" height="96"/>
-				<rect x="55" y="91" width="18" height="20" class="black"/>
-				<rect x="40" y="32" width="48" height="48" class="black"/>
+				<g fill="black" stroke="none">
+				<rect x="55" y="91" width="18" height="20"/>
+				<rect x="40" y="32" width="48" height="48"/>
+				</g>
 				<path d="M55,31 v50 M73,31 v50 M39,47 h50 M39,65 h50" stroke="currentcolor" stroke-width="6"/>
 			</symbol>
 
 			<symbol viewBox="0 0 128 128" id="icon-warehouse-crates" class="business">
 				<path d="M17,103 v-55 l47,-21 l47,21 v55 z"/>
-				<rect x="34" y="61" width="60" height="41" class="black"/>
+				<rect x="34" y="61" width="60" height="41" fill="black" stroke="none"/>
 			</symbol>
 
 			<symbol viewBox="0 0 128 128" id="icon-mc-clubhouse" class="business">
 				<path id="house" d="M15,97 q0,8 8,8 h93 q8,0 8,-8 v-52 h-46 l-29,-21 q-4,-3 -8,0 l-29,21 q-8,5 -8,10 v4 q1,5 6,6 h5 z"/>
-				<rect x="25" y="58" width="16" height="16" class="black"/>
-				<rect x="46" y="83" width="16" height="20" class="black"/>
-				<rect x="72" y="58" width="42" height="46" class="black"/>
+				<g fill="black" stroke="none">
+					<rect x="25" y="58" width="16" height="16"/>
+					<rect x="46" y="83" width="16" height="20"/>
+					<rect x="72" y="58" width="42" height="46"/>
+				</g>
 			</symbol>
 
 			<symbol viewBox="0 0 128 128" id="icon-mc-counterfeit" class="business">
@@ -271,26 +312,30 @@
 
 			<symbol viewBox="0 0 128 128" id="icon-mc-meth" class="business">
 				<path d="M20,107 l26,-55 v-19 h-8 v-14 h52 v14 h-8 v19 l26,55 z"/>
-				<path d="M34,98 l14,-30 h32 l14,30 z" class="black"/>
-				<circle cx="60" cy="42" r="6" class="black"/>
-				<circle cx="70" cy="58" r="6" class="black"/>
+				<g fill="black" stroke="none">
+					<path d="M34,98 l14,-30 h32 l14,30 z"/>
+					<circle cx="60" cy="42" r="6"/>
+					<circle cx="70" cy="58" r="6"/>
+				</g>
 			</symbol>
 
 			<symbol viewBox="0 0 128 128" id="icon-mc-cocaine" class="business">
 				<path d="M17,32 h94 l-6,9 h8 v44 h-8 l6,11 h-94 l6,-11 h-8 v-44 h8 z"/>
-				<path d="M27,51 q6,0 7,8 h6 v-8 h5 v8 h8 a12,12 0,0,1 22,0 h8 v-8 h5 v8 h6 q1,-8 7,-8 v25 q-6,0 -7,-8 h-6 v8 h-5 v-8 h-8 a12,12 0,0,1 -22,0 h-8 v8 h-5 v-8 h-6 q-1,8 -7,8" class="black"/>
+				<path d="M27,51 q6,0 7,8 h6 v-8 h5 v8 h8 a12,12 0,0,1 22,0 h8 v-8 h5 v8 h6 q1,-8 7,-8 v25 q-6,0 -7,-8 h-6 v8 h-5 v-8 h-8 a12,12 0,0,1 -22,0 h-8 v8 h-5 v-8 h-6 q-1,8 -7,8" fill="black" stroke="none"/>
 			</symbol>
 
 			<symbol viewBox="0 0 128 128"  id="icon-bunker" class="business">
 				<path d="M16,94 v-11 c-2,-64 100,-64 98,0 v11 z"/>
-				<rect x="36" y="58" width="56" height="35" class="black"/>
+				<rect x="36" y="58" width="56" height="35" fill="black" stroke="none"/>
 			</symbol>
 
 			<symbol viewBox="0 0 128 128" id="icon-hangar" class="business">
 				<path d="M64,31 l29,7 l22,20 l-6,-5 v44 h-90 v-44 l-6,5 l22,-20 z M36,97 v-30 h56 v30 v-10 h-56 v-10 h56"/>
-				<rect x="41" y="44" width="12" height="12" class="black"/>
-				<rect x="58" y="44" width="12" height="12" class="black"/>
-				<rect x="75" y="44" width="12" height="12" class="black"/>
+				<g fill="black" stroke="none">
+					<rect x="41" y="44" width="12" height="12"/>
+					<rect x="58" y="44" width="12" height="12"/>
+					<rect x="75" y="44" width="12" height="12"/>
+				</g>
 			</symbol>
 
 			<symbol viewBox="0 0 128 128" id="icon-facility" class="business">
@@ -300,31 +345,35 @@
 
 			<symbol viewBox="0 0 128 128" id="icon-nightclub" class="business">
 				<rect x="27" y="16" width="74" height="96" rx="6" fill="currentcolor" stroke="black" stroke-width="5"/>
-				<circle cx="64" cy="54" r="30" class="black"/>
+				<circle cx="64" cy="54" r="30" fill="black" stroke="none"/>
 				<circle cx="64" cy="54" r="5" fill="none" stroke="currentcolor" stroke-width="8"/>
 				<circle cx="64" cy="54" r="19" fill="none" stroke="currentcolor" stroke-width="12" pathLength="18" stroke-dasharray="2 7" stroke-dashoffset="8"/>
-				<circle cx="45" cy="96" r="8.5" class="black"/>
-				<rect x="59" y="91" width="32" height="10" class="black"/>
+				<g fill="black" stroke="none">
+					<circle cx="45" cy="96" r="8.5"/>
+					<rect x="59" y="91" width="32" height="10"/>
+				</g>
 			</symbol>
 
 			<symbol viewBox="0 0 128 128" id="icon-arcade" class="business">
 				<path d="M28,89 q-6,1 -7,7 h-1 v7 q0,4 4,4 h80 q4,0 4,-4 v-7 h-1 q-1,-6 -7,-7 z q0,-6 7,-9 q1,-6 8,-8 h14 l10,-30 h14 l-10,30 h14 q7,2 8,8 q7,3 7,9"/>
 				<circle cx="74" cy="39" r="18"/>
-				<path d="M77,26 q-12,0 -16,10 q-1,3 3,3 l13,-8 q3,-3 0,-5" class="black"/>
+				<path d="M77,26 q-12,0 -16,10 q-1,3 3,3 l13,-8 q3,-3 0,-5" fill="black" stroke="none"/>
 			</symbol>
 
 			<symbol viewBox="0 0 128 128" id="icon-autoshop" class="business">
 				<use href="#house" x="32" y="65"/>
-				<path d="M50,64 l20,20 l10,-10 l-20,-20 z" class="black"/>
-				<circle cx="49" cy="53" r="12" class="black"/>
-				<circle cx="81" cy="85" r="12" class="black"/>
+				<g fill="black" stroke="none">
+					<path d="M50,64 l20,20 l10,-10 l-20,-20 z"/>
+					<circle cx="49" cy="53" r="12"/>
+					<circle cx="81" cy="85" r="12"/>
+				</g>
 				<path d="M46,50 l-5,-5 M84,88 l5,5" stroke="currentcolor" stroke-width="11" stroke-linecap="round"/>
 			</symbol>
 
 			<symbol viewBox="0 0 128 128" id="icon-agency" class="business">
 				<path d="M29,16 h70 v67 l8,12 v18 h-86 v-18 l8,-12 z"/>
 				<path d="M39,30 h50 M39,46 h50 M39,62 h50 M39,78 h50" stroke="black" stroke-width="8"/>
-				<rect x="52" y="91" width="24" height="21" class="black"/>
+				<rect x="52" y="91" width="24" height="21" fill="black" stroke="none"/>
 				<path d="M47,93 h34" stroke="black" stroke-width="5"/>
 			</symbol>
 
@@ -335,8 +384,8 @@
 
 			<symbol viewBox="0 0 128 128" id="icon-supplies-bunker" fill="var(--gta-blue)">
 				<use href="#bullet" x="40" y="25"/>
-				<use href="#bullet" x="64" y="29"/>
 				<use href="#bullet" x="88" y="25"/>
+				<use href="#bullet" x="64" y="29"/>
 			</symbol>
 
 			<symbol viewBox="0 0 128 128" id="icon-target" class="target">
