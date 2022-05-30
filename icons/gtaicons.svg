@@ -218,6 +218,12 @@
 				</g>
 			</symbol>
 
+			<symbol viewBox="0 0 128 128" id="icon-mask">
+				<path d="M26,25 q38,7 76,0 v32 c-16,60 -60,60 -76,0 z" fill="var(--gta-grey1)" stroke="black" stroke-width="4" stroke-linejoin="round"/>
+				<path d="M57,79 h14" stroke="black" stroke-width="17" stroke-linecap="round"/>
+				<path d="M61,49 q-18,-13 -25,-8 c-5,19 20,20 25,8 z M67,49 q18,-13 25,-8 c5,19 -20,20 -25,8"/>
+			</symbol>
+
 			<symbol viewBox="0 0 128 128" id="icon-tattoo" class="service">
 				<path d="M24,49 a21.5,21.5 0,0,1 40,-12 a21.5,21.5 0,0,1 39,17 q8,0 9,8 v17 q0,6 -8,8 q-12,3 -24,0 q-8,8 -16,13 q-16,-10 -24,-21 l-15,4 q-7,0 -8,-7 v-19 q0,-6 7,-8 z" stroke-linejoin="miter"/>
 				<g fill="var(--gta-grey1)" stroke="none">
@@ -237,6 +243,11 @@
 			<symbol viewBox="0 0 128 128" id="icon-golf" class="freetime">
 				<path d="M35,20 h12 l30,16 l-30,16 v45 a20,6 0,1,1 -12,1.5 z"/>
 				<circle cx="87" cy="97" r="11"/>
+			</symbol>
+
+			<symbol viewBox="0 0 128 128" id="icon-tennis" class="freetime">
+				<path d="M120,71 h-36 q-10,2 -18,11 a33,27 0,1,1 0,-36 q8,9 18,11 h36 z M62,64 a21,16 0,0,0 -42,0 a21,16 0,0,0 42,0 z" transform="rotate(51,64,64)" fill-rule="evenodd"/>
+				<circle cx="96" cy="47" r="11"/>
 			</symbol>
 
 			<symbol viewBox="0 0 128 128" id="icon-dart" class="freetime">
@@ -411,6 +422,12 @@
 			<symbol viewBox="0 0 128 128" id="icon-radar" class="target">
 				<path d="M59,67 v20 l20,20 l-7,7 l-18,-18 l-18,18 l-7,-7 l20,-20 v-20" stroke-linejoin="round"/>
 				<path d="M42,15 l12,12 l24,-1 l6,-6 l10,10 l-6,6 l-1,24 l12,12 a41,41 0,0,1 -57,-57 z M63,36 l16,-1 l-1,16 z" fill-rule="evenodd" stroke-linejoin="round"/>
+			</symbol>
+			
+			<symbol viewBox="0 0 128 128" id="icon-jammer" class="target">
+				<path d="M69,26 v22 h28 v74 h-66 v-74 h28 v-22" stroke-width="6" stroke-linejoin="round"/>
+				<circle cx="64" cy="85" r="17" stroke-width="8"/>
+				<circle cx="64" cy="16" r="10" stroke-width="6"/>
 			</symbol>
 
 			<symbol viewBox="0 0 128 128" id="icon-camera" class="target">
