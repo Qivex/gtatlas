@@ -27,8 +27,11 @@
 			--gta-org-red: #D85575;
 		}
 		
-		.race {
+		.mission {
 			fill: var(--gta-blue);
+			stroke: black;
+			stroke-linejoin: round;
+			stroke-width: 4;
 		}
 		
 		.freetime {
@@ -125,6 +128,14 @@
 				<circle cx="64" cy="64" r="26" stroke-width="29" pathLength="16" stroke-dasharray="1"/>
 			</symbol>
 
+			<symbol viewBox="0 0 128 128" id="icon-music-locker" class="freetime">
+				<path d="M43,29 q0,-6 6,-6 h52 q6,0 6,6 v60 a18,18 0,1,1 -15,-20 v-25 h-34 v45 a18,18 0,1,1 -15,-20 z"/>
+			</symbol>
+
+			<symbol viewBox="0 0 128 128" id="icon-record-studio">
+				<path d="M26,21 h50 a24,24 0,0,1 10,46 l17,40 h-16 l-21,-51 h12 a11.5,11.5 0,0,0 -5,-22 h-33 v73 h-14 z M42,36 v71 h14 v-36 l13,36 h16 l-29,-71 z" fill="var(--gta-white)" stroke="black" stroke-width="4" stroke-linejoin="round"/>
+			</symbol>
+
 			<symbol viewBox="0 0 128 128" id="icon-default">
 				<circle cx="64" cy="64" r="34" fill="#F0C850" stroke="black" stroke-width="5"/>
 			</symbol>
@@ -134,12 +145,26 @@
 				<path d="M32,54 l2,-18 q1,-3 6,-3 h48 q5,0 6,3 l2,18" fill="black"/>
 			</symbol>
 
-			<symbol viewBox="0 0 128 128" id="icon-race-stunt" class="race">
-				<use href="#flag" x="18" y="17"/>
-				<path d="M110,110 v-42 q-10,30 -55,42 z" stroke="black" stroke-width="4" stroke-linejoin="round"/>
+			<symbol viewBox="0 0 128 128" id="icon-mission" class="mission">
+				<path d="M72,17 l6,36 h35 l-31,22 l5,37 l-29,-21 l-38,21 l17,-37 l-21,-22 h35 z"/>
 			</symbol>
 
-			<symbol viewBox="0 0 128 128" id="icon-race-car" class="race">
+			<symbol viewBox="0 0 128 128" id="icon-survival" class="mission">
+				<path d="M64,19 l36,13 q-4,57 -36,76 q-32,-19 -36,-76 z"/>
+				<path d="M64,36 v50 M44,56 h40" stroke-width="12"/>
+			</symbol>
+
+			<symbol viewBox="0 0 128 128" id="icon-parachute" class="mission">
+				<path d="M64,113 l45,-45 a45.5,45.5 0,1,0 -90,0 l45,45 z"/>
+				<path d="M64,95 l11,-32 c0,-12 -22,-12 -22,0 z M70,96 l29,-29 c4,-10 -14,-14 -18,-3 z M58,96 l-29,-29 c-4,-10 14,-14 18,-3 z" fill="black" stroke="none"/>
+			</symbol>
+
+			<symbol viewBox="0 0 128 128" id="icon-race-stunt" class="mission">
+				<use href="#flag" x="18" y="17"/>
+				<path d="M110,110 v-42 q-10,30 -55,42 z"/>
+			</symbol>
+
+			<symbol viewBox="0 0 128 128" id="icon-race-car" class="mission">
 				<use href="#flag" x="18" y="17"/>
 				<!-- not accurate (different stroke-width & color) -->
 				<use href="#icon-vehicle-personal" x="50" y="57" width="70" height="70"/>
