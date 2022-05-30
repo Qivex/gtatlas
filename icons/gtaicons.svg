@@ -107,39 +107,17 @@
 
 		<g id="icons">
 
-			<symbol viewBox="0 0 128 128"  id="icon-casino" class="freetime">
-				<polygon points="64,16 104,64 64,112 24,64"/>
-				<path d="M64,25 v33 q1,5 5,6 h27 M32,64 h27 q4,1 5,6 v33" fill="var(--gta-white)" stroke="none"/>
-			</symbol>
-
-			<symbol viewBox="0 0 128 128" id="icon-casino-cashier" class="freetime">
-				<use href="#ellipse" x="64" y="64"/>
-				<use href="#ellipse" x="64" y="45"/>
-				<use href="#ellipse" x="64" y="26"/>
-			</symbol>
-
-			<symbol viewBox="0 0 128 128" id="icon-casino-table" class="freetime">
-				<rect x="33" y="18" width="62" height="92" rx="6"/>
-				<polygon points="64,48 80,64 64,80 48,64" fill="var(--gta-white)" stroke="none"/>
-				<text class="card" x="38" y="40">A</text>
-				<text class="card" x="74" y="103">A</text>
-			</symbol>
-
-			<symbol viewBox="0 0 128 128" id="icon-casino-wheel" class="freetime">
-				<circle cx="64" cy="64" r="48"/>
-				<circle cx="64" cy="64" r="26" stroke-width="29" pathLength="16" stroke-dasharray="1"/>
-			</symbol>
-
-			<symbol viewBox="0 0 128 128" id="icon-music-locker" class="freetime">
-				<path d="M43,29 q0,-6 6,-6 h52 q6,0 6,6 v60 a18,18 0,1,1 -15,-20 v-25 h-34 v45 a18,18 0,1,1 -15,-20 z"/>
-			</symbol>
-
-			<symbol viewBox="0 0 128 128" id="icon-record-studio">
-				<path d="M26,21 h50 a24,24 0,0,1 10,46 l17,40 h-16 l-21,-51 h12 a11.5,11.5 0,0,0 -5,-22 h-33 v73 h-14 z M42,36 v71 h14 v-36 l13,36 h16 l-29,-71 z" fill="var(--gta-white)" stroke="black" stroke-width="4" stroke-linejoin="round"/>
-			</symbol>
-
 			<symbol viewBox="0 0 128 128" id="icon-default">
 				<circle cx="64" cy="64" r="34" fill="#F0C850" stroke="black" stroke-width="5"/>
+			</symbol>
+
+			<symbol viewBox="0 0 128 128" id="icon-player-arrow">
+				<path d="M64,28 l-31,70 l31,-15 l31,15 z" fill="currentcolor" stroke="black" stroke-width="4" stroke-linejoin="round"/>
+				<path d="M64,28 l31,70 l-31,-15" fill="black" opacity="0.25"/>
+			</symbol>
+
+			<symbol viewBox="0 0 128 128" id="icon-player-flag">
+				<path d="M55,39 q7,10 19,5 q11,-5 19,4 l-6,32 q-8,-9 -19,-4 q-12,5 -19,-4 l-4,18 c-3,4 -10,1 -9,-3 l10,-50 c3,-3 8,-1 9,2 z" fill="currentcolor" stroke="black" stroke-width="4" stroke-linejoin="round"/>
 			</symbol>
 
 			<symbol viewBox="0 0 128 128" id="icon-vehicle-personal">
@@ -265,6 +243,43 @@
 				<circle cx="64" cy="64" r="45"/>
 				<circle cx="64" cy="64" r="25" stroke-width="12"/>
 				<circle cx="64" cy="64" r="4" stroke-width="8"/>
+			</symbol>
+
+			<symbol viewBox="0 0 128 128" id="icon-fairground" class="freetime">
+				<path d="M49,99 l-5,8 h-12 l8,-13 l-13,-22 h-5 l-5,-8 l5,-8 h4 l12,-21 l-2,-4 l5,-8 h9 l2,4 h24 l2,-4 h9 l5,8 l-2,4 l12,21 h4 l5,8 l-5,8 h-5 l-13,22 l8,13 h-12 l-5,-8 z"/>
+				<path d="M32,63 l16,-27 h32 l16,27 l-16,27 h-32" fill="var(--gta-white)" stroke="none"/>
+				<path d="M32,63 h64 M48,36 l32,54 M80,36 l-32,54" stroke="black" stroke-width="7"/>
+			</symbol>
+
+			<symbol viewBox="0 0 128 128"  id="icon-casino" class="freetime">
+				<polygon points="64,16 104,64 64,112 24,64"/>
+				<path d="M64,25 v33 q1,5 5,6 h27 M32,64 h27 q4,1 5,6 v33" fill="var(--gta-white)" stroke="none"/>
+			</symbol>
+
+			<symbol viewBox="0 0 128 128" id="icon-casino-cashier" class="freetime">
+				<use href="#ellipse" x="64" y="64"/>
+				<use href="#ellipse" x="64" y="45"/>
+				<use href="#ellipse" x="64" y="26"/>
+			</symbol>
+
+			<symbol viewBox="0 0 128 128" id="icon-casino-table" class="freetime">
+				<rect x="33" y="18" width="62" height="92" rx="6"/>
+				<polygon points="64,48 80,64 64,80 48,64" fill="var(--gta-white)" stroke="none"/>
+				<text class="card" x="38" y="40">A</text>
+				<text class="card" x="74" y="103">A</text>
+			</symbol>
+
+			<symbol viewBox="0 0 128 128" id="icon-casino-wheel" class="freetime">
+				<circle cx="64" cy="64" r="48"/>
+				<circle cx="64" cy="64" r="26" stroke-width="29" pathLength="16" stroke-dasharray="1"/>
+			</symbol>
+
+			<symbol viewBox="0 0 128 128" id="icon-music-locker" class="freetime">
+				<path d="M43,29 q0,-6 6,-6 h52 q6,0 6,6 v60 a18,18 0,1,1 -15,-20 v-25 h-34 v45 a18,18 0,1,1 -15,-20 z"/>
+			</symbol>
+
+			<symbol viewBox="0 0 128 128" id="icon-record-studio">
+				<path d="M26,21 h50 a24,24 0,0,1 10,46 l17,40 h-16 l-21,-51 h12 a11.5,11.5 0,0,0 -5,-22 h-33 v73 h-14 z M42,36 v71 h14 v-36 l13,36 h16 l-29,-71 z" fill="var(--gta-white)" stroke="black" stroke-width="4" stroke-linejoin="round"/>
 			</symbol>
 
 			<symbol viewBox="0 0 128 128" id="icon-office" class="business">
