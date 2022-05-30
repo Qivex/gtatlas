@@ -15,16 +15,16 @@
 			--gta-grey4: #535353;	/* light buildings */
 			--gta-grey5: #373737;	/* dark buildings */
 			--gta-grey6: #181818;	/* background */
-			--org-orange: #FFFFFF;
-			--org-pink: #FFFFFF;
-			--org-yellow: #FFFFFF;
-			--org-cyan: #FFFFFF;
-			--org-purple: #FFFFFF;
-			--org-mint: #FFFFFF;
-			--org-lblue: #FFFFFF;
-			--org-brown: #FFFFFF;
-			--org-green: #FFFFFF;
-			--org-red: #FFFFFF;
+			--gta-org-orange: #F79F7B;
+			--gta-org-pink: #E286BB;
+			--gta-org-yellow: #EFEE97;
+			--gta-org-grayblue: #71A9AF;
+			--gta-org-purple: #A08CC1;
+			--gta-org-mint: #8DCEA7;
+			--gta-org-lightblue: #B5D6EA;
+			--gta-org-brown: #B29084;
+			--gta-org-darkmint: #008472;
+			--gta-org-red: #D85575;
 		}
 		
 		.race {

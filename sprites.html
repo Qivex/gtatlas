@@ -7,12 +7,8 @@
 
     <script defer>
       function setOrgColor(colstring) {
-        // Check if input is valid as color
         if (!CSS.supports("color", colstring)) return
-        // Update all Icons
-        for (let icon of document.getElementsByClassName("org-icon")) {
-          icon.setAttribute("color", colstring)
-        }
+        document.documentElement.style.setProperty("--org-color", colstring)
       }
       
       var toId = name => "#icon-" + name
@@ -30,12 +26,14 @@
           document.querySelectorAll("#icons symbol").forEach(el => icons.push(el.id.replace("icon-", "")))
           // Mount
           PetiteVue.createApp({icons, toId, toPath, switched}).mount("#body")
-          // Set color
-          //setOrgColor("#F79F7B")
         })
     </script>
 
     <style>
+      :root {
+        --org-color: var(--gta-org-orange);
+      }
+      
       body {
         margin: 0px;
         padding: 0px;
@@ -59,7 +57,7 @@
       
       .icon {
         grid-area: icon;
-        color: var(--gta-pink);
+        color: var(--org-color);
       }
       
       .img {
