@@ -96,11 +96,11 @@
 
 			<symbol id="flag">
 				<path d="m2,2 v86 h13 v-34 h60 v-52 z" stroke="black" stroke-width="4"/>
-				<g fill="black">
-					<rect x="33" y="4"  width="22" height="48"/>
-					<rect x="13" y="19" width="60" height="18"/>
+				<g stroke="none">
+					<rect x="33" y="4"  width="22" height="48" fill="black"/>
+					<rect x="13" y="19" width="60" height="18" fill="black"/>
+					<rect x="34" y="20" width="20" height="16"/>
 				</g>
-				<rect x="35" y="21" width="18" height="14"/>
 			</symbol>
 
 		</g>
@@ -416,10 +416,24 @@
 				<circle cx="64" cy="36" r="6"/>
 			</symbol>
 
-			<symbol viewBox="0 0 128 128" id="icon-supplies-bunker" fill="var(--gta-blue)">
+			<symbol viewBox="0 0 128 128" id="icon-supplies-crate">
+				<path d="M28,28 h72 v72 h-72 z M28,39 h72 M28,89 h72 M39,39 v50 M89,39 v50 M39,82 l43,-43 M46,89 l43,-43" fill="var(--gta-green)" stroke="black" stroke-width="4.5" stroke-linejoin="round"/>
+			</symbol>
+
+			<symbol viewBox="0 0 128 128" id="icon-supplies-bunker" fill="var(--gta-green)">
 				<use href="#bullet" x="40" y="25"/>
 				<use href="#bullet" x="88" y="25"/>
 				<use href="#bullet" x="64" y="29"/>
+			</symbol>
+
+			<symbol viewBox="0 0 128 128" id="icon-supplies-hangar">
+				<rect x="23" y="26" width="82" height="76" rx="14" fill="var(--gta-green)" stroke="black" stroke-width="4.5"/>
+				<path d="M39,28 v72 M89,28 v72 M63,44 v20" stroke="black" stroke-width="10"/>
+				<path d="M23,50 h82 M52,50 v20 h22 v-20" fill="none" stroke="black" stroke-width="6"/>
+			</symbol>
+
+			<symbol viewBox="0 0 128 128" id="icon-supplies-mc">
+				<path d="M64,37 v54 M25,64 h78 c5,28 -11,31 -39,27 c-28,4 -44,1 -39,-27 c-5,-28 11,-31 39,-27 c28,-4 44,-1 39,27" fill="var(--gta-green)" stroke="black" stroke-width="4"/>
 			</symbol>
 
 			<symbol viewBox="0 0 128 128" id="icon-target" class="target">
