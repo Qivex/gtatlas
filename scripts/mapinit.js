@@ -1,5 +1,5 @@
-// Leaflet basics
-window.gtamap = Leaflet.map("map", {
+// Leaflet map basics
+let gtamap = Leaflet.map("map", {
 	// No earth curvature
 	crs: Leaflet.CRS.Simple,
 	// No default controls
@@ -29,8 +29,70 @@ Leaflet.tileLayer("tiles/{z}_{x}_{y}.jpg", {
 
 
 
-// Toggleable layers
-window.maplayers = {}
+// Helper functions
+function pixel2crs(point) {
+	let x = point[0]
+	let y = point[1]
+	return [-y/32, x/32]
+}
+
+function crs2pixel(point) {
+	let lat = point[0]
+	let lng = point[1]
+	return [-32*lng, 32*lat]
+}
+
+let iconcache = {}
+
+function getIcon(name) {
+	/* Dynamic scaling of icons isnt really possible:
+	- icon.options.iconSize doesnt affect already rendered ones
+	- SVG can be resized, but anchor will be wrong */
+	if (!iconcache[name]) {
+		iconcache[name] = Leaflet.divIcon({
+			html: `<svg width="35" height="35"><use href="#icon-${name}" class="org-color"/></svg>`,
+			iconSize: [35,35],
+			iconAnchor: [18,18]
+		})
+	}
+	return iconcache[name]
+}
+
+function isMobile() {
+	// TODO
+	return false
+}
+
+function getArrowConfig() {
+	let config = {
+		fill: true,
+		size: "15px",
+		frequency: "50px",
+		yawn: 50
+	}
+	if (isMobile()) {
+		config.size = "10px"
+		config.frequency = "30px"
+	}
+	return config
+}
+
+function marker(point, iconname) {
+	return Leaflet.marker(pixel2crs(point), {icon: getIcon(iconname)})
+}
+
+function line(points) {
+	return Leaflet.polyline(points.map(p => pixel2crs(p)), {color: "white"}).arrowheads(getArrowConfig())
+}
+
+function circle(point, radius, color) {
+	return Leaflet.circle(pixel2crs(point), {radius: radius/32, stroke: false, color: color, fillOpacity: 0.5})
+}
+
+
+
+// Import toggleable layers
+let maplayers = {}
 
 let files = [
 	"ammunation",
@@ -43,7 +105,7 @@ let files = [
 		// Can be factory method or Leaflet.featureGroup
 		let layer = module.default
 		if (typeof layer === "function") {
-			layer = layer(Leaflet, marker, document.getElementById("popup"))
+			layer = layer(Leaflet, marker, circle, line)	//document.getElementById("popup")
 		}
 		// Add to lookup & map
 		maplayers[id] = layer
@@ -57,51 +119,26 @@ let files = [
 
 
 
-// Helper functions
-window.setMapLayer = function(id, value) {
+// Modifier functions
+function setMapLayer(id, visible) {
 	// TEMP
-	console.log("Updated " + id + " to " + value);
+	console.log("Updated " + id + " to " + visible);
 	// Shortcut
 	let layer = maplayers[id]
 	// Ignore unknown ids
 	if (!layer) return
 	// Adjust layer visibility (No error if not found by Leaflet)
-	if (value === true)
+	if (visible === true)
 		gtamap.addLayer(layer)
 	else
 		gtamap.removeLayer(layer)
 }
 
-window.setOrgColor = function(colstring) {
+function setOrgColor(colstring) {
 	// Check if input is valid color
 	if (!CSS.supports("color", colstring)) return
 	// Update CSS variable (https://css-tricks.com/updating-a-css-variable-with-javascript)
 	document.documentElement.style.setProperty("--org-color", colstring)
 }
 
-function paint2crs(x, y) {
-	return [-y/32, x/32];
-}
-
-function crs2paint(lat, lng) {
-	return [-32*lng, 32*lat];
-}
-
-window.createIcon = function(name) {
-	/* Dynamic scaling of icons isnt really possible:
-	- icon.options.iconSize doesnt affect already rendered ones
-	- SVG can be resized, but anchor will be wrong */
-	return Leaflet.divIcon({
-		html: `<svg width="35" height="35"><use href="#icon-${name}" class="org-color"/></svg>`,
-		iconSize: [35,35],
-		iconAnchor: [18,18]
-	})
-}
-
-window.iconstore = {}
-window.marker = function(x, y, iconname) {
-	if (!iconstore[iconname]) {
-		iconstore[iconname] = createIcon(iconname)
-	}
-	return Leaflet.marker(paint2crs(x,y), {icon: iconstore[iconname]})
-}
+export {gtamap, setMapLayer, setOrgColor}

@@ -3,6 +3,6 @@ let coords = [
 	[4200,6000]
 ]
 
-export default function (Leaflet, marker, popupElement) {
-	return Leaflet.featureGroup(coords.map(pixel => marker(pixel[0], pixel[1], "ammunation"))).bindPopup(popupElement, {className: "custom-popup"})
+export default function (Leaflet, marker) {
+	return Leaflet.featureGroup(coords.map(pixel => marker(pixel, "ammunation")))	//.bindPopup(popupElement, {className: "custom-popup"})
 }
