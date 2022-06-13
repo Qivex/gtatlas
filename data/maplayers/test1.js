@@ -1,11 +1,4 @@
 let coords = []
-/* Stress test
-for (let x=0; x<32; x++) {
-	for (let y=0; y<32; y++) {
-		coords.push([256*x, 256*y])
-	}
-}
-*/
 
 export default function(Leaflet, marker, circle, line) {
 	let p1 = [5000, 5000]
