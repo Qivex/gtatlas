@@ -1,7 +1,10 @@
 <div class="iconsize">
-	<input class="iconsize-slider" type="slider" v-model="size"/>
-	<svg class="iconsize-preview" viewbox="0 0 128 128" :width="currentWidth" :height="currentHeight">
-		<use :href="`#icon-${icon}`"/>
-	</svg>
-	<button class="iconsize-confirm" @click.left="onIconSizeConfirm"/>
+	<div style="min-height:60px;min-width:60px">
+		<svg viewbox="0 0 128 128" :width="size" :height="size">
+			<use :href="`#icon-${icon}`"/>
+		</svg>
+	</div>
+	<input type="range" v-model="size" :min="min" :max="max"/>
+	<!--<input type="text" v-model="size"/>-->
+	<button @click.left="onClickConfirm">Confirm</button>
 </div>

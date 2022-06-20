@@ -1,0 +1,33 @@
+<html>
+<head>
+	<title>Icon Resize Test</title>
+	<script src="libs/vue.js"></script>
+	<script type="module">
+		import IconSizeSelector from "/scripts/iconsize.js"
+    import "/scripts/iconinit.js"
+    
+    let testdata = {
+      initial: 35,
+      min: 20,
+      max: 50,
+      icon: "vehicle-personal",
+      onconfirm: function(newsize) {console.log(newsize)}
+    }
+    
+    Vue.createApp({
+      data() {
+        return {testdata}
+      },
+      components: {
+        IconSizeSelector
+      }
+    }).mount("#root")
+	</script>
+</head>
+<body>
+<div id="root">
+  <icon-size-selector v-bind="testdata"></icon-size-selector>
+</div>
+<div id="mapicons" style="display:none;"></div>
+</body>
+</html>

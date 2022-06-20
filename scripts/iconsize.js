@@ -1,23 +1,36 @@
+// Fetch template
+let template
+await fetch("templates/iconsize.xml")
+	.then(res => res.text())
+	.then(templateString => template = templateString)
+
+// Component
 var IconSizeSelector = {
 	name: "IconSizeSelector",
-	template: templates["iconsize"],
+	template: template,
+	props: {
+		onconfirm: {
+			type: Function,
+			default: function() {}
+		},
+		initial: {
+			type: Number,
+			default: 35
+		},
+		min: Number,
+		max: Number,
+		icon: String
+	},
 	data() {
 		return {
-			size: 35
-		}
-	},
-	watch: {
-		size: function() {
-			
+			size: this.initial
 		}
 	},
 	methods: {
-		updatePreview: function() {
-		
-		},
-		updateMap: function() {
-		
+		onClickConfirm: function() {
+			this.onconfirm(this.size)
 		}
 	}
-	
 }
+
+export default IconSizeSelector
