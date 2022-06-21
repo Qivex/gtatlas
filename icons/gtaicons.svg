@@ -144,6 +144,11 @@
 				<path d="M32,54 l2,-18 q1,-3 6,-3 h48 q5,0 6,3 l2,18" fill="black"/>
 			</symbol>
 
+			<symbol viewBox="0 0 128 128" id="icon-vehicle-bike">
+				<path d="M63,37 h6 a4,4 0,0,1 0,8 h-3 l-5,5 l19,14 a18,18 0,1,1 -2,16 h-23 q-3,-1 -7,-15 l-6,6 a14,14 0,1,1 -6,-6 z" fill="var(--gta-white)" stroke="black" stroke-width="4"/>
+				<path d="M85,70 a11,11 0,1,1 0,8 h10 a4,4 0,0,0 0,-8 z M33,71 a7,7 0,1,0 3,3 l-4,4 a2,2 0,0,1 -3,-3 z" fill="black" stroke="none"/>
+			</symbol>
+
 			<symbol viewBox="0 0 128 128" id="icon-mission" class="mission">
 				<path d="M72,17 l6,36 h35 l-31,22 l5,37 l-29,-21 l-38,21 l17,-37 l-21,-22 h35 z"/>
 			</symbol>
