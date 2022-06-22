@@ -1,6 +1,6 @@
 <div class="iconsize">
-	<div style="min-height:60px;min-width:60px">
-		<svg viewbox="0 0 128 128" :width="size" :height="size">
+	<div class="demoicons">
+		<svg v-for="icon in icons" viewbox="0 0 128 128" :width="size" :height="size">
 			<use :href="`#icon-${icon}`"/>
 		</svg>
 	</div>

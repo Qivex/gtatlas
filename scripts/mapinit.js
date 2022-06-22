@@ -97,8 +97,9 @@ let maplayers = {}
 let files = [
 	"ammunation",
 	"test1",
+	/* Stress test
 	"test2",
-	"test3"
+	"test3" */
 ].forEach(id => {
 	import(`/data/maplayers/${id}.js`).then(module => {
 		console.log("Imported maplayer " + id)

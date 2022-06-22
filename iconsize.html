@@ -1,7 +1,17 @@
+<!DOCTYPE html>
 <html>
 <head>
 	<title>Icon Resize Test</title>
 	<script src="libs/vue.js"></script>
+  <style>
+    .demoicons {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, 50px);
+      grid-template-rows: 50px;
+      align-items: center;
+      justify-items: center;
+    }
+  </style>
 	<script type="module">
 		import IconSizeSelector from "/scripts/iconsize.js"
     import "/scripts/iconinit.js"
@@ -10,7 +20,7 @@
       initial: 35,
       min: 20,
       max: 50,
-      icon: "vehicle-personal",
+      icons: ["default", "apartment", "vehicle-personal", "supplies-crate", "target"],
       onconfirm: function(newsize) {console.log(newsize)}
     }
     

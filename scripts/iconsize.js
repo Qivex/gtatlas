@@ -19,7 +19,7 @@ var IconSizeSelector = {
 		},
 		min: Number,
 		max: Number,
-		icon: String
+		icons: Array
 	},
 	data() {
 		return {
