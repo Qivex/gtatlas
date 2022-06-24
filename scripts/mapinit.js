@@ -4,21 +4,25 @@ let gtamap = Leaflet.map("map", {
 	crs: Leaflet.CRS.Simple,
 	// No default controls
 	attributionControl: false,
-	zoomControl: false,
-	// Limit for movement
+	zoomControl: true,
+	// Available navigation
 	maxBounds: [	// margin: vertical 64, horizontal 128
 		[64,-128],
 		[-320,384]
 	],
-	// Start pos
+	maxZoom: 8,
+	minZoom: 2,
+	zoomSnap: 0.5,
+	zoomDelta: 0.5,
+	// Initial state
 	center: [-200,128],
 	zoom: 3
 })
 
 Leaflet.tileLayer("tiles/{z}_{x}_{y}.jpg", {
 	// Available tiles
-	maxZoom: 5,
-	minZoom: 2,
+	maxNativeZoom: 5,
+	minNativeZoom: 1,
 	bounds: [
 		[0,0],
 		[-256,256]
