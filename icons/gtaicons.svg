@@ -435,6 +435,17 @@
 				<path d="M47,93 h34" stroke="black" stroke-width="5"/>
 			</symbol>
 
+			<symbol viewBox="0 0 128 128" id="icon-ls-carmeet">
+				<circle cx="64" cy="64" r="45" fill="white" stroke="black" stroke-width="4"/>
+				<circle cx="64" cy="64" r="37"/>
+				<path d="M51,32 l2,-10 l6,10 q3,6 0,12 l-11,30 l7,-1 c4,0 6,-2 4,-8 l6,-10 c9,18 5,24 -7,28 q-14,2 -22,12 c-6,7 -9,2 -6,-4 z M80,30" fill="white" stroke="black" stroke-width="3" stroke-linejoin="round"/>
+			</symbol>
+
+			<symbol viewBox="0 0 128 128" id="icon-info" class="freetime">
+				<path d="M53,57 h-3 c-8,0 -8,-10 0,-10 h23 q5,2 4,8 l-6,38 q0,5 6,2 c5,-3 11,0 6,6 c-12,12 -38,8 -36,-9 z"/>
+				<circle cx="67" cy="33" r="12.5"/>
+			</symbol>
+
 			<symbol viewBox="0 0 128 128" id="icon-exotic-export">
 				<path d="M56,51 a17,17 0,1,1 16,0 v44 a24,24 0,0,0 17,-18 q-9,-2 -4,-8 l15,-13 l8,19 q1,7 -7,5 a38,38 0,0,1 -74,0 q-8,2 -7,-5 l8,-19 l15,13 q5,6 -4,8 a24,24 0,0,0 17,18 z" fill="var(--gta-yellow)" stroke="black" stroke-width="4" stroke-linejoin="round"/>
 				<circle cx="64" cy="36" r="6"/>
