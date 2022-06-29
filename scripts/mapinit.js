@@ -10,7 +10,7 @@ let gtamap = Leaflet.map("map", {
 		[64,-128],
 		[-320,384]
 	],
-	maxZoom: 8,
+	maxZoom: 7,
 	minZoom: 2,
 	zoomSnap: 0.5,
 	zoomDelta: 0.5,
