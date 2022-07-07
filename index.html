@@ -1,60 +1,13 @@
 <!DOCTYPE html>
-<html>
-<head>
-
-  <title>GTA Map</title>
-
-  <!-- Fix Viewport -->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
-
-  <!-- Leaflet -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"/>
-  <script src="libs/leaflet.js"></script>
-
-  <!-- Leaflet Utils -->
-  <script src="libs/leaflet-geometryutil.js"></script>
-  <script src="libs/leaflet-arrowheads.js"></script>
-  <script>const Leaflet = L.noConflict()</script>
-
-  <!-- Vue -->
-  <script src="libs/vue.js"></script>
-
-  <!-- Common Style -->
-  <link rel="stylesheet" href="style/common.css"/>
-  <link rel="stylesheet" href="style/property.css"/>
-
-  <!-- Responsive Style -->
-  <!-- Note: Conditional @import is slower than media attribute -->
-  <link rel="stylesheet" href="style/desktop.css" media="screen and (pointer: fine)"/>
-  <link rel="stylesheet" href="style/mobile-portrait.css" media="screen and (pointer: coarse) and (orientation: portrait)"/>
-  <!--
-  <link rel="stylesheet" href="style/mobile-landscape.css" media="screen and (pointer: coarse) and (orientation: landscape)"/>
-  -->
-
-  <!-- Main -->
-  <script src="scripts/main.js" type="module"></script>
-
-</head>
-<body>
-
-  <div id="map"></div>
-
-  <div id="selection" v-scope>
-    <div id="selection-hider" @click="toggleHidden"></div>
-    <div id="selection-content">
-      <property-tree :structure="model" :onchange="setMapLayer"></property-tree>
-    </div>
-  </div>
-
-  <!--<div id="zoom"></div>-->
-  <!--<div id="settings"></div>-->
-
-  <div id="popup">
-    <popup :type="type" :data="data" @click.right="updatePopup('GenericPopup', {title:'Popup',text:'Changed'})"></popup>
-    <!-- updated on "popupopen", important methods getElement() & update() -->
-  </div>
-
-  <div id="mapicons"></div>
-
-</body>
+<html lang="en">
+	<head>
+		<!-- HTML boilerplate -->
+		<meta charset="utf8"/>
+		<title>GTA Map</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+		<link rel="icon" href="/favicon.ico"/>
+		<!-- Vue bundle --><script type="module" src="/src/main.js"></script>
+	</head>
+	<body id="vue-app">
+	</body>
 </html>

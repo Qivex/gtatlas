@@ -1,4 +1,0 @@
-<div class="propertytree">
-	<!-- Todo: Don't assume Group by default, check if structure.children -->
-	<property-group v-bind="structure"></property-group>
-</div>

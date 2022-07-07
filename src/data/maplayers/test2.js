@@ -1,8 +1,8 @@
 // Stress Test
 let grid = []
-for (let x=0; x<32; x++) {
-	for (let y=0; y<32; y++) {
-		grid.push([256*x, 256*y])
+for (let x=0; x<16; x++) {
+	for (let y=0; y<16; y++) {
+		grid.push([512*x, 512*y])
 	}
 }
 

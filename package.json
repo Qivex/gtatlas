@@ -1,0 +1,17 @@
+{
+	"name": "gtamap",
+	"version": "0.0.0",
+	"scripts": {
+		"dev": "vite",
+		"build": "vite build"
+	},
+	"dependencies": {
+		"vue": "^3.2.37",
+		"leaflet": "1.8.0",
+		"leaflet-arrowheads": "1.4.0"
+	},
+	"devDependencies": {
+		"@vitejs/plugin-vue": "^2.3.3",
+		"vite": "^2.9.12"
+	}
+}
