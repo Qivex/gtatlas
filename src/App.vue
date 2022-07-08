@@ -3,14 +3,15 @@
 	<Selection>
 		<PropertyTree :structure="structure" :onchange="setLayerVisibility"/>
 	</Selection>
-	<!--
 	<Settings>
+		<!-- TODO: SettingsItem for spacing, horizontal line etc -->
+		<IconSizeSelector :min="20" :initial="35" :max="50" :icons="['default','office','supplies-crate','target']"/>
+		<!--
 		<SettingLanguage/>
 		<SettingTileSet/>
-		<SettingIconSize/>
 		<SettingBusinessColor/>
+		-->
 	</Settings>
-	-->
 	<div id="mapicons"></div>
 </template>
 
@@ -19,6 +20,8 @@
 import PropertyTree from "./components/PropertyTree.vue"
 import GTAMap from "./components/GTAMap.vue"
 import Selection from "./components/Selection.vue"
+import Settings from "./components/Settings.vue"
+import IconSizeSelector from "./components/IconSizeSelector.vue"
 
 import structure from "./data/treestructure.js"
 
@@ -27,7 +30,9 @@ export default {
 	components: {
 		GTAMap,
 		Selection,
-		PropertyTree
+		PropertyTree,
+		Settings,
+		IconSizeSelector
 	},
 	data() {
 		return {

@@ -1,0 +1,48 @@
+<template>
+	<div class="iconsize">
+		<div class="sampleicons">
+			<svg v-for="icon in icons" viewbox="0 0 128 128" :width="size" :height="size">
+				<use :href="`#icon-${icon}`"/>
+			</svg>
+		</div>
+		<input type="range" v-model="size" :min="min" :max="max"/>
+		<button @click.left="onClickConfirm">Confirm</button>
+	</div>
+</template>
+
+
+<script>
+export default {
+	name: "IconSizeSelector",
+	props: {
+		onconfirm: {
+			type: Function,
+			default: function() {}
+		},
+		initial: Number,
+		min: Number,
+		max: Number,
+		icons: Array
+	},
+	data() {
+		return {
+			size: this.initial
+		}
+	},
+	methods: {
+		onClickConfirm: function() {
+			this.onconfirm(this.size)
+		}
+	}
+}
+</script>
+
+
+<style>
+.sampleicons {
+	display: grid;
+	grid-template: 50px / repeat(auto-fit, 50px);
+	align-items: center;
+	justify-items: center;
+}
+</style>
