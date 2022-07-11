@@ -1,38 +1,56 @@
 <template>
-	<aside class="selection">
-		<div class="selection-toggle" @click.left="toggleHidden"></div>
-		<div class="selection-content">
-			<slot/>
+	<aside class="layerselect">
+		<div class="layerselect-toggle" @click.left="toggleHidden"></div>
+		<div class="layerselect-content">
+			<PropertyTree :structure="structure" :onchange="setLayerVisibility"/>
 		</div>
 	</aside>
 </template>
 
 
 <script>
+import PropertyTree from "./PropertyTree.vue"
+
+import structure from "../data/treestructure.js"
+
 export default {
 	name: "Selection",
+	components: {
+		PropertyTree
+	},
+	props: {
+		map: Object	// Get ref to map instance from parent (App)
+	},
+	data() {
+		return {
+			structure
+		}
+	},
 	methods: {
-		toggleHidden: event => event.target.parentNode.classList.toggle("hidden")
+		toggleHidden: event => event.target.parentNode.classList.toggle("hidden"),
+		setLayerVisibility: function(id, visible) {
+			this.map.setLayerVisibility(id, visible)
+		}
 	}
 }
 </script>
 
 
 <style>
-.selection {
+.layerselect {
 	position: absolute;
 	transition: transform 0.5s;
 }
 
 @media (prefers-reduced-animation) {
-	.selection {
+	.layerselect {
 		position: absolute;
 		left: 0px;
 		transition: transform 0s;
 	}
 }
 
-.selection-content {
+.layerselect-content {
 	width: 100%;
 	height: 100%;
 	overflow-y: scroll;
@@ -40,12 +58,12 @@ export default {
 	background: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.4));
 }
 
-.selection-toggle {
+.layerselect-toggle {
 	position: absolute;
 	background-color: #000;
 }
 
-.selection-toggle::after {
+.layerselect-toggle::after {
 	position: absolute;
 	width: 2rem;
 	height: 2rem;
@@ -55,17 +73,17 @@ export default {
 
 /* Desktop */
 @media (pointer: fine) {
-	.selection {
+	.layerselect {
 		width: 20rem;
 		height: 100%;
 		top: 0px;
 	}
 
-	.selection.hidden {
+	.layerselect.hidden {
 		transform: translateX(-100%);
 	}
 
-	.selection-toggle {
+	.layerselect-toggle {
 		width: 2rem;
 		height: 4rem;
 		top: calc(50% - 2rem);
@@ -74,11 +92,11 @@ export default {
 		border-radius: 0 1rem 1rem 0;
 	}
 
-	.selection-toggle::after {
+	.layerselect-toggle::after {
 		top: 1rem;
 	}
 
-	.hidden >.selection-toggle::after {
+	.hidden > .layerselect-toggle::after {
 		transform: rotate(180deg);
 	}
 }
@@ -86,17 +104,17 @@ export default {
 /* Mobile */
 @media (pointer: coarse) {
 	@media (orientation: portrait) {
-		.selection {
+		.layerselect {
 			width: 100%;
 			height: 50%;
 			bottom: 0px;
 		}
 
-		.selection.hidden {
+		.layerselect.hidden {
 			transform: translateY(100%);
 		}
 
-		.selection-toggle {
+		.layerselect-toggle {
 			width: 8rem;
 			height: 4rem;
 			top: -4rem;
@@ -104,13 +122,13 @@ export default {
 			border-radius: 1rem 1rem 0 0;
 		}
 
-		.selection-toggle::after {
+		.layerselect-toggle::after {
 			top: 1rem;
 			left: 3rem;
 			transform: rotate(-90deg);
 		}
 
-		.hidden >.selection-toggle::after {
+		.hidden >.layerselect-toggle::after {
 			transform: rotate(90deg);
 		}
 	}

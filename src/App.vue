@@ -1,8 +1,6 @@
 <template>
 	<GTAMap ref="map" id="gtamap"/>
-	<Selection>
-		<PropertyTree :structure="structure" :onchange="setLayerVisibility"/>
-	</Selection>
+	<LayerSelect :map="map"/>
 	<Settings>
 		<!-- TODO: SettingsItem for spacing, horizontal line etc -->
 		<IconSizeSelector :min="20" :initial="35" :max="50" :icons="['default','office','supplies-crate','target']"/>
@@ -19,30 +17,27 @@
 <script>
 import PropertyTree from "./components/PropertyTree.vue"
 import GTAMap from "./components/GTAMap.vue"
-import Selection from "./components/Selection.vue"
+import LayerSelect from "./components/LayerSelect.vue"
 import Settings from "./components/Settings.vue"
 import IconSizeSelector from "./components/IconSizeSelector.vue"
-
-import structure from "./data/treestructure.js"
 
 export default {
 	name: "App",
 	components: {
 		GTAMap,
-		Selection,
+		LayerSelect,
 		PropertyTree,
 		Settings,
 		IconSizeSelector
 	},
 	data() {
 		return {
-			structure
+			map: undefined	// Ref doesn't exist yet
 		}
 	},
-	methods: {
-		setLayerVisibility: function(id, visibility) {
-			this.$refs.map.setLayerVisibility(id, visibility)
-		}
+	mounted() {
+		// Update ref to map (for all components using it)
+		this.map = this.$refs.map
 	}
 }
 

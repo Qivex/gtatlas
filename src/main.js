@@ -11,6 +11,8 @@ fetch("icons/gtaicons.svg")
 		document.getElementById("mapicons").innerHTML = data
 	})
 /* Icons are included like this because:
-- <use> is way more efficient than a component cloning the same SVG into every icon
-- the icons need styling (currentColor)
-- Firefox loads SVG-<view> really inefficient (https://bugzilla.mozilla.org/show_bug.cgi?id=1121693) */
+- the icons need styling (currentColor) -> Cant use <img> or <view>
+- Also Firefox loads SVG-<view> really inefficiently: https://bugzilla.mozilla.org/show_bug.cgi?id=1121693
+- <use> is way more efficient than cloning the same SVG into every icon (inline component)
+- <template src=""> fails with any file extension != html -> Manual fetch needed
+- https://www.npmjs.com/package/vue-svg-inline-loader isn't compatible with Leaflet's (Div)Icons */
