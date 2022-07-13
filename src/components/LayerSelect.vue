@@ -19,7 +19,7 @@ export default {
 		PropertyTree
 	},
 	props: {
-		map: Object	// Get ref to map instance from parent (App)
+		map: Object
 	},
 	data() {
 		return {
@@ -28,7 +28,7 @@ export default {
 	},
 	methods: {
 		toggleHidden: event => event.target.parentNode.classList.toggle("hidden"),
-		setLayerVisibility: function(id, visible) {
+		setLayerVisibility(id, visible) {
 			this.map.setLayerVisibility(id, visible)
 		}
 	}
@@ -55,7 +55,7 @@ export default {
 	height: 100%;
 	overflow-y: scroll;
 	backdrop-filter: blur(5px);
-	background: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.4));
+	background-color: rgba(0,0,0,0.5);
 }
 
 .layerselect-toggle {

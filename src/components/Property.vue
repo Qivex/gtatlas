@@ -53,12 +53,6 @@ export default {
 	height: 38px;
 }
 
-.property p {
-	margin: 0px;
-	color: white;
-	font-family: arial;
-}
-
 /* Hover state */
 @media (hover: hover) {
 	.property:is(:hover,:focus,:active) {

@@ -31,6 +31,7 @@ export default {
 	},
 	methods: {
 		onClickConfirm: function() {
+			// Live resize is very laggy, so only do it once
 			this.onconfirm(this.size)
 		}
 	}
@@ -39,6 +40,10 @@ export default {
 
 
 <style>
+.iconsize {
+	width: 100%;
+}
+
 .sampleicons {
 	display: grid;
 	grid-template: 50px / repeat(auto-fit, 50px);

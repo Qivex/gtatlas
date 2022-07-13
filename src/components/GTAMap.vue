@@ -17,6 +17,7 @@ export default {
 	data() {
 		return {
 			map: undefined,
+			tilelayer: undefined,
 			layers: {}
 		}
 	},
@@ -43,7 +44,7 @@ export default {
 				zoom: 3
 			})
 			// Tile config
-			Leaflet.tileLayer("tiles/{z}_{x}_{y}.jpg", {
+			this.tilelayer = Leaflet.tileLayer("tiles/{z}_{x}_{y}.jpg", {
 				// Available tiles
 				maxNativeZoom: 5,
 				minNativeZoom: 1,
@@ -82,6 +83,14 @@ export default {
 				this.map.addLayer(layer)
 			else
 				this.map.removeLayer(layer)
+		},
+		updateIconSize(newsize) {
+			// TODO
+			// Call all builders again with new icon size
+			// Optional: Include method for that in each builder function?
+		},
+		changeTileset(name) {
+			this.tilelayer.setUrl(`/tiles/${name}/{z}_{x}_{y}.jpg`)
 		}
 	},
 	mounted: function() {

@@ -1,0 +1,82 @@
+<template>
+	<aside class="mapsettings">
+		<div class="mapsettings-toggle" @click.left="toggleHidden"></div>
+		<div class="mapsettings-content">
+			<SettingItem caption="Change icon size">
+				<IconSizeSelector :onconfirm="updateIconSize" :min="20" :initial="35" :max="50" :icons="['default','office','supplies-crate','target']"/>
+			</SettingItem>
+			<!--
+			<SettingItem>
+				<LanguageSelector/>
+			</SettingItem>
+			<SettingItem>
+				<TilesetSelector/>
+			</SettingItem>
+			<SettingItem>
+				<BusinessColorSelector/>
+			</SettingItem>
+			-->
+		</div>
+	</aside>
+</template>
+
+
+<script>
+import SettingItem from "./SettingItem.vue"
+import IconSizeSelector from "./IconSizeSelector.vue"
+
+export default {
+	name: "MapSettings",
+	components: {
+		SettingItem,
+		IconSizeSelector
+	},
+	props: {
+		map: Object
+	},
+	methods: {
+		toggleHidden: event => event.target.parentNode.classList.toggle("hidden"),
+		updateIconSize(newsize) {
+			this.map.updateIconSize(newsize)
+		},
+		changeTileset(name) {
+			this.map.changeTileset(name)
+		}
+	}
+}
+</script>
+
+
+<style>
+.mapsettings {
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	width: 20rem;
+	transform-origin: calc(100% - 30px) 30px;
+	transition: transform 0.5s;
+}
+
+.mapsettings-content {
+	position: absolute;
+	top: 60px;
+	width: 100%;
+	backdrop-filter: blur(5px);
+	background-color: rgba(0,0,0,0.5);
+}
+
+.mapsettings-toggle {
+	position: absolute;
+	top: 5px;
+	right: 5px;
+	width: 50px;
+	height: 50px;
+	border-radius: 25px;
+	background: #000;
+	background-image: url(icons/settings.svg);
+}
+
+.mapsettings.hidden {
+	transform: rotate(-90deg);
+}
+</style>

@@ -1,34 +1,22 @@
 <template>
 	<GTAMap ref="map" id="gtamap"/>
 	<LayerSelect :map="map"/>
-	<Settings>
-		<!-- TODO: SettingsItem for spacing, horizontal line etc -->
-		<IconSizeSelector :min="20" :initial="35" :max="50" :icons="['default','office','supplies-crate','target']"/>
-		<!--
-		<SettingLanguage/>
-		<SettingTileSet/>
-		<SettingBusinessColor/>
-		-->
-	</Settings>
+	<MapSettings :map="map"/>
 	<div id="mapicons"></div>
 </template>
 
 
 <script>
-import PropertyTree from "./components/PropertyTree.vue"
 import GTAMap from "./components/GTAMap.vue"
 import LayerSelect from "./components/LayerSelect.vue"
-import Settings from "./components/Settings.vue"
-import IconSizeSelector from "./components/IconSizeSelector.vue"
+import MapSettings from "./components/MapSettings.vue"
 
 export default {
 	name: "App",
 	components: {
 		GTAMap,
 		LayerSelect,
-		PropertyTree,
-		Settings,
-		IconSizeSelector
+		MapSettings
 	},
 	data() {
 		return {
@@ -53,6 +41,12 @@ body {
 	margin: 0px;
 	padding: 0px;
 	color: #fff;	/* Initial org-color for icons (defaults to black) */
+}
+
+p {
+	margin: 0px;
+	color: #fff;
+	font-family: arial;
 }
 
 /* SVG document with all icons as <symbol> */
