@@ -83,6 +83,17 @@ export default {
 		transform: translateX(-100%);
 	}
 
+	.layerselect-content::-webkit-scrollbar {
+		width: 1rem;
+	}
+
+	.layerselect-content::-webkit-scrollbar-thumb {
+		background: #788888;
+		background-clip: padding-box;
+		border: 0.3em solid transparent;
+		border-radius: 1rem;
+	}
+
 	.layerselect-toggle {
 		width: 2rem;
 		height: 4rem;
