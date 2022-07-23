@@ -84,13 +84,19 @@ export default {
 			else
 				this.map.removeLayer(layer)
 		},
-		updateIconSize(newsize) {
+		updateIconSize(size) {
 			// TODO
 			// Call all builders again with new icon size
 			// Optional: Include method for that in each builder function?
 		},
-		changeTileset(name) {
+		updateTileset(name) {
 			this.tilelayer.setUrl(`/tiles/${name}/{z}_{x}_{y}.jpg`)
+		},
+		updateBusinessColor(color) {
+			// Check if input is valid color
+			if (!CSS.supports("color", color)) return
+			// Update CSS variable (https://css-tricks.com/updating-a-css-variable-with-javascript)
+			document.documentElement.style.setProperty("--business-color", color)
 		}
 	},
 	mounted: function() {

@@ -46,7 +46,7 @@ export default {
 
 .sampleicons {
 	display: grid;
-	grid-template: 50px / repeat(auto-fit, 50px);
+	grid-template: repeat(auto-fit, 50px) / repeat(auto-fit, 50px);
 	align-items: center;
 	justify-items: center;
 }

@@ -5,10 +5,10 @@
 			<SettingItem caption="Change icon size">
 				<IconSizeSelector :onconfirm="updateIconSize" :min="20" :initial="35" :max="50" :icons="['default','office','supplies-crate','target']"/>
 			</SettingItem>
-			<!--
-			<SettingItem>
-				<LanguageSelector/>
+			<SettingItem caption="Choose language">
+				<LanguageSelector :options="['en','de']"/>
 			</SettingItem>
+			<!--
 			<SettingItem>
 				<TilesetSelector/>
 			</SettingItem>
@@ -24,23 +24,25 @@
 <script>
 import SettingItem from "./SettingItem.vue"
 import IconSizeSelector from "./IconSizeSelector.vue"
+import LanguageSelector from "./LanguageSelector.vue"
 
 export default {
 	name: "MapSettings",
 	components: {
 		SettingItem,
-		IconSizeSelector
+		IconSizeSelector,
+		LanguageSelector
 	},
 	props: {
 		map: Object
 	},
 	methods: {
 		toggleHidden: event => event.target.parentNode.classList.toggle("hidden"),
-		updateIconSize(newsize) {
-			this.map.updateIconSize(newsize)
+		updateIconSize(size) {
+			this.map.updateIconSize(size)
 		},
-		changeTileset(name) {
-			this.map.changeTileset(name)
+		updateTileset(name) {
+			this.map.updateTileset(name)
 		}
 	}
 }

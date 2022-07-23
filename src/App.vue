@@ -11,6 +11,8 @@ import GTAMap from "./components/GTAMap.vue"
 import LayerSelect from "./components/LayerSelect.vue"
 import MapSettings from "./components/MapSettings.vue"
 
+import localizations from "./data/localizations.js"
+
 export default {
 	name: "App",
 	components: {
@@ -23,9 +25,27 @@ export default {
 			map: undefined	// Ref doesn't exist yet
 		}
 	},
+	provide() {
+		return {
+			updateLanguage: this.updateLanguage
+		}
+	},
+	methods: {
+		updateLanguage: function(languageID) {
+			document.querySelectorAll("p[data-i18n]").forEach(p => {
+				let stringID = p.dataset.i18n	// https://stackoverflow.com/questions/52514335
+				let localizedString = localizations?.[languageID]?.[stringID]
+				if (localizedString) {
+					p.textContent = localizedString	// https://stackoverflow.com/questions/24427621
+				}
+			})
+		}
+	},
 	mounted() {
 		// Update ref to map (for all components using it)
 		this.map = this.$refs.map
+		// Initialize localization (Todo: Use preference, cookie, HTTP-Header etc)
+		this.updateLanguage("en")
 	}
 }
 
