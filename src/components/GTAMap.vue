@@ -44,7 +44,7 @@ export default {
 				zoom: 3
 			})
 			// Tile config
-			this.tilelayer = Leaflet.tileLayer("tiles/{z}_{x}_{y}.jpg", {
+			this.tilelayer = Leaflet.tileLayer("tiles/satellite/{z}_{x}_{y}.jpg", {
 				// Available tiles
 				maxNativeZoom: 5,
 				minNativeZoom: 1,

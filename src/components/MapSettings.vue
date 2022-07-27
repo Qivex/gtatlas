@@ -2,20 +2,18 @@
 	<aside class="mapsettings">
 		<div class="mapsettings-toggle" @click.left="toggleHidden"></div>
 		<div class="mapsettings-content">
-			<SettingItem caption="Change icon size">
+			<SettingItem caption="Icon size">
 				<IconSizeSelector :onconfirm="updateIconSize" :min="20" :initial="35" :max="50" :icons="['default','office','supplies-crate','target']"/>
 			</SettingItem>
-			<SettingItem caption="Choose language">
+			<SettingItem caption="Language">
 				<LanguageSelector :options="['en','de']"/>
 			</SettingItem>
-			<!--
-			<SettingItem>
-				<TilesetSelector/>
+			<SettingItem caption="Map style">
+				<TilesetSelector :onselect="updateTileset" :options="['atlas','roadmap','satellite']"/>
 			</SettingItem>
-			<SettingItem>
-				<BusinessColorSelector/>
+			<SettingItem caption="Business color">
+				<BusinessColorSelector :onselect="updateBusinessColor" :colors="['#F79F7B','#E286BB','#EFEE97','#71A9AF','#A08CC1','#8DCEA7','#B5D6EA','#B29084','#008472','#D85575']"/>
 			</SettingItem>
-			-->
 		</div>
 	</aside>
 </template>
@@ -25,13 +23,17 @@
 import SettingItem from "./SettingItem.vue"
 import IconSizeSelector from "./IconSizeSelector.vue"
 import LanguageSelector from "./LanguageSelector.vue"
+import TilesetSelector from "./TilesetSelector.vue"
+import BusinessColorSelector from "./BusinessColorSelector.vue"
 
 export default {
 	name: "MapSettings",
 	components: {
 		SettingItem,
 		IconSizeSelector,
-		LanguageSelector
+		LanguageSelector,
+		TilesetSelector,
+		BusinessColorSelector
 	},
 	props: {
 		map: Object
@@ -43,6 +45,9 @@ export default {
 		},
 		updateTileset(name) {
 			this.map.updateTileset(name)
+		},
+		updateBusinessColor(color) {
+			this.map.updateBusinessColor(color)
 		}
 	}
 }

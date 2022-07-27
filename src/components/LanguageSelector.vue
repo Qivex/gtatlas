@@ -24,15 +24,14 @@ export default {
 <style>
 .languages {
 	display: grid;
-	grid-template-columns: repeat(auto-fit, 2rem);
+	grid-template-columns: repeat(auto-fit, 2rem);	/* grid-auto-flow: column */
 	column-gap: 1rem;
 	justify-items: center;
 }
 
-.flagicon {
-	cursor: pointer;
+.languages img {
 	width: 2rem;
-	height: 2rem;
 	border-radius: 1rem;
+	cursor: pointer;
 }
 </style>
