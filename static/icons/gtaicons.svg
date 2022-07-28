@@ -11,7 +11,7 @@
 			--gta-white: #F0F0F0;	/* properties */
 			--gta-grey1: #CDCDCD;	/* weaponrange, mask */
 			--gta-grey2: #B9B9B9;	/* rail */
-			--gta-grey3: #989898;	/* streets */
+			--gta-grey3: #989898;	/* streets, empty cash */
 			--gta-grey4: #535353;	/* light buildings */
 			--gta-grey5: #373737;	/* dark buildings */
 			--gta-grey6: #181818;	/* background */
@@ -127,7 +127,7 @@
 		<g id="icons">
 
 			<symbol viewBox="0 0 128 128" id="icon-default">
-				<circle cx="64" cy="64" r="34" fill="#F0C850" stroke="black" stroke-width="5"/>
+				<circle cx="64" cy="64" r="32" fill="#F0C850" stroke="black" stroke-width="5"/>
 			</symbol>
 
 			<symbol viewBox="0 0 128 128" id="icon-player-arrow">
@@ -436,10 +436,10 @@
 			</symbol>
 
 			<symbol viewBox="0 0 128 128" id="icon-arena-workshop">
-				<!--<circle cx="64" cy="64" r="40" fill="var(--gta-white)" stroke="black" stroke-width="4"/>-->
+				<circle cx="64" cy="64" r="40" fill="var(--gta-white)" stroke="black" stroke-width="4"/>
 				<path d="M73,13 v11 a40,40 0,0,1 13,5 l8,-8 l13,13 l-8,8 a40,40 0,0,1 5,13 h11 v18 h-11 a40,40 0,0,1 -5,13 l8,8 l-13,13 l-8,-8 a40,40 0,0,1 -13,5 v11 h-18 v-11 a40,40 0,0,1 -13,-5 l-8,8 l-13,-13 l8,-8 a40,40 0,0,1 -5,-13 h-11 v-18 h11 a40,40 0,0,1 5,-13 l-8,-8 l13,-13 l8,8 a40,40 0,0,1 13,-5 v-11 z" fill="var(--gta-white)" stroke="black" stroke-width="4" stroke-linejoin="round"/>
 				<circle cx="64" cy="64" r="31"/>
-				<!-- not 45° =/ <path d="M86,72 a27,27 0,0,1 -12,12 l-6,-6 l-10,-2 l-10,-18 l10,-10 l18,10 l2,10 z" fill="var(--gta-white)"/>-->
+				<path d="M86,72 a27,27 0,0,1 -12,12 l-6,-6 l-10,-2 l-10,-18 l10,-10 l18,10 l2,10 z" fill="var(--gta-white)"/>
 			</symbol>
 
 			<symbol viewBox="0 0 128 128" id="icon-ls-carmeet">
@@ -567,11 +567,18 @@
 			</symbol>
 
 			<!-- rendered only in Firefox (foreignObject in use-tag) -->
-			<symbol viewBox="0 0 128 128"  id="icon-loading">
+			<symbol viewBox="0 0 128 128" id="icon-loading">
 				<foreignObject width="128" height="128">
 					<!-- stackoverflow.com/questions/2465405 -->
 					<div xmlns="http://www.w3.org/1999/xhtml" class="loading"></div>
 				</foreignObject>
+			</symbol>
+
+			<symbol viewBox="0 0 128 128" id="icon-enemy-cop">
+				<circle cx="64" cy="64" r="17">
+					<!-- 33 frames red <-> 29 frames blue @ 60fps -->
+					<animate attributeName="fill" values="#5D0D0D;#145665" keyTimes="0;0.5322" calcMode="discrete" dur="1.033s" repeatCount="indefinite"/>
+				</circle>
 			</symbol>
 
 		</g>
