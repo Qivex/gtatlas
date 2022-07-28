@@ -11,7 +11,7 @@ import GTAMap from "./components/GTAMap.vue"
 import LayerSelect from "./components/LayerSelect.vue"
 import MapSettings from "./components/MapSettings.vue"
 
-import localizations from "./data/localizations.js"
+import * as localizations from "./data/i18n.js"
 
 export default {
 	name: "App",
