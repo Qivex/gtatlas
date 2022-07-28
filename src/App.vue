@@ -22,21 +22,28 @@ export default {
 	},
 	data() {
 		return {
-			map: undefined	// Ref doesn't exist yet
+			map: undefined,	// Ref doesn't exist yet
+			currentLanguage: "en"
 		}
 	},
 	provide() {
 		return {
+			translate: this.translate,
 			updateLanguage: this.updateLanguage
 		}
 	},
 	methods: {
+		translate: function(stringID) {
+			let languageID = this.currentLanguage
+			return localizations?.[languageID]?.[stringID]
+		},
 		updateLanguage: function(languageID) {
-			document.querySelectorAll("p[data-i18n]").forEach(p => {
-				let stringID = p.dataset.i18n	// https://stackoverflow.com/questions/52514335
-				let localizedString = localizations?.[languageID]?.[stringID]
+			this.currentLanguage = languageID
+			document.querySelectorAll("[data-i18n]").forEach(node => {
+				let stringID = node.dataset.i18n	// https://stackoverflow.com/questions/52514335
+				let localizedString = this.translate(stringID)
 				if (localizedString) {
-					p.textContent = localizedString	// https://stackoverflow.com/questions/24427621
+					node.textContent = localizedString	// https://stackoverflow.com/questions/24427621
 				}
 			})
 		}

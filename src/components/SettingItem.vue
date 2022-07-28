@@ -1,6 +1,6 @@
 <template>
 	<div class="settingitem">
-		<p>{{caption}}</p>
+		<p :data-i18n="captionID">{{translate(captionID)}}</p>
 		<slot/>
 	</div>
 </template>
@@ -10,8 +10,9 @@
 export default {
 	name: "SettingItem",
 	props: {
-		caption: String
-	}
+		captionID: String
+	},
+	inject: ["translate"]
 }
 </script>
 

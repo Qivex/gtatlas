@@ -2,16 +2,16 @@
 	<aside class="mapsettings">
 		<div class="mapsettings-toggle" @click.left="toggleHidden"></div>
 		<div class="mapsettings-content">
-			<SettingItem caption="Icon size">
+			<SettingItem captionID="icon_size">
 				<IconSizeSelector :onconfirm="updateIconSize" :min="20" :initial="35" :max="50" :icons="['default','office','supplies-crate','target']"/>
 			</SettingItem>
-			<SettingItem caption="Language">
+			<SettingItem captionID="language">
 				<LanguageSelector :options="['en','de']"/>
 			</SettingItem>
-			<SettingItem caption="Map style">
+			<SettingItem captionID="map_style">
 				<TilesetSelector :onselect="updateTileset" :options="['atlas','roadmap','satellite']"/>
 			</SettingItem>
-			<SettingItem caption="Business color">
+			<SettingItem captionID="business_col">
 				<BusinessColorSelector :onselect="updateBusinessColor" :colors="['#F79F7B','#E286BB','#EFEE97','#71A9AF','#A08CC1','#8DCEA7','#B5D6EA','#B29084','#008472','#D85575']"/>
 			</SettingItem>
 		</div>
