@@ -1,0 +1,27 @@
+:root {
+	--gta-red: #E03232;
+	--gta-yellow: #F0C850;
+	--gta-green: #72CC72;
+	--gta-blue: #5DB6E5;
+	--gta-purple: #9C6EAF;
+	--gta-pink: #FC73C9;
+	--gta-white: #F0F0F0;	/* property icons */
+	--gta-grey1: #CDCDCD;	/* ammunation, barber, tattoo etc */
+	--gta-grey2: #B9B9B9;	/* map: rail */
+	--gta-grey3: #989898;	/* map: streets */
+	--gta-grey4: #535353;	/* map: light buildings */
+	--gta-grey5: #373737;	/* map: dark buildings */
+	--gta-grey6: #181818;	/* map: background */
+	--gta-cop-red: #5D0D0D;
+	--gta-cop-blue: #145665;
+	--gta-org-orange: #F79F7B;
+	--gta-org-pink: #E286BB;
+	--gta-org-yellow: #EFEE97;
+	--gta-org-grayblue: #71A9AF;
+	--gta-org-purple: #A08CC1;
+	--gta-org-mint: #8DCEA7;
+	--gta-org-lightblue: #B5D6EA;
+	--gta-org-brown: #B29084;
+	--gta-org-darkmint: #008472;
+	--gta-org-red: #D85575;
+}
