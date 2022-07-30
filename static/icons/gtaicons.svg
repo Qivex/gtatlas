@@ -18,6 +18,23 @@
 			<path d="M55,39 q7,10 19,5 q11,-5 19,4 l-6,32 q-8,-9 -19,-4 q-12,5 -19,-4 l-4,18 c-3,4 -10,1 -9,-3 l10,-50 c3,-3 8,-1 9,2 z" fill="currentcolor" stroke="#000" stroke-width="4" stroke-linejoin="round"/>
 		</symbol>
 
+		<symbol viewBox="0 0 128 128" id="icon-player-bounty">
+			<g stroke="#000">
+				<path d="M16,16 l96,96 M16,112 l96,-96" stroke-width="28"/>
+				<path d="M29,74 v-26 c5,-34 65,-34 70,0 v26 q-4,18 -16,21 q-3,9 -12,11 h-14 q-9,-2 -12,-11 q-12,-3 -16,-21 z M64,80 v5" fill="#E03232" stroke-width="8" stroke-linecap="round"/>
+			</g>
+			<path d="M75,59 l12,8 v6 l-3,6 h-8 q-8,-8 -8,-12 z M53,59 l-12,8 v6 l3,6 h8 q8,-8 8,-12 z M49,89 v5 h-10 z M79,89 v5 h10 z"/>
+		</symbol>
+
+		<symbol viewBox="0 0 128 128" id="icon-marker-gps">
+			<path d="M51,51 v-19 l13,-13 l13,13 v19 h19 l13,13 l-13,13 h-19 v19 l-13,13 l-13,-13 v-19 h-19 l-13,-13 l13,-13 z M64,48 a16,16 0,0,0 0,32 a16,16 0,0,0 0,-32" fill="#A44CF2" stroke="#000" stroke-width="4" stroke-linejoin="round" fill-rule="evenodd"/>
+		</symbol>
+
+		<symbol viewBox="0 0 128 128" id="icon-marker-poi">
+			<path d="M64,110 l24,-41 a31,31 0,1,0 -48,0 z" stroke="#F0F0F0" stroke-width="4" stroke-linejoin="round"/>
+			<circle cx="64" cy="50" r="14" fill="#F0F0F0"/>
+		</symbol>
+
 		<symbol viewBox="0 0 128 128" id="icon-vehicle-personal">
 			<path d="M22,93 c0,11 19,11 19,0 v-11 h46 v11 c0,11 19,11 19,0 v-11 q5,-1 6,-6 v-13 q-2,-6 -8,-6 l-3,-25 q-2,-6 -8,-6 h-58 q-6,0 -8,6 l-3,25 q-6,0 -8,6 v13 q1,5 6,6 z" fill="#F0F0F0" stroke="#000" stroke-width="4"/>
 			<path d="M32,54 l2,-18 q1,-3 6,-3 h48 q5,0 6,3 l2,18"/>
@@ -389,6 +406,13 @@
 			</g>
 		</symbol>
 
+		<symbol viewBox="0 0 128 128" id="icon-supplies-research">
+			<g stroke="#000">
+				<path d="M79,16 h-52 v95 h74 v-73 z v22 h22" fill="#72CC72" stroke-width="4.5" stroke-linejoin="round"/>
+				<path d="M36,53 h54 M36,63 h43 M36,73 h54 M36,83 h43" stroke-width="6"/>
+			</g>
+		</symbol>
+
 		<symbol viewBox="0 0 128 128" id="icon-supplies-hangar">
 			<g stroke="#000">
 				<rect x="23" y="26" width="82" height="76" rx="14" fill="#72CC72" stroke-width="4.5"/>
@@ -399,6 +423,11 @@
 
 		<symbol viewBox="0 0 128 128" id="icon-supplies-mc">
 			<path d="M64,37 v54 M25,64 h78 c5,28 -11,31 -39,27 c-28,4 -44,1 -39,-27 c-5,-28 11,-31 39,-27 c28,-4 44,-1 39,27" fill="#72CC72" stroke="#000" stroke-width="4"/>
+		</symbol>
+
+		<symbol viewBox="0 0 128 128" id="icon-supplies-bar">
+			<path d="M54,35 v11 l-15,13 v48 h50 v-48 l-15,-13 v-11 z v-13 h20 v13" stroke="#5DB6E5" stroke-width="3" stroke-linejoin="round"/>
+			<path d="M46,97 v-18 l36,-18 v18 z" fill="#5DB6E5"/>
 		</symbol>
 
 		<symbol viewBox="0 0 128 128" id="icon-target">
