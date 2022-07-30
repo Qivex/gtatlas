@@ -39,40 +39,29 @@
 		margin: 0px;
 		padding: 0px;
 		min-height: 100vh;
+		background-color: #999999;
+		display: flex;
+		justify-content: center;
+	  }
+	  
+	  .main {
+		display: grid;
+		grid-template-columns: repeat(1, 90px);
+	  }
+
+	  .comp {
+		width: 90px;
+		height: 90px;
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		background-color: #999999;
 	  }
-	  
-	  .comp {
-		display: grid;
-		grid-template-columns: repeat(2, 90px);
-		grid-auto-rows: 90px;
-		grid-template-areas: "icon img";
-	  }
-	  
-	  .switched .comp {
-		grid-template-areas: "img icon";
-	  }
-	  
-	  .icon {
-		grid-area: icon;
-		color: var(--org-color);
-	  }
-	  
-	  .img {
-		grid-area: img;
-	  }
-	  
-	  .comp * {
-		margin: auto;
-	  }
-	  
+
 	  #mapicons {
 		display: none;
 	  }
 	  
+	  /* Hack to avoid blue marked area when clicking */
 	  ::selection {
 		display: none;
 	  }
@@ -81,12 +70,12 @@
   <head>
   <body id="body" @click="switched=!switched" v-scope>
 
-	<div :class="{switched: switched}">
+	<div class="main">
 	  <div class="comp" v-for="name in icons">
-		<svg class="icon" width="90" height="90">
-		  <use :href="toId(name)" class="org-icon"/>
+		<svg v-if="!switched" width="90" height="90" color="var(--org-color)">
+		  <use :href="toId(name)"/>
 		</svg>
-		<img class="img" :src="toPath(name)"/>
+		<img v-else :src="toPath(name)"/>
 	  </div>
 	</div>
 

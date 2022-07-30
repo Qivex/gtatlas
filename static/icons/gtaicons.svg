@@ -429,6 +429,37 @@
 			<path d="M74,107 q18,-25 -2,-43 q0,12 -10,24 q-10,-4 -15,-9 q-2,15 7,28 z"/>
 		</symbol>
 
+		<symbol viewBox="0 0 128 128" id="icon-laptop">
+			<path d="M30,26 v45 l-15,21 v9 h98 v-9 l-15,-21 v-45 z" stroke="#F0F0F0" stroke-width="4" stroke-linejoin="round"/>
+			<path d="M38,34 v33 h52 v-33 z M50,89 l3,-7 h22 l3,7 z" fill="#F0F0F0">
+		</symbol>
+
+		<symbol viewBox="0 0 128 128" id="icon-mastercontrolterminal">
+			<path d="M27,19 v53 l22,1 v9 h-21 l-9,26 h90 l-9,-26 h-21 v-9 l22,-1 v-53 z" stroke="#F0F0F0" stroke-width="4" stroke-linejoin="round"/>
+			<path d="M36,28 v35 h56 v-35 z M32,102 l4,-13 h56 l4,13 z" fill="#F0F0F0"/>
+			<g stroke="#000">
+				<path d="M32,95.5 h64" stroke-width="5"/>
+				<path d="M46,88 l-1,15 M63,88 v15" stroke-width="6"/>
+			</g>
+		</symbol>
+
+		<symbol viewBox="0 0 128 128" id="icon-mc-bar">
+			<path d="M54,35 v11 l-15,13 v48 h50 v-48 l-15,-13 v-11 z v-13 h20 v13" stroke="#F0F0F0" stroke-width="3" stroke-linejoin="round"/>
+			<path d="M46,97 v-18 l36,-18 v18 z" fill="#F0F0F0"/>
+		</symbol>
+
+		<symbol viewBox="0 0 128 128" id="icon-mc-contracts">
+			<g fill="#F0F0F0" stroke="#000">
+				<g stroke-width="4">
+					<rect x="27" y="25" width="74" height="60" rx="2"/>
+					<rect x="27" y="85" width="13" height="17" rx="2"/>
+					<rect x="88" y="85" width="13" height="17" rx="2"/>
+				</g>
+				<path d="M63,39 h27 m0,15 h-27 m0,15 h27" stroke-width="5"/>
+			</g>
+			<rect x="35" y="36" width="19" height="25" rx="2"/>
+		</symbol>
+
 		<symbol viewBox="0 0 128 128" id="icon-jobboard">
 			<g fill="#F0F0F0" stroke="#000">
 				<g stroke-width="4">
