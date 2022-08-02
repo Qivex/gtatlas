@@ -373,7 +373,8 @@
 		<symbol viewBox="0 0 128 128" id="icon-arena-workshop">
 			<path d="M73,13 v11 a40,40 0,0,1 13,5 l8,-8 l13,13 l-8,8 a40,40 0,0,1 5,13 h11 v18 h-11 a40,40 0,0,1 -5,13 l8,8 l-13,13 l-8,-8 a40,40 0,0,1 -13,5 v11 h-18 v-11 a40,40 0,0,1 -13,-5 l-8,8 l-13,-13 l8,-8 a40,40 0,0,1 -5,-13 h-11 v-18 h11 a40,40 0,0,1 5,-13 l-8,-8 l13,-13 l8,8 a40,40 0,0,1 13,-5 v-11 z" fill="#F0F0F0" stroke="#000" stroke-width="4" stroke-linejoin="round"/>
 			<circle cx="64" cy="64" r="31"/>
-			<path d="M86,72 a27,27 0,0,1 -12,12 l-6,-6 l-10,-2 l-10,-18 l10,-10 l18,10 l2,10 z" fill="#F0F0F0"/>
+			<!--<path d="M86,72 a27,27 0,0,1 -12,12 l-6,-6 l-10,-2 l-10,-18 l10,-10 l18,10 l2,10 z" fill="#F0F0F0"/>-->
+			<path d="M48,58 a12,12 0,0,0 12,17 q5,0 10,5 l5,4 q6,-3 10,-12 l-8,-7 l-2,-10 a14,14 0,0,0 -16,-7 l9,9 q1,2 0,4 l-6,6 q-2,1 -4,0 z" fill="#F0F0F0"/>
 		</symbol>
 
 		<symbol viewBox="0 0 128 128" id="icon-ls-carmeet">
@@ -467,7 +468,7 @@
 
 		<symbol viewBox="0 0 128 128" id="icon-laptop">
 			<path d="M30,26 v45 l-15,21 v9 h98 v-9 l-15,-21 v-45 z" stroke="#F0F0F0" stroke-width="4" stroke-linejoin="round"/>
-			<path d="M38,34 v33 h52 v-33 z M50,89 l3,-7 h22 l3,7 z" fill="#F0F0F0">
+			<path d="M38,34 v33 h52 v-33 z M50,89 l3,-7 h22 l3,7 z" fill="#F0F0F0"/>
 		</symbol>
 
 		<symbol viewBox="0 0 128 128" id="icon-mastercontrolterminal">
@@ -507,6 +508,10 @@
 				<circle cx="88" cy="88" r="10"/>
 			</g>
 			<path d="M57,64 l-19,-22 q-1,-5 4,-4 l15,14 a7,7 0,0,1 14,0 l15,-14 q5,-1 4,4 l-19,22 l19,22 q1,5 -4,4 l-15,-14 a7,7 0,0,1 -14,0 l-15,14 q-5,1 -4,-4 z" fill="#000" stroke="#F0F0F0" stroke-width="3" stroke-linejoin="round"/>
+		</symbol>
+
+		<symbol viewBox="0 0 128 128" id="icon-orbitalcannon">
+			<path d="M69,51 l6,-13 l17,17 l-13,6 z l-3,-3 q-3,-3 -6,0 l-3,3 l-5,-5 l1,-1 q3,-3 0,-6 l-21,-21 q-3,-3 -6,0 l-8,8 q-3,3 0,6 l21,21 q3,3 6,0 l1,-1 l5,5 l-10,10 v8 l-8,8 q-3,3 0,6 l-6,6 h-2 v8 h8 v-2 l6,-6 q3,3 6,0 l8,-8 h8 l10,-10 l5,5 l-1,1 q-3,3 0,6 l21,21 q3,3 6,0 l8,-8 q3,-3 0,-6 l-21,-21 q-3,-3 -6,0 l-1,1 l-5,-5 l3,-3 q3,-3 0,-6 l-1,-1" fill="#F0F0F0" stroke="#000" stroke-width="4" stroke-linejoin="round"/>
 		</symbol>
 
 		<symbol viewBox="0 0 128 128" id="icon-mc-bar">
@@ -671,7 +676,7 @@
 			<path d="M0,0 v1 h2 v1 h-1 v-2z" fill-opacity="10%"/>
 		</pattern>
 		<rect width="100%" height="100%" fill="url(#demo-bg)"/>
-		<use id="demo-icon" color="#E286BB" width="100%" height="100%" preserveAspectRatio="xMinYMin meet"/>
+		<use id="demo-icon" color="#F79F7B" width="100%" height="100%" preserveAspectRatio="xMinYMin meet"/>
 		<title id="demo-title"/>
 	</g>
 
