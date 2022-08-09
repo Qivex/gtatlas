@@ -6,8 +6,5 @@ package-lock.json
 node_modules
 dist
 
-# Map tiles (found in com.rockstargames.ifruit)
-/static/tiles/
-
 # Screenshots to scrutinize my SVG recreations
 /static/icons/comparison/

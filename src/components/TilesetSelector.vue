@@ -1,6 +1,6 @@
 <template>
 	<div class="tileset">
-		<img v-for="tileset in options" :src="`tiles/${tileset}/5_17_22.jpg`" @click.left="onselect(tileset)" :alt="tileset"/>
+		<img v-for="tileset in options" :src="`https://s.rsg.sc/sc/images/games/GTAV/map/${tileset}/5/9/15.jpg`" @click.left="onselect(tileset)" :alt="tileset"/>
 	</div>
 </template>
 

@@ -5,13 +5,15 @@ import "leaflet-arrowheads"
 function pixel2crs(point) {
 	let x = point[0]
 	let y = point[1]
-	return [-y/32, x/32]
+	// return [-y/32, x/32]
+	return [-y/46.27, (x-1024)/46.33]
 }
 
 function crs2pixel(point) {
-	let lat = point[0]
-	let lng = point[1]
-	return [-32*lng, 32*lat]
+	let lat = point.lat
+	let lng = point.lng
+	// return [-32*lng, 32*lat]
+	return [46.33*lng + 1024, -46.27*lat]
 }
 
 

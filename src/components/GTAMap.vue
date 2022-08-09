@@ -1,5 +1,5 @@
 <template>
-	<div :id="id" class="gtamap"></div>
+	<div :id="id" class="gtamap" :class="`tileset-${tileset}`"></div>
 </template>
 
 
@@ -18,7 +18,8 @@ export default {
 		return {
 			map: undefined,
 			tilelayer: undefined,
-			layers: {}
+			layers: {},
+			tileset: "render"
 		}
 	},
 	methods: {
@@ -33,24 +34,22 @@ export default {
 				// Available navigation
 				maxBounds: [	// margin: vertical 64, horizontal 128
 					[64,-128],
-					[-320,384]
+					[-256,256]
 				],
-				maxZoom: 7,
+				maxZoom: 8,
 				minZoom: 2,
-				zoomSnap: 0.5,
-				zoomDelta: 0.5,
 				// Initial state
-				center: [-200,128],
-				zoom: 3
-			})
+				center: [-140,64],
+				zoom: 4
+			}).on("click", e => console.log(e.latlng + crs2pixel(e.latlng)))
 			// Tile config
-			this.tilelayer = Leaflet.tileLayer("tiles/satellite/{z}_{x}_{y}.jpg", {
+			this.tilelayer = Leaflet.tileLayer("https://s.rsg.sc/sc/images/games/GTAV/map/render/{z}/{x}/{y}.jpg", {	// previously local: /tiles/satellite/{z}_{x}_{y}.jpg
 				// Available tiles
-				maxNativeZoom: 5,
-				minNativeZoom: 1,
+				maxNativeZoom: 7,
+				minNativeZoom: 0,
 				bounds: [
 					[0,0],
-					[-256,256]
+					[-192,128]
 				],
 				// No repetition
 				noWrap: true
@@ -60,7 +59,7 @@ export default {
 				console.log("Building layer " + layerID)
 				// Construct the layer
 				let builder = mapLayerBuilders[layerID]
-				let layer = builder(Leaflet, marker, circle, line)
+				let layer = builder(Leaflet, marker, circle, line)	//TODO: builder(iconsize, maptools)
 				// Keep ref to remove layer from map later
 				this.layers[layerID] = layer
 				// Add to map (TODO: depend on state)
@@ -90,7 +89,8 @@ export default {
 			// Optional: Include method for that in each builder function?
 		},
 		updateTileset(name) {
-			this.tilelayer.setUrl(`/tiles/${name}/{z}_{x}_{y}.jpg`)
+			this.tileset = name
+			this.tilelayer.setUrl(`https://s.rsg.sc/sc/images/games/GTAV/map/${name}/{z}/{x}/{y}.jpg`)
 		},
 		updateBusinessColor(color) {
 			// Check if input is valid color
@@ -110,7 +110,21 @@ export default {
 <style>
 .gtamap {
 	height: 100%;
-	background-color: #143D6B;
+	background-color: #F00 !important;
+	cursor: pointer !important;
+}
+
+/* Map background color depends on tileset */
+.tileset-render {
+	background-color: #0D2B4F;
+}
+
+.tileset-print {
+	background-color: #4EB2D0;
+}
+
+.tileset-game {
+	background-color: #384950;
 }
 
 /* Leaflet tile layers use *some* high z-index, but aside elements must be on top */
@@ -120,10 +134,10 @@ aside {
 
 /* Define initial business color for icons because SVG defaults to black */
 :root {
-	--business-color: white;
+	--business-color: #F0F0F0;
 }
 
-/* Leaflets divIcon doesnt have transparent background by default */
+/* Leaflet's divIcon doesn't have transparent background by default */
 .leaflet-div-icon {
 	background: none;
 	border: none;

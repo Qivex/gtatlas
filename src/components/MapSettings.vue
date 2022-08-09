@@ -9,7 +9,7 @@
 				<LanguageSelector :options="['en','de']"/>
 			</SettingItem>
 			<SettingItem captionID="map_style">
-				<TilesetSelector :onselect="updateTileset" :options="['atlas','roadmap','satellite']"/>
+				<TilesetSelector :onselect="updateTileset" :options="['render','print','game']"/>
 			</SettingItem>
 			<SettingItem captionID="business_col">
 				<BusinessColorSelector :onselect="updateBusinessColor" :colors="['#F79F7B','#E286BB','#EFEE97','#71A9AF','#A08CC1','#8DCEA7','#B5D6EA','#B29084','#008472','#D85575']"/>
