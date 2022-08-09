@@ -41,7 +41,7 @@ export default {
 				// Initial state
 				center: [-140,64],
 				zoom: 4
-			}).on("click", e => console.log(e.latlng + crs2pixel(e.latlng)))
+			})
 			// Tile config
 			this.tilelayer = Leaflet.tileLayer("https://s.rsg.sc/sc/images/games/GTAV/map/render/{z}/{x}/{y}.jpg", {	// previously local: /tiles/satellite/{z}_{x}_{y}.jpg
 				// Available tiles
@@ -110,8 +110,6 @@ export default {
 <style>
 .gtamap {
 	height: 100%;
-	background-color: #F00 !important;
-	cursor: pointer !important;
 }
 
 /* Map background color depends on tileset */
