@@ -6,7 +6,6 @@
 <script>
 import "leaflet/dist/leaflet.css"
 import Leaflet from "leaflet"
-import { pixel2crs, crs2pixel, marker, line, circle } from "../maptools.js"
 import * as mapLayerBuilders from "../data/maplayers.js"
 
 export default {
@@ -38,7 +37,7 @@ export default {
 				],
 				maxZoom: 8,
 				minZoom: 2,
-				// Initial state
+				// Initial state (Todo: Use URL param + map.setView)
 				center: [-140,64],
 				zoom: 4
 			})
@@ -59,10 +58,10 @@ export default {
 				console.log("Building layer " + layerID)
 				// Construct the layer
 				let builder = mapLayerBuilders[layerID]
-				let layer = builder(Leaflet, marker, circle, line)	//TODO: builder(iconsize, maptools)
+				let layer = builder(35)	// Todo: Use URL param
 				// Keep ref to remove layer from map later
 				this.layers[layerID] = layer
-				// Add to map (TODO: depend on state)
+				// Add to map (Todo: depend on state)
 				layer.addTo(this.map)
 			}
 		},

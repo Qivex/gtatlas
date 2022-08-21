@@ -46,16 +46,20 @@ function createMapIcon(id, size) {
 
 
 // Shortcuts used in methods constructing maplayers
-function marker(point, iconname) {
-	return Leaflet.marker(pixel2crs(point), {icon: createMapIcon(iconname, 35)})
+function marker(point, iconname, iconsize) {
+	return Leaflet.marker(pixel2crs(point), {icon: createMapIcon(iconname, iconsize)})
 }
 
 function line(points) {
-	return Leaflet.polyline(points.map(p => pixel2crs(p)), {color: "white"}).arrowheads(getArrowConfig())
+	return Leaflet.polyline(points.map(p => pixel2crs(p)), {color: "#FFF"}).arrowheads(getArrowConfig())
 }
 
-function circle(point, radius, color) {
-	return Leaflet.circle(pixel2crs(point), {radius: radius/32, stroke: false, color: color, fillOpacity: 0.5})
+function circle(point, radius, color, opacity) {
+	return Leaflet.circle(pixel2crs(point), {radius: radius/46.3, stroke: false, color: color, fillOpacity: opacity})
 }
 
-export { pixel2crs, crs2pixel, marker, line, circle }
+function group(elements) {
+	return Leaflet.featureGroup(elements)
+}
+
+export { pixel2crs, crs2pixel, marker, line, circle, group }

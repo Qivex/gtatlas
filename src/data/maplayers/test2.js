@@ -1,3 +1,5 @@
+import { marker, group } from "../../maptools.js"
+
 // Stress Test
 let grid = []
 for (let x=0; x<16; x++) {
@@ -6,6 +8,6 @@ for (let x=0; x<16; x++) {
 	}
 }
 
-export default function(Leaflet, marker, circle, line) {
-	return Leaflet.featureGroup(grid.map(p => marker(p, "nightclub")))
+export default function(size) {
+	return group(grid.map(p => marker(p, "nightclub", size)))
 }
