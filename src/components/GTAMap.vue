@@ -81,9 +81,23 @@ export default {
 				this.map.removeLayer(layer)
 		},
 		updateIconSize(size) {
-			// TODO
-			// Call all builders again with new icon size
-			// Optional: Include method for that in each builder function?
+			// Update all currently rendered icons
+			document.querySelectorAll(".leaflet-div-icon").forEach(divIcon => {
+				let s = divIcon.style
+				s.width = s.height = size + "px"
+				s.marginTop = s.marginLeft = -size / 2 + "px"
+			})
+			// Update the hidden icons
+			for (let id in this.layers) {
+				let group = this.layers[id]
+				group.eachLayer(l => {
+					if (l instanceof Leaflet.Marker) {
+						let i = l.getIcon()
+						i.options.iconSize = [size, size]
+						l.setIcon(i)
+					}
+				})
+			}
 		},
 		updateTileset(name) {
 			// Update tile source
@@ -138,5 +152,11 @@ aside {
 .leaflet-div-icon {
 	background: none;
 	border: none;
+}
+
+/* Enable resizing */
+.leaflet-div-icon > svg {
+	width: 100%;
+	height: 100%;
 }
 </style>

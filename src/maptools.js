@@ -36,11 +36,9 @@ function getArrowConfig() {
 
 // Icons
 function createMapIcon(id, size) {
-	let anchor = Math.ceil(size / 2)
 	return Leaflet.divIcon({
-		html: `<svg width="${size}" height="${size}"><use href="#icon-${id}" color="var(--business-color)"/></svg>`,
-		iconSize: [size, size],
-		iconAnchor: [anchor, anchor]
+		html: `<svg><use href="#icon-${id}" color="var(--business-color)"/></svg>`,
+		iconSize: [size, size]	// iconAnchor not needed, centered by default
 	})
 }
 
