@@ -25,13 +25,13 @@ export default {
 		setupGTAMap: function() {
 			// Map state & behaviour
 			this.map = Leaflet.map(this.id, {
-				// No earth curvature
+				// No distortion or wrapping
 				crs: Leaflet.CRS.Simple,
 				// No default controls
 				attributionControl: false,
-				zoomControl: true,	// Temp: For testing on touchpad
-				// Available navigation
-				maxBounds: [	// margin: vertical 64, horizontal 128
+				zoomControl: false,
+				// Limit navigation
+				maxBounds: [	// margins: 64v & 128h
 					[64,-128],
 					[-256,256]
 				],
@@ -41,17 +41,15 @@ export default {
 				center: [-140,64],
 				zoom: 4
 			})
-			// Tile config
-			this.tilelayer = Leaflet.tileLayer("https://s.rsg.sc/sc/images/games/GTAV/map/render/{z}/{x}/{y}.jpg", {	// previously local: /tiles/satellite/{z}_{x}_{y}.jpg
-				// Available tiles
+			// Available tiles
+			this.tilelayer = Leaflet.tileLayer("https://s.rsg.sc/sc/images/games/GTAV/map/render/{z}/{x}/{y}.jpg", {
 				maxNativeZoom: 7,
 				minNativeZoom: 0,
 				bounds: [
 					[0,0],
 					[-192,128]
 				],
-				// No repetition
-				noWrap: true
+				keepBuffer: 3
 			}).addTo(this.map)
 			// Initialize all layers
 			for (let layerID in mapLayerBuilders) {
@@ -88,8 +86,10 @@ export default {
 			// Optional: Include method for that in each builder function?
 		},
 		updateTileset(name) {
-			this.tileset = name
+			// Update tile source
 			this.tilelayer.setUrl(`https://s.rsg.sc/sc/images/games/GTAV/map/${name}/{z}/{x}/{y}.jpg`)
+			// Update class (used for background styling)
+			this.tileset = name
 		},
 		updateBusinessColor(color) {
 			// Check if input is valid color
