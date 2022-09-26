@@ -6,7 +6,7 @@
 <script>
 import "leaflet/dist/leaflet.css"
 import Leaflet from "leaflet"
-import * as mapLayerBuilders from "../data/maplayers.js"
+import maplayers from "../data/maplayers.js"
 
 export default {
 	name: "GTAMap",
@@ -23,7 +23,7 @@ export default {
 	},
 	methods: {
 		setupGTAMap: function() {
-			// Map state & behaviour
+			// Define map functionality
 			this.map = Leaflet.map(this.id, {
 				// No distortion or wrapping
 				crs: Leaflet.CRS.Simple,
@@ -36,10 +36,7 @@ export default {
 					[-256,256]
 				],
 				maxZoom: 8,
-				minZoom: 2,
-				// Initial state (Todo: Use URL param + map.setView)
-				center: [-140,64],
-				zoom: 4
+				minZoom: 2
 			})
 			// Available tiles
 			this.tilelayer = Leaflet.tileLayer("https://s.rsg.sc/sc/images/games/GTAV/map/render/{z}/{x}/{y}.jpg", {
@@ -51,16 +48,44 @@ export default {
 				],
 				keepBuffer: 3
 			}).addTo(this.map)
-			// Initialize all layers
-			for (let layerID in mapLayerBuilders) {
-				console.log("Building layer " + layerID)
-				// Construct the layer
-				let builder = mapLayerBuilders[layerID]
-				let layer = builder(35)	// Todo: Use URL param
-				// Keep ref to remove layer from map later
-				this.layers[layerID] = layer
-				// Add to map (Todo: depend on state)
-				layer.addTo(this.map)
+			this.initViewState()
+			this.initIconState()
+		},
+		initViewState() {
+			// URL query
+			let usp = new URLSearchParams(window.location.search)
+			let lat = parseFloat(usp.get("x"))
+			let lng = parseFloat(usp.get("y"))
+			let zoom = parseInt(usp.get("zoom"))
+			// localStorage
+			let ls = window.localStorage
+			lat ||= ls.getItem("map-lat")
+			lng ||= ls.getItem("map-lng")
+			zoom ||= ls.getItem("map-zoom")
+			// Defaults
+			lat ||= -140
+			lng ||= 64
+			zoom ||= 4
+			// Set view
+			this.map.setView([lat,lng], zoom, {animate: false})
+		},
+		initIconState() {
+			// Load all maplayers
+			this.layers = maplayers	// Is this even needed? Maybe for update detection?
+			// URL query
+			let usp = new URLSearchParams(window.location.search)
+			let encodedIconState = usp.get("hide")
+			switch (encodedIconState) {	// Todo: Currently this doesnt affect the Filter -> out of sync
+				case "all":  // Don't show any icons
+					return
+				case "none": // Show all icon layers
+					for (let layerID in this.layers) {	// Cant use forEach because Object, not Array
+						let layer = this.layers[layerID]
+						layer.addTo(this.map)
+					}
+					break
+				default:     // Decode desired state
+
 			}
 		},
 		setIconBusinessColor(colstring) {

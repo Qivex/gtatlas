@@ -57,7 +57,7 @@ function circle(point, radius, color, opacity) {
 }
 
 function group(elements) {
-	return Leaflet.featureGroup(elements)
+	return Leaflet.featureGroup(elements)	// Not using "arguments" because I want to input the result of .map()
 }
 
 export { pixel2crs, crs2pixel, marker, line, circle, group }
