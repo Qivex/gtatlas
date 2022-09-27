@@ -122,7 +122,7 @@ export default {
 }
 
 /* ... but only if preferred */
-@media (prefers-reduced-animation) {
+@media (prefers-reduced-motion) {
 	.collapse-icon {
 		transition: transform 0s;
 	}

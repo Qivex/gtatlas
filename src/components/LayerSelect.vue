@@ -42,10 +42,8 @@ export default {
 	transition: transform 0.5s;
 }
 
-@media (prefers-reduced-animation) {
+@media (prefers-reduced-motion) {
 	.layerselect {
-		position: absolute;
-		left: 0px;
 		transition: transform 0s;
 	}
 }

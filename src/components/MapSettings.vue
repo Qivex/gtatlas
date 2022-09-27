@@ -64,6 +64,12 @@ export default {
 	transition: transform 0.5s;
 }
 
+@media (prefers-reduced-motion) {
+	.mapsettings {
+		transition: transform 0s;
+	}
+}
+
 .mapsettings-content {
 	position: absolute;
 	top: 60px;
