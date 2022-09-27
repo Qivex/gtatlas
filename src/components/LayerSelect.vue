@@ -2,7 +2,7 @@
 	<aside class="layerselect">
 		<div class="layerselect-toggle" @click.left="toggleHidden"></div>
 		<div class="layerselect-content">
-			<PropertyTree :structure="structure" :onchange="setLayerVisibility"/>
+			<PropertyTree :structure="menutree" :onchange="setLayerVisibility"/>
 		</div>
 	</aside>
 </template>
@@ -11,7 +11,7 @@
 <script>
 import PropertyTree from "./PropertyTree.vue"
 
-import structure from "../data/treestructure.js"
+import menutree from "../data/menutree.json"
 
 export default {
 	name: "Selection",
@@ -23,7 +23,7 @@ export default {
 	},
 	data() {
 		return {
-			structure
+			menutree
 		}
 	},
 	methods: {
