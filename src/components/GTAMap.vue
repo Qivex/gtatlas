@@ -65,7 +65,7 @@ export default {
 			// Defaults
 			lat ||= -140
 			lng ||= 64
-			zoom ||= 4
+			zoom ||= 3
 			// Set view
 			this.map.setView([lat,lng], zoom, {animate: false})
 		},

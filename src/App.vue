@@ -11,7 +11,7 @@ import GTAMap from "./components/GTAMap.vue"
 import LayerSelect from "./components/LayerSelect.vue"
 import MapSettings from "./components/MapSettings.vue"
 
-import * as localizations from "./data/i18n.js"
+import localizations from "./data/i18n.json"
 
 export default {
 	name: "App",
@@ -38,6 +38,7 @@ export default {
 			return localizations?.[languageID]?.[stringID]
 		},
 		updateLanguage: function(languageID) {
+			if (languageID === this.currentLanguage) return
 			this.currentLanguage = languageID
 			document.querySelectorAll("[data-i18n]").forEach(node => {
 				let stringID = node.dataset.i18n	// https://stackoverflow.com/questions/52514335

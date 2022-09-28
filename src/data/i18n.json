@@ -1,0 +1,18 @@
+{
+	"en": {
+		"test": "This is a test string",
+		"confirm": "Confirm",
+		"icon_size": "Icon size",
+		"language": "Language",
+		"map_style": "Map style",
+		"business_col": "Business color"
+	},
+	"de": {
+		"test": "Das ist nur zum testen",
+		"confirm": "Bestätigen",
+		"icon_size": "Größe der Icons",
+		"language": "Sprache",
+		"map_style": "Kartenstil",
+		"business_col": "Farbe der Organisation"
+	}
+}
