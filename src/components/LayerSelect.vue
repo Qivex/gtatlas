@@ -31,6 +31,10 @@ export default {
 		setLayerVisibility(id, visible) {
 			this.map.setLayerVisibility(id, visible)
 		}
+	},
+	beforeMount() {
+		// Overwrite the default initial state with localStorage or URL params
+		this.menutree.children[0].children[0].initial = false	// Test
 	}
 }
 </script>

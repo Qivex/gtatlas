@@ -11,7 +11,7 @@ export default {
 	props: {
 		onselect: {
 			type: Function,
-			default: function() {}
+			default() {}
 		},
 		options: Array
 	}

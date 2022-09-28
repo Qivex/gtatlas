@@ -33,11 +33,11 @@ export default {
 		}
 	},
 	methods: {
-		translate: function(stringID) {
+		translate(stringID) {
 			let languageID = this.currentLanguage
 			return localizations?.[languageID]?.[stringID]
 		},
-		updateLanguage: function(languageID) {
+		updateLanguage(languageID) {
 			if (languageID === this.currentLanguage) return
 			this.currentLanguage = languageID
 			document.querySelectorAll("[data-i18n]").forEach(node => {

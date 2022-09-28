@@ -20,7 +20,7 @@ export default {
 		onchange: Function
 	},
 	methods: {
-		update: function() { console.log("Avoid this!") }
+		update() { console.log("Avoid this!") }
 	},
 	provide() {
 		return {

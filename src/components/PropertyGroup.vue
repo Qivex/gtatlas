@@ -28,7 +28,7 @@ export default {
 		children: Array
 	},
 	computed: {
-		indeterminate: function() {
+		indeterminate() {
 			return this.state === undefined;
 		}
 	},
@@ -39,7 +39,7 @@ export default {
 		}
 	},
 	watch: {
-		state: function() {
+		state() {
 			// Chain down
 			if (this.state !== undefined) {	// Don't update children to undefined
 				this.$refs.childcomponents.forEach(child => child.state = this.state)
@@ -47,10 +47,10 @@ export default {
 		}
 	},
 	methods: {
-		cycleCollapse: function() {
+		cycleCollapse() {
 			this.collapsed = !this.collapsed
 		},
-		cycleState: function() {
+		cycleState() {
 			switch(this.state) {
 				case false:
 					this.state = true
@@ -60,7 +60,7 @@ export default {
 			}
 			this.$parent.update?.()
 		},
-		update: function() {
+		update() {
 			let targetState
 			for (let child of this.$refs.childcomponents) {
 				// Skip if any child is already undefined
@@ -84,7 +84,7 @@ export default {
 			this.$parent.update?.()
 		}
 	},
-	mounted: function() {
+	mounted() {
 		this.update()
 	}
 }

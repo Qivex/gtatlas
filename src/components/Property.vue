@@ -16,7 +16,7 @@ export default {
 	inject: {
 		onchange: {
 			from: "updatehandler",
-			default: function() {}
+			default() {}
 		}
 	},
 	props: {
@@ -30,12 +30,12 @@ export default {
 		}
 	},
 	watch: {
-		state: function() {
+		state() {
 			this.onchange?.(this.id, this.state)
 		}
 	},
 	methods: {
-		cycleState: function() {
+		cycleState() {
 			this.state = !this.state
 			this.$parent.update?.()	// Can't do this in watch: infinite update loop
 		}

@@ -14,7 +14,7 @@ export default {
 	inject: {
 		updateLanguage: {
 			from: "updateLanguage",
-			default: function() {}
+			default() {}
 		}
 	}
 }

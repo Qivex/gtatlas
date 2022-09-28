@@ -17,7 +17,7 @@ export default {
 	props: {
 		onconfirm: {
 			type: Function,
-			default: function() {}
+			default() {}
 		},
 		initial: Number,
 		min: Number,
@@ -31,7 +31,7 @@ export default {
 		}
 	},
 	methods: {
-		onClickConfirm: function() {
+		onClickConfirm() {
 			// Live resize is very laggy, so only do it once
 			this.onconfirm(this.size)
 		}

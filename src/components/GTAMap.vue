@@ -22,7 +22,7 @@ export default {
 		}
 	},
 	methods: {
-		setupGTAMap: function() {
+		setupGTAMap() {
 			// Define map functionality
 			this.map = Leaflet.map(this.id, {
 				// No distortion or wrapping
@@ -137,7 +137,7 @@ export default {
 			document.documentElement.style.setProperty("--business-color", color)
 		}
 	},
-	mounted: function() {
+	mounted() {
 		this.setupGTAMap()
 	}
 
