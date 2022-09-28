@@ -6,7 +6,7 @@
 <script>
 import "leaflet/dist/leaflet.css"
 import Leaflet from "leaflet"
-import maplayers from "../data/maplayers.js"
+import {default as maplayers, version, name2index} from "../data/maplayers.js"
 
 export default {
 	name: "GTAMap",
@@ -70,6 +70,7 @@ export default {
 			this.map.setView([lat,lng], zoom, {animate: false})
 		},
 		initIconState() {
+			console.log(name2index)
 			// Load all maplayers
 			this.layers = maplayers	// Is this even needed? Maybe for update detection?
 			// URL query

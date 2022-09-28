@@ -6,9 +6,14 @@ const iconSize = 35	// Todo: Use localStorage
 let layers = {}
 let version = mapdata.version
 
-mapdata.layers.forEach(layer => {
-	let builder
+// Index lookup
+let name2index = {}
+
+mapdata.layers.forEach((layer, index) => {
+	// Index lookup
+	name2index[layer.id] = index
 	// Decide which builder to use
+	let builder
 	switch (layer.id) {
 		case "test1":
 			builder = p => marker(p, "ammunation", iconSize)	// More generic: layer.id as iconname!
@@ -26,6 +31,6 @@ mapdata.layers.forEach(layer => {
 	layers[layer.id] = group(layer.data.map(builder))
 })
 
-export {layers as default, version}
+export {layers as default, version, name2index}
 // Todo: Provide lookup (for each version): index -> id, eg 0 -> "ammunation"
 // Required to encode visible information as URL param
