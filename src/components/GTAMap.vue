@@ -81,6 +81,15 @@ export default {
 			zoom ||= 3
 			// Set view
 			this.map.setView([lat,lng], zoom, {animate: false})
+			// Save view whenever user leaves
+			document.addEventListener("visibilitychange", () => {
+				if (document.visibilityState === "hidden") {
+					let center = this.map.getCenter()
+					ls.setItem("map-lat", center.lat)
+					ls.setItem("map-lng", center.lng)
+					ls.setItem("map-zoom", this.map.getZoom())
+				}
+			})
 		},
 		initIconState() {
 			console.log(name2index)
