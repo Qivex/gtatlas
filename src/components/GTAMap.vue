@@ -8,6 +8,19 @@ import "leaflet/dist/leaflet.css"
 import Leaflet from "leaflet"
 import {default as maplayers, version, name2index} from "../data/maplayers.js"
 
+// Helper
+function updateGroupIconSize(group, size) {
+	group.eachLayer(layer => {
+		if (layer instanceof Leaflet.Marker) {
+			let icon = layer.getIcon()
+			icon.options.iconSize = [size, size]
+			layer.setIcon(icon)
+		} else if (layer instanceof Leaflet.LayerGroup) {
+			updateGroupIconSize(layer, size)	// Nested groups require recursion (eachLayer is flat)
+		}
+	})
+}
+
 export default {
 	name: "GTAMap",
 	props: {
@@ -107,23 +120,16 @@ export default {
 				this.map.removeLayer(layer)
 		},
 		updateIconSize(size) {
+			// Update the layer definitions
+			for (let id in this.layers) {
+				updateGroupIconSize(this.layers[id], size)
+			}
 			// Update all currently rendered icons
 			document.querySelectorAll(".leaflet-div-icon").forEach(divIcon => {
 				let s = divIcon.style
 				s.width = s.height = size + "px"
 				s.marginTop = s.marginLeft = -size / 2 + "px"
 			})
-			// Update the hidden icons
-			for (let id in this.layers) {
-				let group = this.layers[id]
-				group.eachLayer(l => {
-					if (l instanceof Leaflet.Marker) {
-						let i = l.getIcon()
-						i.options.iconSize = [size, size]
-						l.setIcon(i)
-					}
-				})
-			}
 		},
 		updateTileset(name) {
 			// Update tile source
