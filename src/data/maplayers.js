@@ -16,7 +16,7 @@ mapdata.layers.forEach((layer, index) => {
 	let builder
 	switch (layer.id) {
 		case "test1":
-			builder = p => marker(p, "ammunation", iconSize)	// More generic: layer.id as iconname!
+			builder = p => marker(p, "ammunation", iconSize)	// More generic: layer.id or layer.icon as iconname!
 			break
 		case "test2":
 			builder = p => group([
@@ -31,6 +31,23 @@ mapdata.layers.forEach((layer, index) => {
 	layers[layer.id] = group(layer.data.map(builder))
 })
 
-export {layers as default, version, name2index}
-// Todo: Provide lookup (for each version): index -> id, eg 0 -> "ammunation"
-// Required to encode visible information as URL param
+function decodeVisibleLayersFromURLParam() {
+	// URL query
+	let usp = new URLSearchParams(window.location.search)
+	let encodedIconState = usp.get("hide")
+	switch (encodedIconState) {
+		case null:   // No URL param specified
+			return null
+		case "all":  // Don't show any icons
+			return []
+		case "none": // Show all icon layers
+			return Object.keys(layers)
+		default:     // Decode desired state
+			//TODO: Base64 encoded string, bit-order from name2index
+			return []
+	}
+}
+
+//function encodeVisibleLayersToURLParam(visiblelayers) {}
+
+export {layers as default, version, name2index, decodeVisibleLayersFromURLParam}

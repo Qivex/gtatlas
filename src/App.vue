@@ -1,6 +1,6 @@
 <template>
 	<GTAMap ref="map" id="gtamap"/>
-	<LayerSelect :map="map"/>
+	<LayerSelect ref="select" :map="map"/>
 	<MapSettings :map="map"/>
 	<div id="mapicons"></div>
 </template>
@@ -23,7 +23,7 @@ export default {
 	data() {
 		return {
 			map: undefined,	// Ref doesn't exist yet
-			currentLanguage: "en"
+			currentLanguage: "en",
 		}
 	},
 	provide() {
@@ -54,6 +54,8 @@ export default {
 		this.map = this.$refs.map
 		// Initialize localization (Todo: Use preference, cookie, HTTP-Header etc)
 		this.updateLanguage("en")
+		// Ugly state transfer, but 2step $emit or useStore are overkill imo
+		this.$refs.select.visiblelayers.forEach(id => this.map.setLayerVisibility(id, true))
 	}
 }
 

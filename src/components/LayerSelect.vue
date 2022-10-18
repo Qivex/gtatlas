@@ -11,7 +11,23 @@
 <script>
 import PropertyTree from "./PropertyTree.vue"
 
+import { decodeVisibleLayersFromURLParam } from "../data/maplayers.js"
 import menutree from "../data/menutree.json"
+
+let visibleLayersInLocalStorage = window.localStorage.getItem("map-layers")
+let visibleLayersInURLParam = decodeVisibleLayersFromURLParam()
+
+function applyLocalStorage(layer) {
+	if (visibleLayersInLocalStorage) {
+		layer.initial = visibleLayersInLocalStorage.includes(layer.id)
+	}
+}
+
+function applyURLParam(layer) {
+	if (visibleLayersInURLParam) {
+		layer.initial = visibleLayersInURLParam.includes(layer.id)
+	}
+}
 
 export default {
 	name: "Selection",
@@ -23,18 +39,33 @@ export default {
 	},
 	data() {
 		return {
-			menutree
+			menutree,
+			visiblelayers: []
 		}
 	},
 	methods: {
 		toggleHidden: event => event.target.parentNode.classList.toggle("hidden"),
 		setLayerVisibility(id, visible) {
 			this.map.setLayerVisibility(id, visible)
+		},
+		applyVisibility(prop) {
+			// Traverse the menutree
+			if (prop.children) {
+				prop.children.forEach(child => this.applyVisibility(child))
+				return
+			}
+			// Determine if layer should be visible
+			applyLocalStorage(prop)
+			applyURLParam(prop)
+			// Save for later access (cant use setLayerVisibility yet because no ref to map)
+			if (prop.initial) {
+				this.visiblelayers.push(prop.id)
+			}
 		}
 	},
 	beforeMount() {
-		// Overwrite the default initial state with localStorage or URL params
-		this.menutree.children[0].children[0].initial = false	// Test
+		// Overwrite the default initial state with localStorage or URL param
+		this.applyVisibility(this.menutree)
 	}
 }
 </script>

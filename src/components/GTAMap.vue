@@ -92,24 +92,8 @@ export default {
 			})
 		},
 		initIconState() {
-			console.log(name2index)
 			// Load all maplayers
 			this.layers = maplayers	// Is this even needed? Maybe for update detection?
-			// URL query
-			let usp = new URLSearchParams(window.location.search)
-			let encodedIconState = usp.get("hide")
-			switch (encodedIconState) {	// Todo: Currently this doesnt affect the Filter -> out of sync
-				case "all":  // Don't show any icons
-					return
-				case "none": // Show all icon layers
-					for (let layerID in this.layers) {	// Cant use forEach because Object, not Array
-						let layer = this.layers[layerID]
-						layer.addTo(this.map)
-					}
-					break
-				default:     // Decode desired state
-
-			}
 		},
 		setIconBusinessColor(colstring) {
 			// Check if input is valid color
