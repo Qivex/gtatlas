@@ -2,6 +2,18 @@
 	<GTAMap ref="map" id="gtamap"/>
 	<LayerSelect ref="select" :map="map"/>
 	<MapSettings :map="map"/>
+	<Menu gap="1rem" :index=0 :total=4>
+		<p>Test</p>
+	</Menu>
+	<Menu gap="1rem" :index=1 :total=4>
+		<p>Test</p>
+	</Menu>
+	<Menu gap="1rem" :index=2 :total=4>
+		<p>Test</p>
+	</Menu>
+	<Menu gap="1rem" :index=3 :total=4>
+		<p>Test</p>
+	</Menu>
 	<div id="mapicons"></div>
 </template>
 
@@ -10,6 +22,7 @@
 import GTAMap from "./components/GTAMap.vue"
 import LayerSelect from "./components/LayerSelect.vue"
 import MapSettings from "./components/MapSettings.vue"
+import Menu from "./components/Menu.vue"
 
 import localizations from "./data/i18n.json"
 
@@ -18,21 +31,28 @@ export default {
 	components: {
 		GTAMap,
 		LayerSelect,
-		MapSettings
+		MapSettings,
+		Menu
 	},
 	data() {
 		return {
 			map: undefined,	// Ref doesn't exist yet
-			currentLanguage: "en",
+			currentLanguage: "en"
 		}
 	},
 	provide() {
 		return {
+			isMobile: this.isMobile,
 			translate: this.translate,
 			updateLanguage: this.updateLanguage
 		}
 	},
 	methods: {
+		isMobile() {
+			// Mobile devices have a coarse pointer
+			// Todo: Should tablets use the desktop layout?
+			return window.matchMedia("(pointer: coarse)").matches
+		},
 		translate(stringID) {
 			let languageID = this.currentLanguage
 			return localizations?.[languageID]?.[stringID]
