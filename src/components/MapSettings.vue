@@ -1,21 +1,18 @@
 <template>
-	<aside class="mapsettings">
-		<div class="mapsettings-toggle" @click.left="toggleHidden"></div>
-		<div class="mapsettings-content">
-			<SettingItem captionID="icon_size">
-				<IconSizeSelector :onconfirm="updateIconSize" :min="20" :initial="35" :max="50" :icons="['default','office','supplies-crate','target']"/>
-			</SettingItem>
-			<SettingItem captionID="language">
-				<LanguageSelector :options="['en','de']"/>
-			</SettingItem>
-			<SettingItem captionID="map_style">
-				<TilesetSelector :onselect="updateTileset" :options="['render','print','game']"/>
-			</SettingItem>
-			<SettingItem captionID="business_col">
-				<BusinessColorSelector :onselect="updateBusinessColor" :colors="['#F79F7B','#E286BB','#EFEE97','#71A9AF','#A08CC1','#8DCEA7','#B5D6EA','#B29084','#008472','#D85575']"/>
-			</SettingItem>
-		</div>
-	</aside>
+	<div class="mapsettings">
+		<SettingItem captionID="icon_size">
+			<IconSizeSelector :onconfirm="updateIconSize" :min="20" :initial="35" :max="50" :icons="['default','office','supplies-crate','target']"/>
+		</SettingItem>
+		<SettingItem captionID="language">
+			<LanguageSelector :options="['en','de']"/>
+		</SettingItem>
+		<SettingItem captionID="map_style">
+			<TilesetSelector :onselect="updateTileset" :options="['render','print','game']"/>
+		</SettingItem>
+		<SettingItem captionID="business_col">
+			<BusinessColorSelector :onselect="updateBusinessColor" :colors="['#F79F7B','#E286BB','#EFEE97','#71A9AF','#A08CC1','#8DCEA7','#B5D6EA','#B29084','#008472','#D85575']"/>
+		</SettingItem>
+	</div>
 </template>
 
 
@@ -35,61 +32,36 @@ export default {
 		TilesetSelector,
 		BusinessColorSelector
 	},
-	props: {
-		map: Object
-	},
 	methods: {
 		toggleHidden: event => event.target.parentNode.classList.toggle("hidden"),
 		updateIconSize(size) {
-			this.map.updateIconSize(size)
+			this.getMap().updateIconSize(size)
 		},
 		updateTileset(name) {
-			this.map.updateTileset(name)
+			this.getMap().updateTileset(name)
 		},
 		updateBusinessColor(color) {
-			this.map.updateBusinessColor(color)
+			this.getMap().updateBusinessColor(color)
 		}
-	}
+	},
+	inject: ["getMap"]
 }
 </script>
 
 
 <style>
-.mapsettings {
-	position: absolute;
-	top: 0px;
-	right: 0px;
-	width: 20rem;
-	transform-origin: calc(100% - 30px) 30px;
-	transition: transform 0.5s;
-}
-
-@media (prefers-reduced-motion) {
+@media (pointer: fine) {
 	.mapsettings {
-		transition: transform 0s;
+		position: absolute;
+		top: 0px;
+		right: 0px;
+		width: 20rem;
 	}
 }
 
-.mapsettings-content {
-	position: absolute;
-	top: 60px;
-	width: 100%;
-	backdrop-filter: blur(5px);
-	background-color: rgba(0,0,0,0.5);
-}
-
-.mapsettings-toggle {
-	position: absolute;
-	top: 5px;
-	right: 5px;
-	width: 50px;
-	height: 50px;
-	border-radius: 25px;
-	background: #000;
-	background-image: url(icons/settings.svg);
-}
-
-.mapsettings.hidden {
-	transform: rotate(-90deg);
+@media (pointer: coarse) {
+	.mapsettings {
+		width: 100%;
+	}
 }
 </style>

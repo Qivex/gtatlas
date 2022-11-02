@@ -31,7 +31,8 @@ export default {
 			map: undefined,
 			tilelayer: undefined,
 			layers: {},
-			tileset: "render"
+			tileset: "render",
+			initiallayers: undefined
 		}
 	},
 	methods: {
@@ -59,7 +60,8 @@ export default {
 					[0,0],
 					[-192,128]
 				],
-				keepBuffer: 3
+				keepBuffer: 3,
+				updateWhenIdle: false
 			}).addTo(this.map)
 			this.initViewState()
 			this.initIconState()
@@ -148,6 +150,7 @@ export default {
 <style>
 .gtamap {
 	height: 100%;
+	z-index: 0;
 }
 
 /* Map background color depends on tileset */
@@ -161,11 +164,6 @@ export default {
 
 .tileset-game {
 	background-color: #384950;
-}
-
-/* Leaflet tile layers use *some* high z-index, but aside elements must be on top */
-aside {
-	z-index: 500;
 }
 
 /* Define initial business color for icons because SVG defaults to black */

@@ -1,28 +1,13 @@
 <template>
 	<GTAMap ref="map" id="gtamap"/>
-	<LayerSelect ref="select" :map="map"/>
-	<MapSettings :map="map"/>
-	<Menu gap="1rem" :index=0 :total=4>
-		<p>Test</p>
-	</Menu>
-	<Menu gap="1rem" :index=1 :total=4>
-		<p>Test</p>
-	</Menu>
-	<Menu gap="1rem" :index=2 :total=4>
-		<p>Test</p>
-	</Menu>
-	<Menu gap="1rem" :index=3 :total=4>
-		<p>Test</p>
-	</Menu>
+	<MapMenu/>
 	<div id="mapicons"></div>
 </template>
 
 
 <script>
 import GTAMap from "./components/GTAMap.vue"
-import LayerSelect from "./components/LayerSelect.vue"
-import MapSettings from "./components/MapSettings.vue"
-import Menu from "./components/Menu.vue"
+import MapMenu from "./components/MapMenu.vue"
 
 import localizations from "./data/i18n.json"
 
@@ -30,27 +15,32 @@ export default {
 	name: "App",
 	components: {
 		GTAMap,
-		LayerSelect,
-		MapSettings,
-		Menu
+		MapMenu
 	},
 	data() {
 		return {
 			map: undefined,	// Ref doesn't exist yet
-			currentLanguage: "en"
+			currentLanguage: "en",
+			initialvisiblelayers: undefined // State transfer from LayerSelect to GTAMap
 		}
 	},
 	provide() {
 		return {
+			getMap: this.getMap,
 			isMobile: this.isMobile,
 			translate: this.translate,
 			updateLanguage: this.updateLanguage
 		}
 	},
 	methods: {
+		getMap() {
+			// Returns reference to map. Preferable to handing props all the way down every component
+			return this.map
+		},
 		isMobile() {
-			// Mobile devices have a coarse pointer
-			// Todo: Should tablets use the desktop layout?
+			// Mobile devices have a coarse pointer (Todo: Should tablets use the desktop layout?)
+			// Todo: Firefox thinks trackpads are coarse... Not even (any-pointer: fine)
+			// See https://bugzilla.mozilla.org/show_bug.cgi?id=1638556
 			return window.matchMedia("(pointer: coarse)").matches
 		},
 		translate(stringID) {
@@ -75,7 +65,7 @@ export default {
 		// Initialize localization (Todo: Use preference, cookie, HTTP-Header etc)
 		this.updateLanguage("en")
 		// Ugly state transfer, but 2step $emit or useStore are overkill imo
-		this.$refs.select.visiblelayers.forEach(id => this.map.setLayerVisibility(id, true))
+		this.initialvisiblelayers.forEach(id => this.map.setLayerVisibility(id, true))
 	}
 }
 
