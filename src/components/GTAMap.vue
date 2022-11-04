@@ -141,8 +141,10 @@ export default {
 	},
 	mounted() {
 		this.setupGTAMap()
-	}
-
+		// Send ref to App (earlier than ref="map" would resolve)
+		this.setMap(this)
+	},
+	inject: ["setMap"]
 }
 </script>
 

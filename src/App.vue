@@ -1,5 +1,5 @@
 <template>
-	<GTAMap ref="map" id="gtamap"/>
+	<GTAMap id="gtamap"/>
 	<MapMenu/>
 	<div id="mapicons"></div>
 </template>
@@ -19,24 +19,22 @@ export default {
 	},
 	data() {
 		return {
-			map: undefined,	// Ref doesn't exist yet
 			currentLanguage: "en",
-			initialvisiblelayers: undefined // State transfer from LayerSelect to GTAMap
+			initialvisiblelayers: [], // State transfer from LayerSelect to GTAMap
+			map: undefined,	// Component doesn't exist yet
 		}
 	},
 	provide() {
 		return {
-			getMap: this.getMap,
 			isMobile: this.isMobile,
 			translate: this.translate,
-			updateLanguage: this.updateLanguage
+			updateLanguage: this.updateLanguage,
+			setInitialVisibleLayers: this.setInitialVisibleLayers,
+			setMap: this.setMap,
+			getMap: this.getMap
 		}
 	},
 	methods: {
-		getMap() {
-			// Returns reference to map. Preferable to handing props all the way down every component
-			return this.map
-		},
 		isMobile() {
 			// Mobile devices have a coarse pointer (Todo: Should tablets use the desktop layout?)
 			// Todo: Firefox thinks trackpads are coarse... Not even (any-pointer: fine)
@@ -57,19 +55,27 @@ export default {
 					node.textContent = localizedString	// https://stackoverflow.com/questions/24427621
 				}
 			})
+		},
+		setInitialVisibleLayers(layers) {
+			// LayerSelect component provides initially visible layers
+			this.initialvisiblelayers = layers
+		},
+		setMap(map) {
+			// GTAMap component provides ref to itself (earlier than this.$refs would resolve)
+			this.map = map
+		},
+		getMap() {
+			// Returns reference to map (preferable to handing a prop all the way down every component)
+			return this.map
 		}
 	},
 	mounted() {
-		// Update ref to map (for all components using it)
-		this.map = this.$refs.map
 		// Initialize localization (Todo: Use preference, cookie, HTTP-Header etc)
 		this.updateLanguage("en")
-		// Ugly state transfer, but 2step $emit or useStore are overkill imo
+		// Initialize visible layers on Map
 		this.initialvisiblelayers.forEach(id => this.map.setLayerVisibility(id, true))
 	}
 }
-
-
 </script>
 
 

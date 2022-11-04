@@ -11,20 +11,31 @@ import PropertyTree from "./PropertyTree.vue"
 import { decodeVisibleLayersFromURLParam } from "../data/maplayers.js"
 import menutree from "../data/menutree.json"
 
+// Modify "initial" values of menutree before using it in component
 let visibleLayersInLocalStorage = window.localStorage.getItem("map-layers")
 let visibleLayersInURLParam = decodeVisibleLayersFromURLParam()
+let visiblelayers = []
 
-function applyLocalStorage(layer) {
-	if (visibleLayersInLocalStorage) {
-		layer.initial = visibleLayersInLocalStorage.includes(layer.id)
+function applyInitialVisibility(prop) {
+	// Traverse the property
+	if (prop.children) {
+		prop.children.forEach(child => applyInitialVisibility(child))
+		return
+	}
+	// Determine if layer should be visible:
+	if (visibleLayersInLocalStorage) {	// Consider localStorage
+		prop.initial = visibleLayersInLocalStorage.includes(prop.id)
+	}
+	if (visibleLayersInURLParam) {	// Consider URL param
+		prop.initial = visibleLayersInURLParam.includes(prop.id)
+	}
+	// Collect all initially visible layers (later used in GTAMap component)
+	if (prop.initial) {
+		visiblelayers.push(prop.id)
 	}
 }
 
-function applyURLParam(layer) {
-	if (visibleLayersInURLParam) {
-		layer.initial = visibleLayersInURLParam.includes(layer.id)
-	}
-}
+applyInitialVisibility(menutree)
 
 export default {
 	name: "Selection",
@@ -36,36 +47,19 @@ export default {
 	},
 	data() {
 		return {
-			menutree,
-			visiblelayers: []
+			menutree
 		}
 	},
 	methods: {
 		setLayerVisibility(id, visible) {
 			this.getMap().setLayerVisibility(id, visible)
-		},
-		applyVisibility(prop) {
-			// Traverse the menutree
-			if (prop.children) {
-				prop.children.forEach(child => this.applyVisibility(child))
-				return
-			}
-			// Determine if layer should be visible
-			applyLocalStorage(prop)
-			applyURLParam(prop)
-			// Save for later access (cant use setLayerVisibility yet because no ref to map)
-			if (prop.initial) {
-				this.visiblelayers.push(prop.id)
-			}
 		}
 	},
-	beforeMount() {
-		// Overwrite the default initial state with localStorage or URL param
-		this.applyVisibility(this.menutree)
-		// Send visiblelayers to app for later use on mount (getMap doesnt know ref to map yet)
-		this.$root.initialvisiblelayers = this.visiblelayers
+	created() {
+		// Send visiblelayers to App for later use on mount (getMap doesnt know ref yet)
+		this.setInitialVisibleLayers(visiblelayers)
 	},
-	inject: ["getMap"]
+	inject: ["getMap", "setInitialVisibleLayers"]
 }
 </script>
 
