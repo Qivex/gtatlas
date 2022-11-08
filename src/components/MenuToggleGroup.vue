@@ -1,7 +1,6 @@
 <template>
 	<div class="menu-togglegroup">
-		<MenuToggleButton v-for="(menu,index) in menus" :menu="menu" gap="1rem" :index="index" :total="menus.length"/>
-		<!-- :icon="menu.icon" -->
+		<MenuToggleButton v-for="(menu,index) in menus" :menu="menu" :icon="menu.icon" gap="1rem" :index="index" :total="menus.length"/>
 	</div>
 </template>
 
@@ -19,10 +18,3 @@ export default {
 	inject: ["isMobile"]
 }
 </script>
-
-<style>
-.mobile-togglegroup {
-	position: absolute;
-	bottom: 0px;
-}
-</style>

@@ -80,15 +80,4 @@ export default {
 		width: 100%;
 	}
 }
-
-@media (pointer: fine) {
-	.layerselect-toggle {
-		width: 2rem;
-		height: 4rem;
-		top: calc(50% - 2rem);
-		left: 100%;
-		cursor: pointer;	/* https://stackoverflow.com/questions/45049873 */
-		border-radius: 0 1rem 1rem 0;
-	}
-}
 </style>

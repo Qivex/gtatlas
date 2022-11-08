@@ -7,6 +7,9 @@
 <script>
 export default {
 	name: "Submenu",
+	props: {
+		icon: String
+	},
 	data() {
 		return {
 			expanded: false

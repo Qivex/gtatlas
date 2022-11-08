@@ -1,14 +1,11 @@
 <template>
 	<div class="mapmenu">
 		<MenuToggleGroup v-if="isMobile()" :menus="menus"/>
-		<Submenu ref="select">
+		<Submenu ref="select" icon="url(icons/select.svg)">
 			<LayerSelect/>
 		</Submenu>
-		<Submenu ref="settings">
+		<Submenu ref="settings" icon="url(icons/settings.svg)">
 			<MapSettings/>
-		</Submenu>
-		<Submenu ref="test">
-			<p>Anything</p>
 		</Submenu>
 	</div>
 </template>
@@ -39,8 +36,7 @@ export default {
 		// Refs dont exist before mount
 		this.menus = [
 			this.$refs.select,
-			this.$refs.settings,
-			this.$refs.test
+			this.$refs.settings
 		]
 	},
 	inject: ["isMobile"]

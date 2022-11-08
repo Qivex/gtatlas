@@ -7,24 +7,25 @@ export default {
 	name: "MenuToggleButton",
 	props: {
 		menu: Object,	// Ref to menu which this toggles
+		icon: String,
 		gap: String,
 		index: Number,
-		total: Number,
-		orientation: String	// Used for rounded borders & icon rotation
+		total: Number
 	},
 	computed: {
-		mobileWidth() {
+		width() {
 			// Subtract all the gaps (total+1) from 100%, divide remaining space equally:
 			return `calc(calc(100vw - calc(${this.total + 1} * ${this.gap})) / ${this.total})`
 		},
-		mobileLeft () {
+		left() {
 			// Add up all gaps and toggles to the left
-			return `calc(calc(${this.index + 1} * ${this.gap}) + calc(${this.index} * ${this.mobileWidth}))`
+			return `calc(calc(${this.index + 1} * ${this.gap}) + calc(${this.index} * ${this.width}))`
 		},
 		style() {
 			return {
-				width: this.mobileWidth,
-				left: this.mobileLeft,
+				width: this.width,
+				left: this.left,
+				"--icon": this.icon	// Set var (cant access ::after directly)
 			}
 		},
 		expanded() {
@@ -45,8 +46,9 @@ export default {
 	position: absolute;
 	bottom: 0px;
 	height: 4rem;
-	background-color: #F00;	/* TEMP */
-	border-radius: 1rem 1rem 0 0;
+	background-color: #222;
+	box-shadow: 0 0 20px 5px #222;
+	border-radius: 1.5rem 1.5rem 0 0;
 	transition: transform 0.5s;
 	/* Centers icon: */
 	display: flex;
@@ -69,14 +71,14 @@ export default {
 .menu-togglebutton::after {
 	position: absolute;	/* Doesnt show up without */
 	content: "";
-	transform: rotate(90deg);
 	width: 2.5rem;
 	height: 2.5rem;
-	background-image: url(icons/hide-arrow.svg);	/* Placeholder if no icon */
+	background-image: var(--icon, url(icons/hide.svg));	/* Fallback if no icon */
 }
 
 /* Replace icon with close-arrow when expanded */
 .menu-togglebutton.expanded::after {
-	transform: rotate(270deg);	/* TODO: Replace icon with arrow */
+	background-image: url(icons/hide.svg);
+	transform: rotate(180deg);
 }
 </style>
