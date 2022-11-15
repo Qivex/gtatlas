@@ -5,7 +5,10 @@
 		"icon_size": "Icon size",
 		"language": "Language",
 		"map_style": "Map style",
-		"business_col": "Business color"
+		"business_col": "Business color",
+		"keep_settings": "Keep settings",
+		"ls_allowed": "Allow use of localStorage",
+		"ls_moreinfo": "Find out more about localStorage here:"
 	},
 	"de": {
 		"test": "Das ist nur zum testen",
@@ -13,6 +16,9 @@
 		"icon_size": "Größe der Icons",
 		"language": "Sprache",
 		"map_style": "Kartenstil",
-		"business_col": "Farbe der Organisation"
+		"business_col": "Farbe der Organisation",
+		"keep_settings": "Einstellungen speichern",
+		"ls_allowed": "Verwende localStorage",
+		"ls_moreinfo": "Mehr Informationen über localStorage:"
 	}
 }

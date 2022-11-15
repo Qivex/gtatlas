@@ -85,7 +85,7 @@ export default {
 			this.map.setView([lat,lng], zoom, {animate: false})
 			// Save view whenever user leaves
 			document.addEventListener("visibilitychange", () => {
-				if (document.visibilityState === "hidden") {
+				if (document.visibilityState === "hidden" && this.getUseLocalStorage()) {
 					let center = this.map.getCenter()
 					ls.setItem("map-lat", center.lat)
 					ls.setItem("map-lng", center.lng)
@@ -144,7 +144,7 @@ export default {
 		// Send ref to App (earlier than ref="map" would resolve)
 		this.setMap(this)
 	},
-	inject: ["setMap"]
+	inject: ["setMap", "getUseLocalStorage"]
 }
 </script>
 

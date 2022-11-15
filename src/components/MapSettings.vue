@@ -12,6 +12,9 @@
 		<SettingItem captionID="business_col">
 			<BusinessColorSelector :onselect="updateBusinessColor" :colors="['#F79F7B','#E286BB','#EFEE97','#71A9AF','#A08CC1','#8DCEA7','#B5D6EA','#B29084','#008472','#D85575']"/>
 		</SettingItem>
+		<SettingItem captionID="keep_settings">
+			<LocalStorageSelector/>
+		</SettingItem>
 	</div>
 </template>
 
@@ -22,6 +25,7 @@ import IconSizeSelector from "./IconSizeSelector.vue"
 import LanguageSelector from "./LanguageSelector.vue"
 import TilesetSelector from "./TilesetSelector.vue"
 import BusinessColorSelector from "./BusinessColorSelector.vue"
+import LocalStorageSelector from "./LocalStorageSelector.vue"
 
 export default {
 	name: "MapSettings",
@@ -30,7 +34,8 @@ export default {
 		IconSizeSelector,
 		LanguageSelector,
 		TilesetSelector,
-		BusinessColorSelector
+		BusinessColorSelector,
+		LocalStorageSelector
 	},
 	methods: {
 		toggleHidden: event => event.target.parentNode.classList.toggle("hidden"),

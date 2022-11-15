@@ -1,6 +1,6 @@
 <template>
 	<div class="settingitem">
-		<p :data-i18n="captionID">{{translate(captionID)}}</p>
+		<h3 :data-i18n="captionID">{{translate(captionID)}}</h3>
 		<slot/>
 	</div>
 </template>
@@ -28,7 +28,7 @@ export default {
 	border: none;
 }
 
-.settingitem p {
+.settingitem h3 {
 	margin-bottom: 0.5rem;
 }
 </style>

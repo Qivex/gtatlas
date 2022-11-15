@@ -19,6 +19,7 @@ export default {
 	},
 	data() {
 		return {
+			useLocalStorage: false || window.localStorage.length > 0,
 			currentLanguage: "en",
 			initialvisiblelayers: [], // State transfer from LayerSelect to GTAMap
 			map: undefined,	// Component doesn't exist yet
@@ -27,6 +28,8 @@ export default {
 	provide() {
 		return {
 			isMobile: this.isMobile,
+			getUseLocalStorage: this.getUseLocalStorage,
+			toggleUseLocalStorage: this.toggleUseLocalStorage,
 			translate: this.translate,
 			updateLanguage: this.updateLanguage,
 			setInitialVisibleLayers: this.setInitialVisibleLayers,
@@ -40,6 +43,13 @@ export default {
 			// Todo: Firefox thinks trackpads are coarse... Not even (any-pointer: fine)
 			// See https://bugzilla.mozilla.org/show_bug.cgi?id=1638556
 			return window.matchMedia("(pointer: coarse)").matches
+		},
+		getUseLocalStorage() {
+			return this.useLocalStorage	
+		},
+		toggleUseLocalStorage() {
+			this.useLocalStorage = !this.useLocalStorage
+			// TODO: Clear (previous) localStorage on visibilitychange if disabled
 		},
 		translate(stringID) {
 			let languageID = this.currentLanguage
@@ -87,12 +97,13 @@ body {
 	margin: 0px;
 	padding: 0px;
 	color: #fff;	/* Initial org-color for icons (defaults to black) */
+	font-family: arial;
 }
 
-p {
+p,h1,h2,h3,h4,h5,h6 {
 	margin: 0px;
 	color: #fff;
-	font-family: arial;
+	font-weight: normal;
 }
 
 /* SVG document with all icons as <symbol> */
