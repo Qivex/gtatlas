@@ -4,7 +4,7 @@
 			<input type="checkbox" :id="id" :indeterminate="indeterminate" v-model="state" @click.left="cycleState"/>
 			<div class="styled-checkbox" @click.left="cycleState"></div>
 			<p>temp-{{id}}</p>
-			<div class="collapse-icon" :class="{collapsed: collapsed}" @click.left="cycleCollapse"></div>
+			<div class="collapse-icon pointer" :class="{collapsed: collapsed}" @click.left="cycleCollapse"></div>
 		</div>
 		<ul v-if="!collapsed">
 			<li v-for="child in children">
@@ -112,7 +112,6 @@ export default {
 	position: absolute;
 	right: 10px;
 	background-image: url(icons/collapse.svg);
-	cursor: pointer;
 	transition: transform 0.3s;
 }
 

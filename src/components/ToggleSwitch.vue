@@ -1,5 +1,5 @@
 <template>
-	<div class="toggleswitch" :class="{active: active}" @click.left="onclick"></div>
+	<div class="toggleswitch pointer" :class="{active: active}" @click.left="onclick"></div>
 </template>
 
 
@@ -37,12 +37,6 @@ export default {
 	border-radius: 1rem;
 	border-style: solid;
 	border-width: 4px;
-}
-
-@media (pointer: fine) {
-	.toggleswitch {
-		cursor: pointer;
-	}
 }
 
 .toggleswitch.active {

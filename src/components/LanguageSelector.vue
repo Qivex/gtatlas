@@ -1,6 +1,6 @@
 <template>
 	<div class="languages">
-		<img v-for="lang in options" class="flagicon" :src="`icons/flags/${lang}.svg`" @click.left="updateLanguage(lang)" :alt="lang"/>
+		<img v-for="lang in options" class="flagicon pointer" :src="`icons/flags/${lang}.svg`" @click.left="updateLanguage(lang)" :alt="lang"/>
 	</div>
 </template>
 
@@ -32,6 +32,5 @@ export default {
 .languages img {
 	width: 2rem;
 	border-radius: 1rem;
-	cursor: pointer;
 }
 </style>

@@ -4,6 +4,8 @@
 		<p data-i18n="ls_allowed">{{translate("ls_allowed")}}</p>
 		<MoreInfo>
 			<p data-i18n="ls_moreinfo">{{translate("ls_moreinfo")}}</p>
+			<br/>
+			<a href="https://www.w3schools.com/html/html5_webstorage.asp" target="_blank" rel="noopener noreferrer" data-i18n="ls_link">{{translate("ls_link")}}</a>
 		</MoreInfo>
 	</div>
 </template>
@@ -43,11 +45,6 @@ export default {
 	display: flex;
 	height: 2rem;
 	align-items: center;
-	/*
-	grid-template-columns: 3rem auto 2rem;
-	place-items: center;
-	place-content: center;
-	*/
 }
 
 .lstoggle > p {

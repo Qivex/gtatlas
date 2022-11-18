@@ -84,6 +84,12 @@ export default {
 		this.updateLanguage("en")
 		// Initialize visible layers on Map
 		this.initialvisiblelayers.forEach(id => this.map.setLayerVisibility(id, true))
+		// Clear localStorage on page close if deselected
+		document.addEventListener("visibilitychange", () => {
+			if (document.visibilityState === "hidden" && !this.getUseLocalStorage()) {
+				window.localStorage.clear()
+			}
+		})
 	}
 }
 </script>
@@ -104,6 +110,17 @@ p,h1,h2,h3,h4,h5,h6 {
 	margin: 0px;
 	color: #fff;
 	font-weight: normal;
+}
+
+a {
+	color: #266bec;
+}
+
+/* Would cause blue outline on mobile! */
+@media (pointer: fine) {
+	.pointer {
+		cursor: pointer;
+	}
 }
 
 /* SVG document with all icons as <symbol> */

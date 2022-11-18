@@ -1,7 +1,7 @@
 <template>
 	<div class="property" tabindex="0">
 		<input type="checkbox" :id="id" v-model="state" @click.left="cycleState"/>
-		<div class="styled-checkbox" @click.left="cycleState"></div>
+		<div class="styled-checkbox pointer" @click.left="cycleState"></div>
 		<p>temp-{{id}}</p>
 		<svg class="preview-icon" viewbox="0 0 128 128">
 			<use :href="`#icon-${icon}`"/>
@@ -88,7 +88,6 @@ export default {
 	width: 18px;
 	height: 18px;
 	margin: 0px 10px;
-	cursor: pointer;
 	background-color: white;
 }
 

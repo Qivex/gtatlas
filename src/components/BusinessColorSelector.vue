@@ -1,6 +1,6 @@
 <template>
 	<div class="businesscolor">
-		<div v-for="color in colors" :style="`background-color:${color}`" @click.left="onselect(color)"/>
+		<div v-for="color in colors" class="pointer" :style="`background-color:${color}`" @click.left="onselect(color)"/>
 	</div>
 </template>
 
@@ -28,6 +28,5 @@ export default {
 
 .businesscolor div {
 	border-radius: 1rem;
-	cursor: pointer;
 }
 </style>
