@@ -58,9 +58,10 @@ export default {
 @media (pointer: fine) {
 	.mapsettings {
 		position: absolute;
-		top: 0px;
+		top: var(--navbar-height);
 		right: 0px;
 		width: 20rem;
+		transform: translateX(100%);
 	}
 }
 

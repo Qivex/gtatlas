@@ -68,10 +68,11 @@ export default {
 @media (pointer: fine) {
 	.layerselect {
 		position: absolute;
-		top: 0px;
+		top: var(--navbar-height, 0px);
 		left: 0px;
 		width: 20rem;
-		height: 100vh;
+		height: calc(100vh - var(--navbar-height, 0px));
+		transform: translateX(-100%);
 	}
 }
 

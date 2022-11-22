@@ -31,7 +31,7 @@ export default {
 }
 
 @media (prefers-reduced-motion) {
-	.submenu {
+	.submenu, .submenu > div {
 		transition: transform 0s;
 	}
 }
@@ -44,8 +44,19 @@ export default {
 }
 
 @media (pointer: fine) {
+	/* Enables content to set its own position */
 	.submenu {
-		display: contents;	/* Enables content to set its own position */
+		display: contents;
+	}
+
+	/* On Desktop the child-div is transformed (because of display:contents) */
+	.submenu > div {
+		transition: transform 0.5s;
+	}
+
+	/* Submenu defines initial transform, but expanded is always back at origin */
+	.submenu.expanded > div {
+		transform: none;
 	}
 }
 

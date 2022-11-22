@@ -1,6 +1,7 @@
 <template>
 	<div class="mapmenu">
 		<MenuToggleGroup v-if="isMobile()" :menus="menus"/>
+		<NavBar v-else :menus="menus"/>
 		<Submenu ref="select" icon="url(icons/select.svg)">
 			<LayerSelect/>
 		</Submenu>
@@ -12,6 +13,7 @@
 
 <script>
 import MenuToggleGroup from "./MenuToggleGroup.vue"
+import NavBar from "./NavBar.vue"
 import Submenu from "./Submenu.vue"
 import LayerSelect from "./LayerSelect.vue"
 import MapSettings from "./MapSettings.vue"
@@ -20,6 +22,7 @@ export default {
 	name: "MapMenu",
 	components: {
 		MenuToggleGroup,
+		NavBar,
 		Submenu,
 		LayerSelect,
 		MapSettings
@@ -49,6 +52,7 @@ export default {
 	width: 100%;
 	height: 0px;
 	z-index: 1;
+	--navbar-height: 3rem;
 }
 
 @media (pointer: fine) {

@@ -14,7 +14,6 @@ export default {
 	},
 	props: {
 		menus: Array
-	},
-	inject: ["isMobile"]
+	}
 }
 </script>

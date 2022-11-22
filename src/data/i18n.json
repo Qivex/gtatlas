@@ -9,7 +9,9 @@
 		"keep_settings": "Keep settings",
 		"ls_allowed": "Allow use of localStorage",
 		"ls_moreinfo": "Settings and map state are stored only on this device. No data is sent to or kept on a server.",
-		"ls_link": "More infos about localStorage"
+		"ls_link": "More infos about localStorage",
+		"nav_select": "Marker Selection",
+		"nav_settings": "Settings"
 	},
 	"de": {
 		"test": "Das ist nur zum testen",
@@ -21,6 +23,8 @@
 		"keep_settings": "Einstellungen speichern",
 		"ls_allowed": "Verwende localStorage",
 		"ls_moreinfo": "Einstellungen und Kartenzustand werden ausschließlich auf diesem Gerät gespeichert. Keine Daten werden übermittelt.",
-		"ls_link": "Mehr Infos zu localStorage (engl.)"
+		"ls_link": "Mehr Infos zu localStorage (engl.)",
+		"nav_select": "Marker-Auswahl",
+		"nav_settings": "Einstellungen"
 	}
 }
