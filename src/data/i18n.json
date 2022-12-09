@@ -10,7 +10,7 @@
 		"ls_allowed": "Allow use of localStorage",
 		"ls_moreinfo": "Settings and map state are stored only on this device. No data is sent to or kept on a server.",
 		"ls_link": "More infos about localStorage",
-		"nav_select": "Marker Selection",
+		"nav_select": "Select markers",
 		"nav_settings": "Settings"
 	},
 	"de": {
@@ -24,7 +24,7 @@
 		"ls_allowed": "Verwende localStorage",
 		"ls_moreinfo": "Einstellungen und Kartenzustand werden ausschließlich auf diesem Gerät gespeichert. Keine Daten werden übermittelt.",
 		"ls_link": "Mehr Infos zu localStorage (engl.)",
-		"nav_select": "Marker-Auswahl",
+		"nav_select": "Wähle Marker",
 		"nav_settings": "Einstellungen"
 	}
 }
