@@ -62,13 +62,14 @@ export default {
 
 @media (pointer: coarse) {
 	.submenu {
-		width: 100vw;
-		height: 50vh;
+		top: 0px;	/* Avoid spacing from MenuToggleGroup */
+		width: 100%;
+		height: var(--expand-height);
 		overflow-y: scroll;
 	}
 
 	.submenu.expanded {
-		transform: translateY(-50vh);
+		transform: translateY(calc(-1 * var(--expand-height)));
 	}
 }
 

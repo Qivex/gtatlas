@@ -53,6 +53,9 @@ export default {
 	height: 0px;
 	z-index: 1;
 	--navbar-height: 3rem;
+	--toggle-height: 4rem;
+	--toggle-gap: 1rem;
+	--expand-height: 50vh;
 }
 
 @media (pointer: fine) {
