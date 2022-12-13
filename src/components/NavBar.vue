@@ -1,6 +1,6 @@
 <template>
 	<nav class="navbar">
-		<img class="logo" src="icons/settings.svg"/><!--Todo: Placeholder logo-->
+		<img id="logo" :src="'icons/settings.svg'"/>
 		<NavItem captionID="nav_select" :onselect="toggleSelect"/>
 		<NavItem captionID="nav_settings" :onselect="toggleSettings"/>
 	</nav>
