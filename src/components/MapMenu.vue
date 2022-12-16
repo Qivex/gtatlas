@@ -2,10 +2,10 @@
 	<div class="mapmenu">
 		<MenuToggleGroup v-if="isMobile()" :menus="menus"/>
 		<NavBar v-else :menus="menus"/>
-		<Submenu ref="select" icon="url(icons/select.svg)">
+		<Submenu ref="select" icon="url(/icons/select.svg)">
 			<LayerSelect/>
 		</Submenu>
-		<Submenu ref="settings" icon="url(icons/settings.svg)">
+		<Submenu ref="settings" icon="url(/icons/settings.svg)">
 			<MapSettings/>
 		</Submenu>
 	</div>

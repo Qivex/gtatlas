@@ -102,7 +102,7 @@ export default {
 
 /* Indeterminate state only possible on groups */
 .property input:indeterminate + .styled-checkbox {
-	background-image: url(icons/check-mixed.svg);
+	background-image: url(/icons/check-mixed.svg);
 }
 
 /* Icon for collapsing */
@@ -111,7 +111,7 @@ export default {
 	height: 30px;
 	position: absolute;
 	right: 10px;
-	background-image: url(icons/collapse.svg);
+	background-image: url(/icons/collapse.svg);
 	transition: transform 0.3s;
 }
 

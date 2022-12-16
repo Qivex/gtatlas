@@ -56,7 +56,7 @@ export default {
 .moreinfo-icon {
 	width: var(--moreinfo-icon-size);
 	height: var(--moreinfo-icon-size);
-	background-image: url(icons/info.svg);
+	background-image: url(/icons/info.svg);
 }
 
 .moreinfo-content {

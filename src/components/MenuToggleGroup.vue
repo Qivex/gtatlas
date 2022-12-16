@@ -55,12 +55,12 @@ export default {
 	content: "";
 	width: 2.5rem;
 	height: 2.5rem;
-	background-image: var(--icon, url(icons/hide.svg));	/* Fallback if no icon */
+	background-image: var(--icon, url(/icons/hide.svg));	/* Fallback if no icon */
 }
 
 /* Replace icon with close-arrow when expanded */
 .menu-togglebutton.expanded::after {
-	background-image: url(icons/hide.svg);
+	background-image: url(/icons/hide.svg);
 	transform: rotate(180deg);
 }
 </style>

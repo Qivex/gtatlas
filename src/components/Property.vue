@@ -93,6 +93,6 @@ export default {
 
 /* Show checkmark if selected */
 .property input:checked + .styled-checkbox {
-	background-image: url(icons/check-true.svg);
+	background-image: url(/icons/check-true.svg);
 }
 </style>
