@@ -6,10 +6,10 @@
 
 
 <script>
-import GTAMap from "./components/GTAMap.vue"
-import MapMenu from "./components/MapMenu.vue"
+import GTAMap from "./GTAMap.vue"
+import MapMenu from "./MapMenu.vue"
 
-import localizations from "./data/i18n.json"
+import localizations from "../data/i18n.json"
 
 export default {
 	name: "App",

@@ -5,6 +5,12 @@ export default defineConfig({
 	plugins: [vue()],
 	publicDir: "static",
 	build: {
-		assetsDir: "bundle"
+		assetsDir: "bundle",
+		rollupOptions: {
+			input: {
+				"main": "index.html",
+				"grid": "grid.html"
+			}
+		}
 	}
 })
