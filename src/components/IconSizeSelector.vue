@@ -6,7 +6,7 @@
 			</svg>
 		</div>
 		<input type="range" v-model="size" :min="min" :max="max"/>
-		<button @click.left="onClickConfirm" data-i18n="confirm">{{translate("confirm")}}</button>
+		<button @click.left="onClickConfirm">{{translate("confirm")}}</button>
 	</div>
 </template>
 

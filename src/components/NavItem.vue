@@ -1,6 +1,6 @@
 <template>
 	<div class="navitem" @click.left="onselect">
-		<h3 :data-i18n="captionID">{{translate(captionID)}}</h3>
+		<h3>{{translate(captionID)}}</h3>
 	</div>
 </template>
 

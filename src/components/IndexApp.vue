@@ -11,6 +11,8 @@ import MapMenu from "./MapMenu.vue"
 
 import localizations from "../data/i18n.json"
 
+import { computed } from "vue"
+
 export default {
 	name: "App",
 	components: {
@@ -31,7 +33,8 @@ export default {
 			getUseLocalStorage: this.getUseLocalStorage,
 			toggleUseLocalStorage: this.toggleUseLocalStorage,
 			translate: this.translate,
-			updateLanguage: this.updateLanguage,
+			setLanguage: this.setLanguage,
+			currentLanguage: computed(() => this.currentLanguage),
 			setInitialVisibleLayers: this.setInitialVisibleLayers,
 			setMap: this.setMap,
 			getMap: this.getMap
@@ -51,20 +54,19 @@ export default {
 			this.useLocalStorage = !this.useLocalStorage
 			// TODO: Clear (previous) localStorage on visibilitychange if disabled
 		},
-		translate(stringID) {
-			let languageID = this.currentLanguage
-			return localizations?.[languageID]?.[stringID]
+		translate(stringID, ...content) {
+			let localizedString = localizations?.[this.currentLanguage]?.[stringID]
+			if (content.length === 0) {
+				return localizedString
+			}
+			// Replace placeholders with content
+			function nextContent() {
+				return content.pop() || ""
+			}
+			return localizedString.replaceAll("{}", nextContent)
 		},
-		updateLanguage(languageID) {
-			if (languageID === this.currentLanguage) return
+		setLanguage(languageID) {
 			this.currentLanguage = languageID
-			document.querySelectorAll("[data-i18n]").forEach(node => {
-				let stringID = node.dataset.i18n	// https://stackoverflow.com/questions/52514335
-				let localizedString = this.translate(stringID)
-				if (localizedString) {
-					node.textContent = localizedString	// https://stackoverflow.com/questions/24427621
-				}
-			})
 		},
 		setInitialVisibleLayers(layers) {
 			// LayerSelect component provides initially visible layers
@@ -92,8 +94,6 @@ export default {
 			.then(data => {
 				document.getElementById("mapicons").innerHTML = data
 			})
-		// Initialize localization (Todo: Use preference, cookie, HTTP-Header etc)
-		this.updateLanguage("en")
 		// Initialize visible layers on Map
 		this.initialvisiblelayers.forEach(id => this.map.setLayerVisibility(id, true))
 		// Clear localStorage on page close if deselected

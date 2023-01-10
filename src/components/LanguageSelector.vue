@@ -1,6 +1,6 @@
 <template>
 	<div class="languages">
-		<img v-for="lang in options" class="flagicon pointer" :src="`icons/flags/${lang}.svg`" @click.left="updateLanguage(lang)" :alt="lang"/>
+		<img v-for="lang in options" class="flagicon pointer" :class="{selected: lang === currentLanguage}" :src="`icons/flags/${lang}.svg`" @click.left="setLanguage(lang)" :alt="lang"/>
 	</div>
 </template>
 
@@ -11,12 +11,7 @@ export default {
 	props: {
 		options: Array
 	},
-	inject: {
-		updateLanguage: {
-			from: "updateLanguage",
-			default() {}
-		}
-	}
+	inject: ["setLanguage", "currentLanguage"]
 }
 </script>
 
@@ -29,8 +24,12 @@ export default {
 	justify-items: center;
 }
 
-.languages img {
+.flagicon {
 	width: 2rem;
 	border-radius: 1rem;
+}
+
+.flagicon.selected {
+	outline: white solid 2px;
 }
 </style>

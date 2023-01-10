@@ -1,6 +1,6 @@
 <template>
 	<div class="settingitem">
-		<h3 :data-i18n="captionID">{{translate(captionID)}}</h3>
+		<h3>{{translate(captionID)}}</h3>
 		<slot/>
 	</div>
 </template>
