@@ -38,7 +38,6 @@ export default {
 		LocalStorageSelector
 	},
 	methods: {
-		toggleHidden: event => event.target.parentNode.classList.toggle("hidden"),
 		updateIconSize(size) {
 			this.getMap().updateIconSize(size)
 		},

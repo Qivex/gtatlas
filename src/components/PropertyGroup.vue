@@ -1,6 +1,6 @@
 <template>
 	<div class="propertygroup">
-		<div class="property" tabindex="0">
+		<div class="property pointer" tabindex="0">
 			<input type="checkbox" :id="id" :indeterminate="indeterminate" v-model="state" @click.left="cycleState"/>
 			<div class="styled-checkbox" @click.left="cycleState"></div>
 			<p>temp-{{id}}</p>
