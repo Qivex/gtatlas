@@ -1,8 +1,8 @@
 <template>
 	<nav class="navbar">
-		<img id="logo" :src="'icons/settings.svg'"/>
-		<NavItem captionID="nav_select" :onselect="toggleSelect"/>
-		<NavItem captionID="nav_settings" :onselect="toggleSettings"/>
+		<img id="logo" :src="'icons/settings.svg'"/><!-- TODO placeholder -->
+		<NavItem captionID="nav_select"   :onselect="toggleSelect"   :active="isSelectExpanded"/>
+		<NavItem captionID="nav_settings" :onselect="toggleSettings" :active="isSettingsExpanded"/>
 	</nav>
 </template>
 
@@ -18,12 +18,26 @@ export default {
 	props: {
 		menus: Array
 	},
+	computed: {
+		menuSelect() {
+			return this.menus[0]
+		},
+		menuSettings() {
+			return this.menus[1]
+		},
+		isSelectExpanded() {
+			return !!this.menuSelect?.expanded
+		},
+		isSettingsExpanded() {
+			return !!this.menuSettings?.expanded
+		},
+	},
 	methods: {
 		toggleSelect() {
-			this.menus[0].toggleExpanded()
+			this.menuSelect.toggleExpanded()
 		},
 		toggleSettings() {
-			this.menus[1].toggleExpanded()
+			this.menuSettings.toggleExpanded()
 		}
 	}
 }
@@ -44,7 +58,7 @@ export default {
 	border-bottom: 1px solid #fff;
 }
 
-.logo {
+#logo {
 	margin: 4px;
 }
 </style>

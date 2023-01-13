@@ -1,5 +1,5 @@
 <template>
-	<div class="navitem" @click.left="onselect">
+	<div class="navitem" :class="{active}" @click.left="onselect">
 		<h3>{{translate(captionID)}}</h3>
 	</div>
 </template>
@@ -10,7 +10,8 @@ export default {
 	name: "NavItem",
 	props: {
 		captionID: String,
-		onselect: Function
+		onselect: Function,
+		active: Boolean
 	},
 	inject: ["translate"]
 }
@@ -28,5 +29,9 @@ export default {
 
 .navitem:hover {
 	background-color: #333;
+}
+
+.active h3 {
+	text-shadow: 0px 0px 0.5rem #FFF;
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-	<div class="submenu" :class="{expanded: expanded}">
+	<div class="submenu" :class="{expanded}">
 		<slot/>
 	</div>
 </template>
@@ -19,8 +19,7 @@ export default {
 		toggleExpanded() {
 			this.expanded = !this.expanded
 		}
-	},
-	inject: ["isMobile"]
+	}
 }
 </script>
 

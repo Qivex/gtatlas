@@ -41,6 +41,10 @@ export default {
 			this.$refs.select,
 			this.$refs.settings
 		]
+		// Method call instead of initial state (data) to show animation (gives indication that menus can be toggled)
+		if (!this.isMobile()) {
+			this.$refs.select.toggleExpanded()
+		}
 	},
 	inject: ["isMobile"]
 }
