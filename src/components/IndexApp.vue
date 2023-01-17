@@ -21,7 +21,6 @@ export default {
 	},
 	data() {
 		return {
-			useLocalStorage: false || window.localStorage.length > 0,
 			currentLanguage: "en",
 			initialvisiblelayers: [], // State transfer from LayerSelect to GTAMap
 			map: undefined,	// Component doesn't exist yet
@@ -30,8 +29,6 @@ export default {
 	provide() {
 		return {
 			isMobile: this.isMobile,
-			getUseLocalStorage: this.getUseLocalStorage,
-			toggleUseLocalStorage: this.toggleUseLocalStorage,
 			translate: this.translate,
 			setLanguage: this.setLanguage,
 			currentLanguage: computed(() => this.currentLanguage),
@@ -46,13 +43,6 @@ export default {
 			// Todo: Firefox thinks trackpads are coarse... Not even (any-pointer: fine)
 			// See https://bugzilla.mozilla.org/show_bug.cgi?id=1638556
 			return window.matchMedia("(pointer: coarse)").matches
-		},
-		getUseLocalStorage() {
-			return this.useLocalStorage	
-		},
-		toggleUseLocalStorage() {
-			this.useLocalStorage = !this.useLocalStorage
-			// TODO: Clear (previous) localStorage on visibilitychange if disabled
 		},
 		translate(stringID, ...content) {
 			let localizedString = localizations?.[this.currentLanguage]?.[stringID]
@@ -96,12 +86,6 @@ export default {
 			})
 		// Initialize visible layers on Map
 		this.initialvisiblelayers.forEach(id => this.map.setLayerVisibility(id, true))
-		// Clear localStorage on page close if deselected
-		document.addEventListener("visibilitychange", () => {
-			if (document.visibilityState === "hidden" && !this.getUseLocalStorage()) {
-				window.localStorage.clear()
-			}
-		})
 	}
 }
 </script>

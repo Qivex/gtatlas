@@ -6,7 +6,9 @@
 <script>
 import "leaflet/dist/leaflet.css"
 import Leaflet from "leaflet"
-import {default as maplayers, version, name2index} from "../data/maplayers.js"
+
+import { default as maplayers, version, name2index } from "../data/maplayers.js"
+import { getInitialValue, saveOnClose } from "../tools/config.js"
 
 // Helper
 function updateGroupIconSize(group, size) {
@@ -67,31 +69,16 @@ export default {
 			this.initIconState()
 		},
 		initViewState() {
-			// URL query
-			let usp = new URLSearchParams(window.location.search)
-			let lat = parseFloat(usp.get("x"))
-			let lng = parseFloat(usp.get("y"))
-			let zoom = parseInt(usp.get("zoom"))
-			// localStorage
-			let ls = window.localStorage
-			lat ||= ls.getItem("map-lat")
-			lng ||= ls.getItem("map-lng")
-			zoom ||= ls.getItem("map-zoom")
-			// Defaults
-			lat ||= -140
-			lng ||= 64
-			zoom ||= 3
+			// Get initial values
+			let lat = parseFloat(getInitialValue("x", "map-lat", -140))
+			let lng = parseFloat(getInitialValue("y", "map-lng", 64))
+			let zoom = parseInt(getInitialValue("zoom", "map-zoom", 3))
 			// Set view
 			this.map.setView([lat,lng], zoom, {animate: false})
 			// Save view whenever user leaves
-			document.addEventListener("visibilitychange", () => {
-				if (document.visibilityState === "hidden" && this.getUseLocalStorage()) {
-					let center = this.map.getCenter()
-					ls.setItem("map-lat", center.lat)
-					ls.setItem("map-lng", center.lng)
-					ls.setItem("map-zoom", this.map.getZoom())
-				}
-			})
+			saveOnClose("map-lat", () => this.map.getCenter().lat)
+			saveOnClose("map-lng", () => this.map.getCenter().lng)
+			saveOnClose("map-zoom", () => this.map.getZoom())
 		},
 		initIconState() {
 			// Load all maplayers
@@ -144,7 +131,7 @@ export default {
 		// Send ref to App (earlier than ref="map" would resolve)
 		this.setMap(this)
 	},
-	inject: ["setMap", "getUseLocalStorage"]
+	inject: ["setMap"]
 }
 </script>
 

@@ -18,8 +18,7 @@ export default {
 	},
 	provide() {
 		return {
-			setMap: this.setMap,
-			getUseLocalStorage: ()=>false
+			setMap: this.setMap
 		}
 	},
 	methods: {

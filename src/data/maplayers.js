@@ -1,5 +1,5 @@
 import mapdata from "./mapdata.json"
-import { marker, line, circle, group } from "../maptools.js"
+import { marker, line, circle, group } from "../tools/maptools.js"
 
 const iconSize = 35	// Todo: Use localStorage
 
