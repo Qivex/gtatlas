@@ -98,7 +98,7 @@ a {
 	color: #266bec;
 }
 
-/* Would cause blue outline on mobile! */
+/* Would cause blue outline on mobile (https://stackoverflow.com/a/66209706) */
 @media (pointer: fine) {
 	.pointer {
 		cursor: pointer;
