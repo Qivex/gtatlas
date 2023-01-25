@@ -1,11 +1,11 @@
 <template>
 	<div class="lstoggle">
 		<ToggleSwitch :initial="isLSAllowed()" :onchange="setLSAllowed"/>
-		<p>{{translate("ls_allowed")}}</p>
+		<p>{{$translate("ls_allowed")}}</p>
 		<MoreInfo>
-			<p>{{translate("ls_moreinfo")}}</p>
+			<p>{{$translate("ls_moreinfo")}}</p>
 			<br/>
-			<a href="https://www.w3schools.com/html/html5_webstorage.asp" target="_blank" rel="noopener noreferrer">{{translate("ls_link")}}</a>
+			<a href="https://www.w3schools.com/html/html5_webstorage.asp" target="_blank" rel="noopener noreferrer">{{$translate("ls_link")}}</a>
 		</MoreInfo>
 	</div>
 </template>
@@ -26,8 +26,7 @@ export default {
 	methods: {
 		setLSAllowed,
 		isLSAllowed
-	},
-	inject: ["translate"]
+	}
 }
 </script>
 

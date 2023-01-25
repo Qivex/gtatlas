@@ -6,12 +6,10 @@
 
 
 <script>
+import { getInitialValue, saveOnClose } from "../tools/config.js"
+
 import GTAMap from "./GTAMap.vue"
 import MapMenu from "./MapMenu.vue"
-
-import localizations from "../data/i18n.json"
-
-import { computed } from "vue"
 
 export default {
 	name: "App",
@@ -21,7 +19,6 @@ export default {
 	},
 	data() {
 		return {
-			currentLanguage: "en",
 			initialvisiblelayers: [], // State transfer from LayerSelect to GTAMap
 			map: undefined,	// Component doesn't exist yet
 		}
@@ -29,9 +26,6 @@ export default {
 	provide() {
 		return {
 			isMobile: this.isMobile,
-			translate: this.translate,
-			setLanguage: this.setLanguage,
-			currentLanguage: computed(() => this.currentLanguage),
 			setInitialVisibleLayers: this.setInitialVisibleLayers,
 			setMap: this.setMap,
 			getMap: this.getMap
@@ -43,20 +37,6 @@ export default {
 			// Todo: Firefox thinks trackpads are coarse... Not even (any-pointer: fine)
 			// See https://bugzilla.mozilla.org/show_bug.cgi?id=1638556
 			return window.matchMedia("(pointer: coarse)").matches
-		},
-		translate(stringID, ...content) {
-			let localizedString = localizations?.[this.currentLanguage]?.[stringID]
-			if (content.length === 0) {
-				return localizedString
-			}
-			// Replace placeholders with content
-			function nextContent() {
-				return content.pop() || ""
-			}
-			return localizedString.replaceAll("{}", nextContent)
-		},
-		setLanguage(languageID) {
-			this.currentLanguage = languageID
 		},
 		setInitialVisibleLayers(layers) {
 			// LayerSelect component provides initially visible layers
@@ -70,6 +50,12 @@ export default {
 			// Returns reference to map (preferable to handing a prop all the way down every component)
 			return this.map
 		}
+	},
+	created() {
+		// Setup localization
+		let userLang = window.navigator.language.substring(0,2)	// Only use primary tag
+		this.$lang.value = getInitialValue("lang", "lang", this.$availableLanguages.includes(userLang) ? userLang : "en")	// Fallback to "en" if user language has no translations
+		saveOnClose("lang", () => this.$lang.value)
 	},
 	mounted() {
 		// Load GTA icons

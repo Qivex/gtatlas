@@ -4,7 +4,7 @@
 			<IconSizeSelector :onconfirm="updateIconSize" :min="20" :initial="35" :max="50" :icons="['default','office','supplies-crate','target']"/>
 		</SettingItem>
 		<SettingItem captionID="language">
-			<LanguageSelector :options="['en','de']"/>
+			<LanguageSelector/>
 		</SettingItem>
 		<SettingItem captionID="map_style">
 			<TilesetSelector :onselect="updateTileset" :options="['render','print','game']"/>

@@ -1,6 +1,6 @@
 <template>
 	<div class="navitem" :class="{active}" @click.left="onselect">
-		<h3>{{translate(captionID)}}</h3>
+		<h3>{{$translate(captionID)}}</h3>
 	</div>
 </template>
 
@@ -12,8 +12,7 @@ export default {
 		captionID: String,
 		onselect: Function,
 		active: Boolean
-	},
-	inject: ["translate"]
+	}
 }
 </script>
 

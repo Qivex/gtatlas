@@ -1,17 +1,13 @@
 <template>
 	<div class="languages">
-		<img v-for="lang in options" class="flagicon pointer" :class="{selected: lang === currentLanguage}" :src="`icons/flags/${lang}.svg`" @click.left="setLanguage(lang)" :alt="lang"/>
+		<img v-for="lang in $availableLanguages" class="flagicon pointer" :class="{selected: lang === $lang.value}" :src="`icons/flags/${lang}.svg`" @click.left="$lang.value = lang" :alt="lang"/>
 	</div>
 </template>
 
 
 <script>
 export default {
-	name: "LanguageSelector",
-	props: {
-		options: Array
-	},
-	inject: ["setLanguage", "currentLanguage"]
+	name: "LanguageSelector"
 }
 </script>
 
