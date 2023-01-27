@@ -25,19 +25,13 @@ export default {
 	},
 	provide() {
 		return {
-			isMobile: this.isMobile,
+			isMobile: !window.matchMedia("(any-pointer: fine)").matches,	// Mobile devices don't have any fine pointer
 			setInitialVisibleLayers: this.setInitialVisibleLayers,
 			setMap: this.setMap,
 			getMap: this.getMap
 		}
 	},
 	methods: {
-		isMobile() {
-			// Mobile devices have a coarse pointer (Todo: Should tablets use the desktop layout?)
-			// Todo: Firefox thinks trackpads are coarse... Not even (any-pointer: fine)
-			// See https://bugzilla.mozilla.org/show_bug.cgi?id=1638556
-			return window.matchMedia("(pointer: coarse)").matches
-		},
 		setInitialVisibleLayers(layers) {
 			// LayerSelect component provides initially visible layers
 			this.initialvisiblelayers = layers

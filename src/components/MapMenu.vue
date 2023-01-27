@@ -1,6 +1,6 @@
 <template>
 	<div class="mapmenu">
-		<MenuToggleGroup v-if="isMobile()" :menus="menus"/>
+		<MenuToggleGroup v-if="isMobile" :menus="menus"/>
 		<NavBar v-else :menus="menus"/>
 		<Submenu ref="select" icon="url(/icons/select.svg)">
 			<LayerSelect/>
@@ -42,7 +42,7 @@ export default {
 			this.$refs.settings
 		]
 		// Method call instead of initial state (data) to show animation (gives indication that menus can be toggled)
-		if (!this.isMobile()) {
+		if (!this.isMobile) {
 			this.$refs.select.toggleExpanded()
 		}
 	},
