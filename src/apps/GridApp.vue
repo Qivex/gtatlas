@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import GTAMap from "./GTAMap.vue"
+import GTAMap from "../components/GTAMap.vue"
 import Leaflet from "leaflet"
 
 export default {

@@ -8,8 +8,8 @@
 <script>
 import { getInitialValue, saveOnClose } from "../tools/config.js"
 
-import GTAMap from "./GTAMap.vue"
-import MapMenu from "./MapMenu.vue"
+import GTAMap from "../components/GTAMap.vue"
+import MapMenu from "../components/MapMenu.vue"
 
 export default {
 	name: "App",
