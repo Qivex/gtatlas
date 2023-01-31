@@ -1,6 +1,7 @@
 {
 	"en": {
-		"test": "This is a test string",
+		"test_string": "This is a test string with some length to test content that might wrap to multiple lines.",
+		"test_title": "Test title",
 		"confirm": "Confirm",
 		"icon_size": "Icon size",
 		"language": "Language",
@@ -11,10 +12,12 @@
 		"ls_moreinfo": "Settings and map state are stored only on this device. No data is sent to or kept on a server.",
 		"ls_link": "More infos about localStorage",
 		"nav_select": "Select markers",
-		"nav_settings": "Settings"
+		"nav_settings": "Settings",
+		"nav_about": "About"
 	},
 	"de": {
-		"test": "Das ist nur zum testen",
+		"test_string": "Dies ist ein Text der nur zum Testen verwendet wird und möglicherweise mehr als eine Zeile einnimmt.",
+		"test_title": "Test Überschrift",
 		"confirm": "Bestätigen",
 		"icon_size": "Größe der Icons",
 		"language": "Sprache",
@@ -25,6 +28,7 @@
 		"ls_moreinfo": "Einstellungen und Kartenzustand werden ausschließlich auf diesem Gerät gespeichert. Keine Daten werden übermittelt.",
 		"ls_link": "Mehr Infos zu localStorage (engl.)",
 		"nav_select": "Wähle Marker",
-		"nav_settings": "Einstellungen"
+		"nav_settings": "Einstellungen",
+		"nav_about": "Über"
 	}
 }

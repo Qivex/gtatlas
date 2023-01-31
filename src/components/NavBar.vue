@@ -3,6 +3,7 @@
 		<img id="logo" :src="'icons/settings.svg'"/><!-- TODO placeholder -->
 		<NavItem captionID="nav_select"   :onselect="toggleSelect"   :active="isSelectExpanded"/>
 		<NavItem captionID="nav_settings" :onselect="toggleSettings" :active="isSettingsExpanded"/>
+		<NavItem captionID="nav_about"    :onselect="toggleAbout"    :active="isAboutExpanded"/>
 	</nav>
 </template>
 
@@ -25,11 +26,17 @@ export default {
 		menuSettings() {
 			return this.menus[1]
 		},
+		menuAbout() {
+			return this.menus[2]
+		},
 		isSelectExpanded() {
 			return !!this.menuSelect?.expanded
 		},
 		isSettingsExpanded() {
 			return !!this.menuSettings?.expanded
+		},
+		isAboutExpanded() {
+			return !!this.menuAbout?.expanded
 		},
 	},
 	methods: {
@@ -38,6 +45,9 @@ export default {
 		},
 		toggleSettings() {
 			this.menuSettings.toggleExpanded()
+		},
+		toggleAbout() {
+			this.menuAbout.toggleExpanded()
 		}
 	}
 }

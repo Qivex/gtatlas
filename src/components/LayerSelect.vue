@@ -75,10 +75,4 @@ export default {
 		transform: translateX(-100%);
 	}
 }
-
-@media (pointer: coarse) {
-	.layerselect {
-		width: 100%;
-	}
-}
 </style>

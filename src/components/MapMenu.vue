@@ -8,6 +8,9 @@
 		<Submenu ref="settings" icon="url(/icons/settings.svg)">
 			<MapSettings/>
 		</Submenu>
+		<Submenu ref="about" icon="url(/icons/info.svg)">
+			<About/>
+		</Submenu>
 	</div>
 </template>
 
@@ -17,6 +20,7 @@ import NavBar from "./NavBar.vue"
 import Submenu from "./Submenu.vue"
 import LayerSelect from "./LayerSelect.vue"
 import MapSettings from "./MapSettings.vue"
+import About from "./About.vue"
 
 export default {
 	name: "MapMenu",
@@ -25,7 +29,8 @@ export default {
 		NavBar,
 		Submenu,
 		LayerSelect,
-		MapSettings
+		MapSettings,
+		About
 	},
 	data() {
 		return {
@@ -39,7 +44,8 @@ export default {
 		// Refs dont exist before mount
 		this.menus = [
 			this.$refs.select,
-			this.$refs.settings
+			this.$refs.settings,
+			this.$refs.about
 		]
 		// Method call instead of initial state (data) to show animation (gives indication that menus can be toggled)
 		if (!this.isMobile) {

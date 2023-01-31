@@ -1,33 +1,33 @@
 <template>
-	<div class="settingitem">
-		<h3>{{$translate(captionID)}}</h3>
+	<section>
+		<h3>{{$translate(titleID)}}</h3>
 		<slot/>
-	</div>
+	</section>
 </template>
 
 
 <script>
 export default {
-	name: "SettingItem",
+	name: "Section",
 	props: {
-		captionID: String
+		titleID: String
 	}
 }
 </script>
 
 
 <style>
-.settingitem {
+section {
 	color: #fff;
 	padding: 1rem;
 	border-top: 1px solid #fff;
 }
 
-.settingitem:first-child {
+section:first-child {
 	border: none;
 }
 
-.settingitem h3 {
+section h3 {
 	margin-bottom: 0.5rem;
 }
 </style>

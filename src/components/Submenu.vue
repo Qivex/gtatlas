@@ -67,6 +67,11 @@ export default {
 		overflow-y: scroll;
 	}
 
+	/* Content of submenu should always fill full width */
+	.submenu > * {
+		width: 100%;
+	}
+
 	.submenu.expanded {
 		transform: translateY(calc(-1 * var(--expand-height)));
 	}
