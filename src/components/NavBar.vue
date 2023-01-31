@@ -48,6 +48,12 @@ export default {
 		},
 		toggleAbout() {
 			this.menuAbout.toggleExpanded()
+			// Update location (Todo: Should this also happen on mobile?)
+			if (this.menuAbout.expanded) {
+				window.history.pushState(null, "", "/about")
+			} else {
+				window.history.back()
+			}
 		}
 	}
 }
