@@ -25,7 +25,6 @@ export default {
 	},
 	provide() {
 		return {
-			isMobile: !window.matchMedia("(any-pointer: fine)").matches,	// Mobile devices don't have any fine pointer
 			setInitialVisibleLayers: this.setInitialVisibleLayers,
 			setMap: this.setMap,
 			getMap: this.getMap
