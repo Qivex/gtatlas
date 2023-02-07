@@ -46,7 +46,7 @@ function applyInitialVisibility(prop) {
 	if (visibleLayersInURLParam) {	// Consider URL param
 		prop.initial = visibleLayersInURLParam.includes(prop.id)
 	}
-	// Collect all initially visible layers (later used in GTAMap component)
+	// Collect all initially visible layers (later used in GTA5Map component)
 	if (prop.initial) {
 		visibleLayers.push(prop.id)
 	}

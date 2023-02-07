@@ -82,21 +82,6 @@ export default {
 			}
 		}
 	},
-	// Wrap all methods of LeafletMap
-	methods: {
-		setLayerVisibility(id, visible) {
-			this.map.setLayerVisibility(id, visible)
-		},
-		updateTileset(name) {
-			this.map.setTileset(name)
-		},
-		updateIconSize(size) {
-			this.map.setIconSize(size)
-		},
-		updateBusinessColor(color) {
-			this.map.setIconColor(color)
-		}
-	},
 	mounted() {
 		// Construct all maplayers from data using tools
 		let maplayers = constructMapLayers(mapdata, this.map.getToolset())

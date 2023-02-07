@@ -1,16 +1,16 @@
 <template>
 	<div class="mapsettings">
 		<Section titleID="icon_size">
-			<IconSizeSelector :onconfirm="updateIconSize" :min="20" :initial="35" :max="50" :icons="['default','office','supplies-crate','target']"/>
+			<IconSizeSelector :onconfirm="setIconSize" :min="20" :initial="35" :max="50" :icons="['default','office','supplies-crate','target']"/>
 		</Section>
 		<Section titleID="language">
 			<LanguageSelector/>
 		</Section>
 		<Section titleID="map_style">
-			<TilesetSelector :onselect="updateTileset" :options="['render','print','game']"/>
+			<TilesetSelector :onselect="setTileset" :options="['render','print','game']"/>
 		</Section>
 		<Section titleID="business_col">
-			<BusinessColorSelector :onselect="updateBusinessColor" :colors="['#F79F7B','#E286BB','#EFEE97','#71A9AF','#A08CC1','#8DCEA7','#B5D6EA','#B29084','#008472','#D85575']"/>
+			<BusinessColorSelector :onselect="setIconColor" :colors="['#F79F7B','#E286BB','#EFEE97','#71A9AF','#A08CC1','#8DCEA7','#B5D6EA','#B29084','#008472','#D85575']"/>
 		</Section>
 		<Section titleID="keep_settings">
 			<LocalStorageSelector/>
@@ -38,14 +38,14 @@ export default {
 		LocalStorageSelector
 	},
 	methods: {
-		updateIconSize(size) {
-			this.getMap().updateIconSize(size)
+		setTileset(name) {
+			this.getMap().setTileset(name)
 		},
-		updateTileset(name) {
-			this.getMap().updateTileset(name)
+		setIconSize(size) {
+			this.getMap().setIconSize(size)
 		},
-		updateBusinessColor(color) {
-			this.getMap().updateBusinessColor(color)
+		setIconColor(color) {
+			this.getMap().setIconColor(color)
 		}
 	},
 	inject: ["getMap"]

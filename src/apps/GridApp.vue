@@ -1,34 +1,19 @@
 <template>
-	<GTAMap id="gridmap"/>
+	<GTA5Map id="gridmap" ref="map"/>
 </template>
 
 <script>
-import GTAMap from "../components/GTAMap.vue"
+import GTA5Map from "../components/GTA5Map.vue"
 import Leaflet from "leaflet"
 
 export default {
 	name: "GridApp",
 	components: {
-		GTAMap
-	},
-	data() {
-		return {
-			map: undefined
-		}
-	},
-	provide() {
-		return {
-			setMap: this.setMap
-		}
-	},
-	methods: {
-		setMap(map) {
-			this.map = map
-		}
+		GTA5Map
 	},
 	mounted() {
 		// Shortcut to Leaflet map (not component!)
-		let m = this.map.map
+		let m = this.$refs.map.map.instance	// GTA5Map -> LeafletMap -> Leaflet "Map" class instance
 		// Construct graticule
 		let lines = []
 		let step = 1/20

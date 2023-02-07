@@ -1,5 +1,5 @@
 import { createApp } from "vue"
-import App from "../apps/MainApp.vue"
+import App from "../apps/GTA5App.vue"
 
 import localization from "../plugins/localization.js"
 import translations from "../data/translations.json"

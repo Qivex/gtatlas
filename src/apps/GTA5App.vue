@@ -12,7 +12,7 @@ import GTA5Map from "../components/GTA5Map.vue"
 import MapMenu from "../components/MapMenu.vue"
 
 export default {
-	name: "App",
+	name: "GTA5App",
 	components: {
 		GTA5Map,
 		MapMenu
@@ -34,8 +34,8 @@ export default {
 			this.initialvisiblelayers = layers
 		},
 		getMap() {
-			// Returns reference to map (preferable to handing a prop all the way down every component)
-			return this.$refs.map	// Maybe even .instance? Skip wrapping-methods of GTA5Map
+			// Returns reference to internal LeafletMap (Skip GTA5Map)
+			return this.$refs.map.map
 		}
 	},
 	created() {
@@ -58,7 +58,7 @@ export default {
 				document.getElementById("mapicons").innerHTML = data
 			})
 		// Initialize visible layers on Map
-		this.initialvisiblelayers.forEach(id => this.$refs.map.setLayerVisibility(id, true))
+		this.initialvisiblelayers.forEach(id => this.getMap().setLayerVisibility(id, true))
 	}
 }
 </script>

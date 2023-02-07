@@ -8,7 +8,7 @@ export default defineConfig({
 		assetsDir: "bundle",
 		rollupOptions: {
 			input: {
-				"main": "index.html",
+				"gta5": "gta5.html",
 				"grid": "grid.html"
 			}
 		}
