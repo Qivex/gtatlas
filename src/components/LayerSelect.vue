@@ -8,13 +8,30 @@
 <script>
 import PropertyTree from "./PropertyTree.vue"
 
-import { decodeVisibleLayersFromURLParam } from "../data/maplayers.js"
+import mapdata from "../data/mapdata.json"
 import menutree from "../data/menutree.json"
+
+function decodeVisibleLayersFromURLParam() {
+	// URL query
+	let usp = new URLSearchParams(window.location.search)
+	let encodedIconState = usp.get("hide")
+	switch (encodedIconState) {
+		case null:   // No URL param specified
+			return null
+		case "all":  // Don't show any icons
+			return []
+		case "none": // Show all icon layers
+			return Object.values(mapdata.layers).map(layer => layer.id)
+		default:     // Decode desired state
+			// Todo: Base64 encoded string, bit-order of all layers?
+			return []
+	}
+}
 
 // Modify "initial" values of menutree before using it in component
 let visibleLayersInLocalStorage = window.localStorage.getItem("map-layers")
 let visibleLayersInURLParam = decodeVisibleLayersFromURLParam()
-let visiblelayers = []
+let visibleLayers = []
 
 function applyInitialVisibility(prop) {
 	// Traverse the property
@@ -31,14 +48,14 @@ function applyInitialVisibility(prop) {
 	}
 	// Collect all initially visible layers (later used in GTAMap component)
 	if (prop.initial) {
-		visiblelayers.push(prop.id)
+		visibleLayers.push(prop.id)
 	}
 }
 
 applyInitialVisibility(menutree)
 
 export default {
-	name: "Selection",
+	name: "LayerSelect",
 	components: {
 		PropertyTree
 	},
@@ -56,8 +73,8 @@ export default {
 		}
 	},
 	created() {
-		// Send visiblelayers to App for later use on mount (getMap doesnt know ref yet)
-		this.setInitialVisibleLayers(visiblelayers)
+		// Send visiblelayers to app for later use on mount (getMap can't know ref yet)
+		this.setInitialVisibleLayers(visibleLayers)
 	},
 	inject: ["getMap", "setInitialVisibleLayers"]
 }

@@ -1,5 +1,5 @@
 <template>
-	<GTAMap id="gtamap"/>
+	<GTA5Map id="gta5map" ref="map"/>
 	<MapMenu/>
 	<div id="mapicons"></div>
 </template>
@@ -8,25 +8,23 @@
 <script>
 import { getInitialValue, saveOnClose } from "../tools/config.js"
 
-import GTAMap from "../components/GTAMap.vue"
+import GTA5Map from "../components/GTA5Map.vue"
 import MapMenu from "../components/MapMenu.vue"
 
 export default {
 	name: "App",
 	components: {
-		GTAMap,
+		GTA5Map,
 		MapMenu
 	},
 	data() {
 		return {
-			initialvisiblelayers: [], // State transfer from LayerSelect to GTAMap
-			map: undefined,	// Component doesn't exist yet
+			initialvisiblelayers: [], // State transfer from LayerSelect to GTA5Map
 		}
 	},
 	provide() {
 		return {
 			setInitialVisibleLayers: this.setInitialVisibleLayers,
-			setMap: this.setMap,
 			getMap: this.getMap
 		}
 	},
@@ -35,13 +33,9 @@ export default {
 			// LayerSelect component provides initially visible layers
 			this.initialvisiblelayers = layers
 		},
-		setMap(map) {
-			// GTAMap component provides ref to itself (earlier than this.$refs would resolve)
-			this.map = map
-		},
 		getMap() {
 			// Returns reference to map (preferable to handing a prop all the way down every component)
-			return this.map
+			return this.$refs.map	// Maybe even .instance? Skip wrapping-methods of GTA5Map
 		}
 	},
 	created() {
@@ -64,7 +58,7 @@ export default {
 				document.getElementById("mapicons").innerHTML = data
 			})
 		// Initialize visible layers on Map
-		this.initialvisiblelayers.forEach(id => this.map.setLayerVisibility(id, true))
+		this.initialvisiblelayers.forEach(id => this.$refs.map.setLayerVisibility(id, true))
 	}
 }
 </script>
