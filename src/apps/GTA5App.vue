@@ -6,7 +6,7 @@
 
 
 <script>
-import { getInitialValue, saveOnClose } from "../tools/config.js"
+import { selectConfig, getConfigValue, saveOnClose } from "../tools/config.js"
 
 import GTA5Map from "../components/GTA5Map.vue"
 import MapMenu from "../components/MapMenu.vue"
@@ -39,9 +39,10 @@ export default {
 		}
 	},
 	created() {
+		selectConfig("gta5")
 		// Setup localization
 		let userLang = window.navigator.language.substring(0,2)	// Only use primary tag
-		this.$lang.value = getInitialValue("lang", "lang", this.$availableLanguages.includes(userLang) ? userLang : "en")	// Fallback to "en" if user language has no translations
+		this.$lang.value = getConfigValue("lang", "lang", this.$availableLanguages.includes(userLang) ? userLang : "en")	// Fallback to "en" if user language has no translations
 		saveOnClose("lang", () => this.$lang.value)
 	},
 	mounted() {

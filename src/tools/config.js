@@ -1,22 +1,30 @@
-function getInitialValue(queryID, localStorageID, defaultValue) {
+// Prefix properties in localStorage (enable multiple pages in origin)
+var configPrefix
+
+function selectConfig(prefix) {
+	configPrefix = String(prefix)
+}
+
+function applyPrefix(str) {
+	return configPrefix + "-" + str
+}
+
+// Read initial value from query param or localStorage
+function getConfigValue(queryID, localStorageID, defaultValue) {
 	try {
 		// Shortcuts
 		let usp = new URLSearchParams(window.location.search)
 		let ls = window.localStorage
 		// Priority: URL > LS > Default
-		return usp.get(queryID) ?? ls.getItem(localStorageID) ?? defaultValue
+		return usp.get(queryID) ?? ls.getItem(applyPrefix(localStorageID)) ?? defaultValue
 	} catch (e) {
 		// User doesn't allow localStorage (e instanceof SecurityError)
 		return usp.get(queryID) ?? defaultValue
 	}
 }
 
-const callbacks = {}
+// Determine if localStorage should be written to
 var lsAllowed = false
-
-function saveOnClose(id, getter) {
-	callbacks[id] = getter
-}
 
 function setLSAllowed(allowed) {
 	lsAllowed = !!allowed
@@ -34,16 +42,33 @@ function isLSAllowed() {
 	return lsAllowed
 }
 
-// Setup
+// Setup values saved in localStorage (callbacks on visibilitychange)
+const callbacks = {}
+
+function saveOnClose(id, getter) {
+	callbacks[id] = getter
+}
+
+// Main: Initialize config behaviour
 try {
+	// Shortcut
 	let ls = window.localStorage
 	// Initialize lsAllowed (examine if localStorage is occupied)
 	lsAllowed = ls.length > 0
+	// Assume prefix from path if it isn't set for some reason
+	configPrefix = window.location.pathname
+		.slice(1)
+		.replace(".html", "")
+		.replaceAll("/", "-")
 	// Setup event saving all values
 	window.addEventListener("visibilitychange", () => {
 		if (document.visibilityState === "hidden" && lsAllowed === true) {
-			for (const id in callbacks) {
-				ls.setItem(id, callbacks[id]())
+			try {
+				for (const id in callbacks) {
+					ls.setItem(applyPrefix(id), callbacks[id]())
+				}
+			} catch (e) {
+				console.log("Error while writing to localStorage, probably full")
 			}
 		}
 	})
@@ -52,8 +77,9 @@ try {
 }
 
 export {
-	getInitialValue,
-	saveOnClose,
+	selectConfig,
+	getConfigValue,
 	setLSAllowed,
-	isLSAllowed
+	isLSAllowed,
+	saveOnClose
 }
