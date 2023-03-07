@@ -37,7 +37,6 @@ export default {
 		}
 	},
 	created() {
-		//selectConfig("gta5")
 		// Setup localization
 		let userLang = window.navigator.language.substring(0,2)	// Only use primary tag
 		this.$lang.value = this.$fromConfig("lang", "lang", this.$availableLanguages.includes(userLang) ? userLang : "en")	// Fallback to "en" if user language has no translations
