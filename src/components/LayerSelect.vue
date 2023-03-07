@@ -29,7 +29,7 @@ function decodeVisibleLayersFromURLParam() {
 }
 
 // Modify "initial" values of menutree before using it in component
-let visibleLayersInLocalStorage = window.localStorage.getItem("map-layers")
+let visibleLayersInLocalStorage = []	//window.localStorage.getItem("map-layers")
 let visibleLayersInURLParam = decodeVisibleLayersFromURLParam()
 let visibleLayers = []
 

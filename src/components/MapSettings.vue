@@ -13,7 +13,8 @@
 			<BusinessColorSelector :onselect="setIconColor" :colors="['#F79F7B','#E286BB','#EFEE97','#71A9AF','#A08CC1','#8DCEA7','#B5D6EA','#B29084','#008472','#D85575']"/>
 		</Section>
 		<Section titleID="keep_settings">
-			<LocalStorageSelector/>
+			<LocalStorageSelector v-if="$lsEnabled"/>
+			<p v-else>{{$translate("ls_blocked")}}</p>
 		</Section>
 	</div>
 </template>

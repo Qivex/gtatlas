@@ -1,6 +1,6 @@
 <template>
 	<div class="lstoggle">
-		<ToggleSwitch :initial="isLSAllowed()" :onchange="setLSAllowed"/>
+		<ToggleSwitch :initial="$lsAllowed.value" :onchange="setLSAllowed"/>
 		<p>{{$translate("ls_allowed")}}</p>
 		<MoreInfo>
 			<p>{{$translate("ls_moreinfo")}}</p>
@@ -15,8 +15,6 @@
 import ToggleSwitch from "./ToggleSwitch.vue"
 import MoreInfo from "./MoreInfo.vue"
 
-import { setLSAllowed, isLSAllowed } from "../tools/config.js"
-
 export default {
 	name: "LocalStorageSelector",
 	components: {
@@ -24,8 +22,9 @@ export default {
 		MoreInfo
 	},
 	methods: {
-		setLSAllowed,
-		isLSAllowed
+		setLSAllowed(allowed) {
+			this.$lsAllowed.value = allowed
+		}
 	}
 }
 </script>

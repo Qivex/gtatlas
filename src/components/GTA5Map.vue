@@ -9,7 +9,6 @@ import LeafletMap from "./LeafletMap.vue"
 import Leaflet from "leaflet"
 
 import mapdata from "../data/mapdata.json"
-import { getConfigValue, saveOnClose } from "../tools/config.js"
 
 function constructMapLayers(data, ts) {
 	let result = {}
@@ -88,15 +87,15 @@ export default {
 		// Provide constructed layers
 		this.map.addLayers(maplayers)
 		// Get initial state
-		let lat = parseFloat(getConfigValue("x", "map-lat", -140))
-		let lng = parseFloat(getConfigValue("y", "map-lng", 64))
-		let zoom = parseInt(getConfigValue("zoom", "map-zoom", 3))
+		let lat = parseFloat(this.$fromConfig("x", "map-lat", -140))
+		let lng = parseFloat(this.$fromConfig("y", "map-lng", 64))
+		let zoom = parseInt(this.$fromConfig("zoom", "map-zoom", 3))
 		// Apply map state
 		this.map.instance.setView([lat,lng], zoom, {animate: false})
 		// Store map state on leave
-		saveOnClose("map-lat", () => this.map.instance.getCenter().lat)
-		saveOnClose("map-lng", () => this.map.instance.getCenter().lng)
-		saveOnClose("map-zoom", () => this.map.instance.getZoom())
+		this.$persist("map-lat", () => this.map.instance.getCenter().lat)
+		this.$persist("map-lng", () => this.map.instance.getCenter().lng)
+		this.$persist("map-zoom", () => this.map.instance.getZoom())
 	}
 }
 </script>
