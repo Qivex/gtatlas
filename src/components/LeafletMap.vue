@@ -70,6 +70,11 @@ export default {
 				console.error("Something went wrong when adding layers: ", newLayers)
 			}
 		},
+		getAllVisibleLayerNames() {
+			// Get all layer names & filter for currently visible
+			return Object.keys(this.layers)
+				.filter(id => this.instance.hasLayer(this.layers[id]))
+		},
 		setLayerVisibility(id, visible) {
 			// Shortcut
 			let layer = this.layers[id]

@@ -24,35 +24,9 @@ function decodeVisibleLayersFromURLParam() {
 			return Object.values(mapdata.layers).map(layer => layer.id)
 		default:     // Decode desired state
 			// Todo: Base64 encoded string, bit-order of all layers?
-			return []
+			return null
 	}
 }
-
-// Modify "initial" values of menutree before using it in component
-let visibleLayersInLocalStorage = []	//window.localStorage.getItem("map-layers")
-let visibleLayersInURLParam = decodeVisibleLayersFromURLParam()
-let visibleLayers = []
-
-function applyInitialVisibility(prop) {
-	// Traverse the property
-	if (prop.children) {
-		prop.children.forEach(child => applyInitialVisibility(child))
-		return
-	}
-	// Determine if layer should be visible:
-	if (visibleLayersInLocalStorage) {	// Consider localStorage
-		prop.initial = visibleLayersInLocalStorage.includes(prop.id)
-	}
-	if (visibleLayersInURLParam) {	// Consider URL param
-		prop.initial = visibleLayersInURLParam.includes(prop.id)
-	}
-	// Collect all initially visible layers (later used in GTA5Map component)
-	if (prop.initial) {
-		visibleLayers.push(prop.id)
-	}
-}
-
-applyInitialVisibility(menutree)
 
 export default {
 	name: "LayerSelect",
@@ -73,8 +47,36 @@ export default {
 		}
 	},
 	created() {
+		// Determine which layers should be initially visible (multiple sources)
+		const visibleLayersInLocalStorage = this.$fromConfig(null, "map-layers", null)?.split(",")
+		const visibleLayersInURLParam = decodeVisibleLayersFromURLParam()
+		const visibleLayers = []
+		// Modify menutree *before* its being accessed for mounting (function required for recursion)
+		function applyInitialVisibility(prop) {
+			// Traverse the property
+			if (prop.children) {
+				prop.children.forEach(child => applyInitialVisibility(child))
+				return
+			}
+			// Determine if layer should be visible: USP overwrites LS overwrites defaul (if set)
+			if (visibleLayersInLocalStorage) { // Consider localStorage
+				prop.initial = visibleLayersInLocalStorage.includes(prop.id)
+			}
+			if (visibleLayersInURLParam) {     // Consider URL param
+				prop.initial = visibleLayersInURLParam.includes(prop.id)
+			}
+			// Collect all initially visible layers (later used in GTA5Map component)
+			if (prop.initial) {
+				visibleLayers.push(prop.id)
+			}
+		}
+		applyInitialVisibility(menutree)
 		// Send visiblelayers to app for later use on mount (getMap can't know ref yet)
 		this.setInitialVisibleLayers(visibleLayers)
+	},
+	mounted() {
+		// Store names of all currently selected layers on close
+		this.$persist("map-layers", () => this.getMap().getAllVisibleLayerNames().join(","))
 	},
 	inject: ["getMap", "setInitialVisibleLayers"]
 }

@@ -54,7 +54,7 @@ function installWithLocalStorage(app, options) {
 					console.log(e)
 				}
 			} else {
-				window.localStorage.clear()	// TODO: This clears all configs, not just current prefix!
+				window.localStorage.clear()	// Caution: This clears all configs of origin, not just current prefix!
 			}
 		}
 	})
