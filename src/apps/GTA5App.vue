@@ -50,7 +50,7 @@ export default {
 		- <use> is way more efficient than cloning the same SVG into every icon (inline component)
 		- <template src=""> fails with any file extension != html -> Manual fetch needed
 		- https://www.npmjs.com/package/vue-svg-inline-loader isn't compatible with Leaflet's (Div)Icons */
-		fetch("icons/gtaicons.svg")
+		fetch("icons/games/gta5icons.svg")
 			.then(res => res.text())
 			.then(data => {
 				document.getElementById("mapicons").innerHTML = data

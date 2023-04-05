@@ -1,13 +1,12 @@
 <template>
 	<div v-if="currentIcon" class="icon-single">
-		<svg>
+		<svg id="svg">
 			<use :href="toHREF(currentIcon)"/>
 		</svg>
 		<div class="icon-menu">
 			<p>{{currentIcon}}</p>
-			<img src="icons/download.svg" @click.left="openSaveDialog"/>
-			<img src="icons/close.svg" @click.left="closeIcon"/>
-			<!-- Todo: Embed as SVG -->
+			<img src="/icons/download.svg" @click.left="openSaveDialog"/>
+			<img src="/icons/close.svg" @click.left="closeIcon"/>
 		</div>
 		<dialog class="save-dialog" ref="pngdialog">
 			<p>Save as PNG</p>
@@ -34,7 +33,8 @@ export default {
 			iconIDs: [],
 			currentIcon: undefined,
 			columnCount: 8,
-			sizeStep: 7
+			sizeStep: 7,
+			svgData: ""
 		}
 	},
 	computed: {
@@ -67,12 +67,35 @@ export default {
 			this.$refs.pngdialog.close()
 		},
 		savePNG() {
-			// Close dialog
 			this.closeSaveDialog()
-			// Create canvas of pngSize
-			// Draw SVG
-			// Create Data-URL
-			// Open Save-prompt
+			// Create canvas
+			let canvas = new OffscreenCanvas(this.pngSize, this.pngSize)
+			// Include entire SVG source (otherwise <use> wont resolve :/)
+			let wrapper = document.createElement("div")
+			wrapper.innerHTML = this.svgData
+			let svg = wrapper.firstElementChild
+			// Use only the selected icon
+			let use = document.createElement("use")
+			use.setAttribute("href", this.toHREF(this.currentIcon))
+			use.setAttribute("color", "#F0F0F0")	// Business color (would be black without this)
+			svg.appendChild(use)
+			// SVG as Blob
+			let svgBlob = new Blob([svg.outerHTML], {type: "image/svg+xml;charset=utf-8"})
+			// Draw on canvas as image
+			let img = new Image()
+			img.src = URL.createObjectURL(svgBlob)
+			img.onload = () => {
+				let ctx = canvas.getContext("2d")
+				ctx.drawImage(img, 0, 0, this.pngSize, this.pngSize)
+				// Convert canvas to PNG
+				canvas.convertToBlob().then(pngBlob => {
+					// Hack to start download: Temporary hidden <a>
+					let link = document.createElement("a")
+					link.download = this.currentIcon + ".png"
+					link.href = URL.createObjectURL(pngBlob)
+					link.click()
+				})
+			}
 		},
 		toHREF(id) {
 			return "#icon-" + id
@@ -80,9 +103,10 @@ export default {
 	},
 	mounted() {
 		// Get all icons
-		fetch("icons/gtaicons.svg")
+		fetch("icons/games/gta5icons.svg")
 			.then(res => res.text())
 			.then(data => {
+				this.svgData = data	// Store for PNG generation
 				document.getElementById("mapicons").innerHTML = data
 				document.querySelectorAll("#icons symbol").forEach(el => this.iconIDs.push(el.id.replace("icon-", "")))
 				this.adjustGrid()
@@ -102,7 +126,7 @@ body {
 	width: 100%;
 	margin: 0px;
 	padding: 0px;
-	background-image: url(icons/pattern-checker.svg);
+	background-image: url(/icons/pattern-checker.svg);
 	background-size: 24px 24px;
 	color: #fff;	/* Initial org-color for icons (defaults to black) */
 	font-family: arial;

@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg">
+
+	<defs id="icons">
+
+		<!-- rendered only in Firefox (foreignObject in use-tag) -->
+		<symbol viewBox="0 0 128 128" id="icon-loading">
+			<style>
+				@keyframes rotate {
+					from {transform: rotate(360deg)}
+					to {transform: rotate(0deg)}
+				}
+				
+				.loading {
+					width: 100%;
+					height: 100%;
+					background: conic-gradient(#FFF, hsla(0,0%,100%,0) 270deg);
+					clip-path: path('M34,64 a30,30 0,0,0 60,0 a30,30 0,0,0 -60,0 M48,64 a16,16 0,0,1 32,0 a16,16 0,0,1 -32,0');
+					animation: rotate 2s linear infinite;
+					transform-origin: 64px 64px;
+				}
+			</style>
+			<foreignObject width="128" height="128">
+				stackoverflow.com/questions/2465405
+				<div xmlns="http://www.w3.org/1999/xhtml" class="loading"></div>
+			</foreignObject>
+		</symbol>
+
+		<symbol viewBox="0 0 128 128" id="icon-enemy-heli">
+			<path d="M56,56 v-33 a8,8 0,0,1 16,0 v33 h33 a8,8 0,0,1 0,16 h-33 v33 a8,8 0,0,1 -16,0 v-33 h-33 a8,8 0,0,1 0,-16 z" fill="#E03232" stroke="#000" stroke-width="4" stroke-linejoin="round">
+				<animateTransform attributeName="transform" type="rotate" from="0 64 64" to="90 64 64" dur="0.3s" repeatCount="indefinite"/>
+			</path>
+		</symbol>
+
+		<symbol viewBox="0 0 128 128" id="icon-enemy-cop">
+			<circle cx="64" cy="64" r="17">
+				<!-- 33 frames red <-> 29 frames blue @ 60fps -->
+				<animate attributeName="fill" values="#5D0D0D;#145665" keyTimes="0;0.5322" calcMode="discrete" dur="1.033s" repeatCount="indefinite"/>
+			</circle>
+		</symbol>
+
+	</defs>
+
+</svg>
