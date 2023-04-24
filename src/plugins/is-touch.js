@@ -4,7 +4,7 @@ export default {
 		// Caution: Firefox used to treat touchpads as "pointer: coarse"
 		const isTouchDevice = !window.matchMedia("(any-pointer: fine)").matches
 
-		// Provide as global property
-		app.config.globalProperties.$isTouchDevice = isTouchDevice
+		// Provide to app
+		app.provide("isTouchDevice", isTouchDevice)
 	}
 }

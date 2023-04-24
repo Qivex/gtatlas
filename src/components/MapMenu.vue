@@ -1,6 +1,6 @@
 <template>
 	<div class="mapmenu">
-		<MenuToggleGroup v-if="$isTouchDevice" :menus="menus"/>
+		<MenuToggleGroup v-if="isTouchDevice" :menus="menus"/>
 		<NavBar v-else :menus="menus"/>
 		<Submenu ref="select" icon="url(/icons/select.svg)">
 			<LayerSelect/>
@@ -32,13 +32,14 @@ export default {
 		MapSettings,
 		About
 	},
+	props: {
+		gap: String
+	},
+	inject: ["isTouchDevice"],
 	data() {
 		return {
 			menus: []
 		}
-	},
-	props: {
-		gap: String
 	},
 	mounted() {
 		// Refs dont exist before mount
@@ -48,7 +49,7 @@ export default {
 			this.$refs.about
 		]
 		// Method call instead of initial state (data) to show animation -> Gives indication that menus can be toggled
-		if (!this.$isTouchDevice) {
+		if (!this.isTouchDevice) {
 			this.$refs.select.toggleExpanded()
 		}
 	}

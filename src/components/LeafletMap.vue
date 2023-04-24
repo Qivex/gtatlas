@@ -42,6 +42,7 @@ export default {
 		initialTileset: String,
 		initialIconSize: Number
 	},
+	inject: ["isTouchDevice"],
 	data() {
 		return {
 			instance: undefined,
@@ -114,7 +115,7 @@ export default {
 				frequency: "50px",
 				yawn: 50
 			}
-			if (this.$isTouchDevice) {
+			if (this.isTouchDevice) {
 				arrowConfig.size = "10px"
 				arrowConfig.frequency = "30px"
 			}

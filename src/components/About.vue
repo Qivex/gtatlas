@@ -1,10 +1,10 @@
 <template>
 	<div class="about">
 		<Section titleID="test_title">
-			<p>{{$translate("test_string")}}</p>
+			<p>{{translate("test_string")}}</p>
 		</Section>
 		<Section titleID="test_title">
-			{{$translate("test_string")}}
+			{{translate("test_string")}}
 		</Section>
 	</div>
 </template>
@@ -17,7 +17,8 @@ export default {
 	name: "About",
 	components: {
 		Section
-	}
+	},
+	inject: ["translate"]
 }
 </script>
 

@@ -15,15 +15,16 @@ export default {
 		GTA5Map,
 		MapMenu
 	},
-	data() {
-		return {
-			initialvisiblelayers: [], // State transfer from LayerSelect to GTA5Map
-		}
-	},
+	inject:	["availableLanguages", "currentLanguage", "getConfigValue", "persistOnClose"],
 	provide() {
 		return {
 			setInitialVisibleLayers: this.setInitialVisibleLayers,
 			getMap: this.getMap
+		}
+	},
+	data() {
+		return {
+			initialvisiblelayers: [], // State transfer from LayerSelect to GTA5Map
 		}
 	},
 	methods: {
@@ -39,8 +40,8 @@ export default {
 	created() {
 		// Setup localization
 		let userLang = window.navigator.language.substring(0,2)	// Only use primary tag
-		this.$lang.value = this.$fromConfig("lang", "lang", this.$availableLanguages.includes(userLang) ? userLang : "en")	// Fallback to "en" if user language has no translations
-		this.$persist("lang", () => this.$lang.value)
+		this.currentLanguage = this.getConfigValue("lang", "lang", this.availableLanguages.includes(userLang) ? userLang : "en")	// Fallback to "en" if user language has no translations
+		this.persistOnClose("lang", () => this.currentLanguage)
 	},
 	mounted() {
 		// Load GTA icons

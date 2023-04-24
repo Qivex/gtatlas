@@ -39,6 +39,7 @@ export default {
 	components: {
 		LeafletMap
 	},
+	inject: ["getConfigValue", "persistOnClose"],
 	computed: {
 		map() {
 			// Shortcut to internal map
@@ -87,15 +88,15 @@ export default {
 		// Provide constructed layers
 		this.map.addLayers(maplayers)
 		// Get initial state
-		let lat = parseFloat(this.$fromConfig("x", "map-lat", -140))
-		let lng = parseFloat(this.$fromConfig("y", "map-lng", 64))
-		let zoom = parseInt(this.$fromConfig("zoom", "map-zoom", 3))
+		let lat = parseFloat(this.getConfigValue("x", "map-lat", -140))
+		let lng = parseFloat(this.getConfigValue("y", "map-lng", 64))
+		let zoom = parseInt(this.getConfigValue("zoom", "map-zoom", 3))
 		// Apply map state
 		this.map.instance.setView([lat,lng], zoom, {animate: false})
 		// Store map state on leave
-		this.$persist("map-lat", () => this.map.instance.getCenter().lat)
-		this.$persist("map-lng", () => this.map.instance.getCenter().lng)
-		this.$persist("map-zoom", () => this.map.instance.getZoom())
+		this.persistOnClose("map-lat", () => this.map.instance.getCenter().lat)
+		this.persistOnClose("map-lng", () => this.map.instance.getCenter().lng)
+		this.persistOnClose("map-zoom", () => this.map.instance.getZoom())
 	}
 }
 </script>

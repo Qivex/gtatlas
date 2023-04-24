@@ -1,10 +1,10 @@
-import { ref, unref, watch } from "vue"
+import { ref, unref, watch, computed } from "vue"
 
 // Shortcut
 let usp = new URLSearchParams(window.location.search)
 
 
-function isLSEnabled() {
+function testIfLocalStorageEnabled() {
 	try {
 		window.localStorage
 		return true
@@ -38,13 +38,13 @@ function installWithLocalStorage(app, options) {
 	}
 
 	// Initialize consent to use localStorage
-	const lsAllowed = ref(window.localStorage.length > 0)	// Assume previous consent if LS is already filled
-	watch(lsAllowed, (state) => console.log("Updated lsAllowed: " + state))	// TEMP
+	const isLocalStorageAllowed = ref(window.localStorage.length > 0)	// Assume previous consent if LS is already filled
+	watch(isLocalStorageAllowed, (state) => console.log("Updated isLocalStorageAllowed: " + state))	// TEMP
 
 	// Setup behavior on window close
 	window.addEventListener("visibilitychange", () => {
 		if (document.visibilityState === "hidden") {
-			if (unref(lsAllowed) === true) {
+			if (unref(isLocalStorageAllowed) === true) {
 				try {
 					for (const id in callbacks) {
 						window.localStorage.setItem(applyPrefix(id), callbacks[id]())
@@ -59,16 +59,19 @@ function installWithLocalStorage(app, options) {
 		}
 	})
 
-	// Provide as global properties
-	app.config.globalProperties.$lsAllowed = lsAllowed
-	app.config.globalProperties.$fromConfig = getConfigValue
-	app.config.globalProperties.$persist = persistOnClose
+	// Provide to app
+	app.provide("isLocalStorageAllowed", computed({
+		get: () => isLocalStorageAllowed.value,
+		set: (newAllowed) => isLocalStorageAllowed.value = newAllowed
+	}))
+	app.provide("getConfigValue", getConfigValue)
+	app.provide("persistOnClose", persistOnClose)
 }
 
 
 function installWithoutLocalStorage(app, options) {
-	// Cant ever be allowed
-	const lsAllowed = false
+	// Can't ever be allowed
+	const isLocalStorageAllowed = false
 
 	// Get initial value from query or default
 	function getConfigValue(queryID, lsID, defaultValue) {
@@ -78,20 +81,23 @@ function installWithoutLocalStorage(app, options) {
 	// Can't persist because no access to localStorage
 	function persistOnClose() {}
 
-	// Provide as global properties
-	app.config.globalProperties.$lsAllowed = lsAllowed
-	app.config.globalProperties.$fromConfig = getConfigValue
-	app.config.globalProperties.$persist = persistOnClose
+	// Provide to app
+	app.provide("isLocalStorageAllowed", isLocalStorageAllowed)	// Always false -> no reactivity needed
+	app.provide("getConfigValue", getConfigValue)
+	app.provide("persistOnClose", persistOnClose)
 }
 
 
 export default {
 	install(app, options) {
+		// Temporary config (default after Vue 3.3)
+		app.config.unwrapInjectedRef = true
+
 		// Determine if localStorage is accessible
-		const lsEnabled = isLSEnabled()
-		app.config.globalProperties.$lsEnabled = lsEnabled
+		const isLocalStorageEnabled = testIfLocalStorageEnabled()
+		app.provide("isLocalStorageEnabled", isLocalStorageEnabled)
 		// Different installs
-		if (lsEnabled) {
+		if (isLocalStorageEnabled) {
 			installWithLocalStorage(app, options)
 		} else {
 			installWithoutLocalStorage(app, options)

@@ -36,6 +36,7 @@ export default {
 	props: {
 		map: Object
 	},
+	inject: ["getMap", "setInitialVisibleLayers", "getConfigValue", "persistOnClose"],
 	data() {
 		return {
 			menutree
@@ -48,7 +49,7 @@ export default {
 	},
 	created() {
 		// Determine which layers should be initially visible (multiple sources)
-		const visibleLayersInLocalStorage = this.$fromConfig(null, "map-layers", null)?.split(",")
+		const visibleLayersInLocalStorage = this.getConfigValue(null, "map-layers", null)?.split(",")
 		const visibleLayersInURLParam = decodeVisibleLayersFromURLParam()
 		const visibleLayers = []
 		// Modify menutree *before* its being accessed for mounting (function required for recursion)
@@ -76,9 +77,8 @@ export default {
 	},
 	mounted() {
 		// Store names of all currently selected layers on close
-		this.$persist("map-layers", () => this.getMap().getAllVisibleLayerNames().join(","))
-	},
-	inject: ["getMap", "setInitialVisibleLayers"]
+		this.persistOnClose("map-layers", () => this.getMap().getAllVisibleLayerNames().join(","))
+	}
 }
 </script>
 

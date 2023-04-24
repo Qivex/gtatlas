@@ -6,7 +6,7 @@
 			</svg>
 		</div>
 		<input type="range" v-model="size" :min="min" :max="max"/>
-		<button @click.left="onClickConfirm">{{$translate("confirm")}}</button>
+		<button @click.left="onClickConfirm">{{translate("confirm")}}</button>
 	</div>
 </template>
 
@@ -24,6 +24,7 @@ export default {
 		max: Number,
 		icons: Array
 	},
+	inject: ["translate"],
 	data() {
 		return {
 			size: this.initial

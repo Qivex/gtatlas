@@ -1,7 +1,10 @@
-import { ref } from "vue"
+import { ref, unref, computed } from "vue"
 
 export default {
 	install(app, options) {
+		// Temporary config (default after Vue 3.3)
+		app.config.unwrapInjectedRef = true
+
 		// "options" provide translations
 		const translations = options
 
@@ -24,12 +27,15 @@ export default {
 		const currentLanguage = ref()
 
 		const translate = function(stringID, ...content) {
-			return translateInternal(currentLanguage.value, stringID, ...content)
+			return translateInternal(unref(currentLanguage), stringID, ...content)
 		}
 
-		// Provide as global properties
-		app.config.globalProperties.$availableLanguages = availableLanguages
-		app.config.globalProperties.$lang = currentLanguage
-		app.config.globalProperties.$translate = translate
+		// Provide to app
+		app.provide("availableLanguages", availableLanguages)
+		app.provide("currentLanguage", computed({
+			get: () => currentLanguage.value,
+			set: (newLanguage) => currentLanguage.value = newLanguage
+		}))
+		app.provide("translate", translate)
 	}
 }

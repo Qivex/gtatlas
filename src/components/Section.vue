@@ -1,6 +1,6 @@
 <template>
 	<section>
-		<h3>{{$translate(titleID)}}</h3>
+		<h3>{{translate(titleID)}}</h3>
 		<slot/>
 	</section>
 </template>
@@ -11,7 +11,8 @@ export default {
 	name: "Section",
 	props: {
 		titleID: String
-	}
+	},
+	inject: ["translate"]
 }
 </script>
 

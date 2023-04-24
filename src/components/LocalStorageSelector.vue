@@ -1,11 +1,11 @@
 <template>
 	<div class="lstoggle">
-		<ToggleSwitch :initial="$lsAllowed.value" :onchange="setLSAllowed"/>
-		<p>{{$translate("ls_allowed")}}</p>
+		<ToggleSwitch :initial="isLocalStorageAllowed" :onchange="setLocalStorageAllowed"/>
+		<p>{{translate("ls_allowed")}}</p>
 		<MoreInfo>
-			<p>{{$translate("ls_moreinfo")}}</p>
+			<p>{{translate("ls_moreinfo")}}</p>
 			<br/>
-			<a href="https://www.w3schools.com/html/html5_webstorage.asp" target="_blank" rel="noopener noreferrer">{{$translate("ls_link")}}</a>
+			<a href="https://www.w3schools.com/html/html5_webstorage.asp" target="_blank" rel="noopener noreferrer">{{translate("ls_link")}}</a>
 		</MoreInfo>
 	</div>
 </template>
@@ -21,9 +21,10 @@ export default {
 		ToggleSwitch,
 		MoreInfo
 	},
+	inject: ["translate", "isLocalStorageAllowed"],
 	methods: {
-		setLSAllowed(allowed) {
-			this.$lsAllowed.value = allowed
+		setLocalStorageAllowed(allowed) {
+			this.isLocalStorageAllowed = allowed
 		}
 	}
 }
