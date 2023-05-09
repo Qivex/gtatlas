@@ -1,12 +1,12 @@
 {
-	"id": "All Icons",
+	"id": "all",
 	"children": [
 		{
-			"id": "Testing",
+			"id": "tests",
 			"children": [
-				{"id": "test1", "icon":"nightclub", "initial": true},
-				{"id": "test2", "icon":"ammunation", "initial": true},
-				{"id": "test3", "icon":"apartment", "initial": true}
+				{"id": "test1", "icon":"ammunation", "initial": true},
+				{"id": "test2", "icon":"supplies-crate", "initial": true},
+				{"id": "test3", "icon":"mc-meth", "initial": false}
 			]
 		}
 	]

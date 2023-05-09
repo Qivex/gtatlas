@@ -2,7 +2,7 @@
 	<div class="property" tabindex="0">
 		<input type="checkbox" :id="id" v-model="state" @click.left="cycleState"/>
 		<div class="styled-checkbox pointer" @click.left="cycleState"></div>
-		<p>temp-{{id}}</p>
+		<p>{{translate("tree-"+id)}}</p>
 		<svg class="preview-icon" viewbox="0 0 128 128">
 			<use :href="`#icon-${icon}`"/>
 		</svg>
@@ -13,12 +13,7 @@
 <script>
 export default {
 	name: "Property",
-	inject: {
-		onchange: {
-			from: "updatehandler",
-			default() {}
-		}
-	},
+	inject: ["onchange", "translate"],
 	props: {
 		id: String,
 		initial: Boolean,

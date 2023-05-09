@@ -24,7 +24,7 @@ export default {
 	},
 	provide() {
 		return {
-			updatehandler: this.onchange
+			onchange: this.onchange
 		}
 	}
 }

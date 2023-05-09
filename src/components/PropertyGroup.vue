@@ -1,9 +1,9 @@
 <template>
 	<div class="propertygroup">
-		<div class="property pointer" tabindex="0">
+		<div class="property" tabindex="0">
 			<input type="checkbox" :id="id" :indeterminate="indeterminate" v-model="state" @click.left="cycleState"/>
-			<div class="styled-checkbox" @click.left="cycleState"></div>
-			<p>temp-{{id}}</p>
+			<div class="styled-checkbox pointer" @click.left="cycleState"></div>
+			<p>{{translate("tree-"+id)}}</p>
 			<div class="collapse-icon pointer" :class="{collapsed: collapsed}" @click.left="cycleCollapse"></div>
 		</div>
 		<ul v-if="!collapsed">
@@ -27,6 +27,7 @@ export default {
 		id: String,
 		children: Array
 	},
+	inject: ["translate"],
 	computed: {
 		indeterminate() {
 			return this.state === undefined;
