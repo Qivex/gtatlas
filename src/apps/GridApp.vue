@@ -31,6 +31,13 @@ export default {
 	components: {
 		GTA5Map
 	},
+	provide: {
+		currentTileset: "render",
+		// Unused:
+		currentIconSize: undefined,
+		currentBusinessColor: undefined,
+		isTouchDevice: undefined
+	},
 	data() {
 		return {
 			inputX: 0,
