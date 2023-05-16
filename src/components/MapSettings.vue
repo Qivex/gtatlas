@@ -52,9 +52,9 @@ export default {
 		width: 20rem;
 		transform: translateX(100%);
 	}
+}
 
-	.mapsettings .selected {
-		outline: white solid 2px;
-	}
+.mapsettings .selected {
+	outline: white solid 2px;
 }
 </style>

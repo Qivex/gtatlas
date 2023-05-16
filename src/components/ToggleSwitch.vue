@@ -51,6 +51,7 @@ export default {
 	height: 1rem;
 	border-radius: 0.5rem;
 	background-color: white;
+	filter: drop-shadow(0px 0.2rem 0.5rem #000);
 	transition: transform 0.3s;
 }
 
