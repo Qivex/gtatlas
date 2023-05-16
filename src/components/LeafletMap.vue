@@ -1,5 +1,5 @@
 <template>
-	<div :id="id" class="leaflet-component" :class="`tileset-${tilesetName}`"></div>
+	<div :id="id" class="leaflet-component" :class="`tileset-${tilesetName}`" :style="{'--mapicon-color': iconcolor}"></div>
 </template>
 
 
@@ -40,7 +40,8 @@ export default {
 		tileOptions: Object,
 		tileUrlTemplate: String,
 		initialTileset: String,
-		initialIconSize: Number
+		initialIconSize: Number,
+		initialIconColor: String
 	},
 	inject: ["isTouchDevice"],
 	data() {
@@ -49,6 +50,7 @@ export default {
 			tilelayer: undefined,
 			tilesetName: this.initialTileset,
 			iconsize: this.initialIconSize,
+			iconcolor: this.initialIconColor,
 			layers: {}
 		}
 	},
@@ -102,10 +104,8 @@ export default {
 			}
 		},
 		setIconColor(color) {
-			// Check if input is valid color
-			if (!CSS.supports("color", color)) return
-			// Update CSS variable (https://css-tricks.com/updating-a-css-variable-with-javascript)
-			this.$el.style.setProperty("--mapicon-color", color)	// Previously document.documentElement
+			if (!CSS.supports("color", color)) return	// Check if input is valid color
+			this.iconcolor = color
 		},
 		getToolset() {
 			// Leaflet-Arrowheads configuration is different on mobile
@@ -149,11 +149,6 @@ export default {
 
 
 <style>
-/* Define initial color (SVG defaults to black) */
-.leaflet-component {
-	--mapicon-color: #F0F0F0;
-}
-
 /* Leaflet's DivIcon doesn't have transparent background by default */
 .leaflet-div-icon {
 	background: none;

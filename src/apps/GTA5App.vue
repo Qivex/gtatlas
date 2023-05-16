@@ -31,18 +31,28 @@ export default {
 		return {
 			setInitialVisibleLayers: this.setInitialVisibleLayers,
 			getMap: this.getMap,
-			currentTileset: wrapAsComputed(this, "tileset")
+			currentTileset: wrapAsComputed(this, "tileset"),
+			currentIconSize: wrapAsComputed(this, "iconSize"),
+			currentBusinessColor: wrapAsComputed(this, "businessColor")
 		}
 	},
 	data() {
 		return {
 			initialvisiblelayers: [], // State transfer from LayerSelect to GTA5Map
-			tileset: undefined
+			tileset: undefined,
+			iconSize: undefined,
+			businessColor: undefined
 		}
 	},
 	watch: {
 		tileset(name) {
 			this.getMap()?.setTileset(name)
+		},
+		iconSize(size) {
+			this.getMap()?.setIconSize(size)
+		},
+		businessColor(color) {
+			this.getMap()?.setIconColor(color)
 		}
 	},
 	methods: {
@@ -60,8 +70,15 @@ export default {
 		let userLang = window.navigator.language.substring(0,2)	// Only use primary tag
 		this.currentLanguage = this.getConfigValue("lang", "lang", this.availableLanguages.includes(userLang) ? userLang : "en")	// Fallback to "en" if user language has no translations
 		this.persistOnClose("lang", () => this.currentLanguage)
-		// Initialize other props
-		this.tileset = "render"	// Todo: Use config
+		// Setup tileset
+		this.tileset = this.getConfigValue("tileset", "map-tileset", "render")
+		this.persistOnClose("map-tileset", () => this.tileset)
+		// Setup icon size
+		this.iconSize = parseInt(this.getConfigValue("iconsize", "map-iconsize", 35))
+		this.persistOnClose("map-iconsize", () => this.iconSize)
+		// Setup business color
+		this.businessColor = this.getConfigValue("color", "map-businesscolor", "#F0F0F0")
+		this.persistOnClose("map-businesscolor", () => this.businessColor)
 	},
 	mounted() {
 		// Load GTA icons

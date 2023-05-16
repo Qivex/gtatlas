@@ -1,6 +1,6 @@
 <template>
 	<div class="businesscolor">
-		<div v-for="color in colors" class="pointer" :style="`background-color:${color}`" @click.left="onselect(color)"/>
+		<div v-for="color in colors" class="pointer" :class="{selected: color === currentBusinessColor}" :style="`background-color:${color}`" @click.left="selectColor(color)"/>
 	</div>
 </template>
 
@@ -9,11 +9,18 @@
 export default {
 	name: "BusinessColorSelector",
 	props: {
-		onselect: {
-			type: Function,
-			default() {}
-		},
 		colors: Array
+	},
+	inject: ["currentBusinessColor"],
+	methods: {
+		selectColor(color) {
+			if (color === this.currentBusinessColor) {
+				// Restore default when clicking same color again ("Leave organisation")
+				this.currentBusinessColor = "#F0F0F0"
+			} else {
+				this.currentBusinessColor = color
+			}
+		}
 	}
 }
 </script>

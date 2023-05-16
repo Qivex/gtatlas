@@ -52,7 +52,7 @@ export default {
 	components: {
 		LeafletMap
 	},
-	inject: ["getConfigValue", "persistOnClose", "currentTileset"],
+	inject: ["getConfigValue", "persistOnClose", "currentTileset", "currentIconSize", "currentBusinessColor"],
 	computed: {
 		map() {
 			// Shortcut to internal map
@@ -65,7 +65,8 @@ export default {
 				id: "gta5map",
 				tileUrlTemplate: "https://s.rsg.sc/sc/images/games/GTAV/map/{tileset}/{z}/{x}/{y}.jpg",
 				initialTileset: this.currentTileset,
-				initialIconSize: 35,	// Todo: Use config
+				initialIconSize: this.currentIconSize,
+				initialIconColor: this.currentBusinessColor,
 				mapOptions: {
 					// No distortion or wrapping
 					crs: Leaflet.CRS.Simple,

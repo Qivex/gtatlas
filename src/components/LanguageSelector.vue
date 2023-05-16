@@ -25,8 +25,4 @@ export default {
 	width: 2rem;
 	border-radius: 1rem;
 }
-
-.flagicon.selected {
-	outline: white solid 2px;
-}
 </style>

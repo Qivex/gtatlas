@@ -24,16 +24,16 @@ export default {
 		max: Number,
 		icons: Array
 	},
-	inject: ["translate"],
+	inject: ["translate", "currentIconSize"],
 	data() {
 		return {
-			size: this.initial
+			size: this.currentIconSize
 		}
 	},
 	methods: {
 		onClickConfirm() {
-			// Live resize is very laggy, so only do it once
-			this.onconfirm(this.size)
+			// Live resize (also .lazy) is very laggy, so only do it once
+			this.currentIconSize = this.size
 		}
 	}
 }
