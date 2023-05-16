@@ -6,8 +6,19 @@
 
 
 <script>
+import { computed } from "vue"
+
 import GTA5Map from "../components/GTA5Map.vue"
 import MapMenu from "../components/MapMenu.vue"
+
+// Shortcut in "provide" for shared props
+function wrapAsComputed(component, propName) {
+	// Split into 2 args because otherwise ("this.propName" as arg) no getter/setter is used!
+	return computed({
+		get: () => component[propName],
+		set: (newValue) => component[propName] = newValue
+	})
+}
 
 export default {
 	name: "GTA5App",
@@ -19,12 +30,19 @@ export default {
 	provide() {
 		return {
 			setInitialVisibleLayers: this.setInitialVisibleLayers,
-			getMap: this.getMap
+			getMap: this.getMap,
+			currentTileset: wrapAsComputed(this, "tileset")
 		}
 	},
 	data() {
 		return {
 			initialvisiblelayers: [], // State transfer from LayerSelect to GTA5Map
+			tileset: undefined
+		}
+	},
+	watch: {
+		tileset(name) {
+			this.getMap()?.setTileset(name)
 		}
 	},
 	methods: {
@@ -34,7 +52,7 @@ export default {
 		},
 		getMap() {
 			// Returns reference to internal LeafletMap (Skip GTA5Map)
-			return this.$refs.map.map
+			return this.$refs.map?.map
 		}
 	},
 	created() {
@@ -42,6 +60,8 @@ export default {
 		let userLang = window.navigator.language.substring(0,2)	// Only use primary tag
 		this.currentLanguage = this.getConfigValue("lang", "lang", this.availableLanguages.includes(userLang) ? userLang : "en")	// Fallback to "en" if user language has no translations
 		this.persistOnClose("lang", () => this.currentLanguage)
+		// Initialize other props
+		this.tileset = "render"	// Todo: Use config
 	},
 	mounted() {
 		// Load GTA icons

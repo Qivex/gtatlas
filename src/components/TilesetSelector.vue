@@ -1,6 +1,7 @@
 <template>
 	<div class="tileset">
-		<img v-for="tileset in options" class="pointer" :src="`https://s.rsg.sc/sc/images/games/GTAV/map/${tileset}/5/9/15.jpg`" @click.left="onselect(tileset)" :alt="tileset"/>
+		<img v-for="tileset in choices" class="pointer" :class="{selected: tileset === currentTileset}" @click.left="currentTileset = tileset" :alt="tileset" :src="`https://s.rsg.sc/sc/images/games/GTAV/map/${tileset}/5/9/15.jpg`"/>
+		<input type="text" v-model="currentTileset"/>
 	</div>
 </template>
 
@@ -9,12 +10,9 @@
 export default {
 	name: "TilesetSelector",
 	props: {
-		onselect: {
-			type: Function,
-			default() {}
-		},
-		options: Array
-	}
+		choices: Array
+	},
+	inject: ["currentTileset"]
 }
 </script>
 
@@ -28,5 +26,9 @@ export default {
 
 .tileset img {
 	width: 3rem;
+}
+
+.tileset img.selected {
+	outline: white solid 2px;
 }
 </style>

@@ -7,7 +7,7 @@
 			<LanguageSelector/>
 		</Section>
 		<Section titleID="map_style">
-			<TilesetSelector :onselect="setTileset" :options="['render','print','game']"/>
+			<TilesetSelector :choices="['render','print','game']"/>
 		</Section>
 		<Section titleID="business_col">
 			<BusinessColorSelector :onselect="setIconColor" :colors="['#F79F7B','#E286BB','#EFEE97','#71A9AF','#A08CC1','#8DCEA7','#B5D6EA','#B29084','#008472','#D85575']"/>
@@ -40,9 +40,6 @@ export default {
 	},
 	inject: ["translate", "getMap", "isLocalStorageEnabled"],
 	methods: {
-		setTileset(name) {
-			this.getMap().setTileset(name)
-		},
 		setIconSize(size) {
 			this.getMap().setIconSize(size)
 		},

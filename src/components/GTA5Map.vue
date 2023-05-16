@@ -52,7 +52,7 @@ export default {
 	components: {
 		LeafletMap
 	},
-	inject: ["getConfigValue", "persistOnClose"],
+	inject: ["getConfigValue", "persistOnClose", "currentTileset"],
 	computed: {
 		map() {
 			// Shortcut to internal map
@@ -64,7 +64,7 @@ export default {
 			leafletOptions: {
 				id: "gta5map",
 				tileUrlTemplate: "https://s.rsg.sc/sc/images/games/GTAV/map/{tileset}/{z}/{x}/{y}.jpg",
-				initialTileset: "render",	// Todo: Use config
+				initialTileset: this.currentTileset,
 				initialIconSize: 35,	// Todo: Use config
 				mapOptions: {
 					// No distortion or wrapping
