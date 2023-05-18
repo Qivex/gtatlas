@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<!-- HTML boilerplate -->
+		<meta charset="utf8"/>
+		<title>GTAtlas - WIP</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+		<link rel="icon" href="/favicon.ico"/>
+		<!-- Embedded style (<link> can't access resource because of redirects!) -->
+		<style>
+			@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100;300;400&display=swap');
+
+			body {
+				position: fixed;
+				height: 100vh;
+				width: 80vw;
+				margin-inline: 10vw;
+				margin-block: 0px;
+				padding: 0px;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+				background-color: #222;
+				background-size: 100vw 100vh;
+				background-repeat: no-repeat;
+				font-family: 'Outfit', sans-serif;
+			}
+
+			h1,h2,h3 {
+				margin: 0px;
+				color: #F0F0F0;
+				font-weight: 100;
+			}
+
+			h1 {
+				color: #22D9A5;
+				font-size: var(--h1);
+			}
+
+			h1 b {
+				font-weight: 300;
+			}
+
+			h2 {
+				font-size: var(--h2);
+				font-weight: 400;
+				transform: translateY(calc(-1 * var(--h2)));
+			}
+
+			h3 {
+				font-size: var(--h3);
+				margin-top: 2rem;
+				margin-bottom: 1rem;
+			}
+
+			.referrals {
+				display: grid;
+				grid-template-columns: repeat(3, 1fr);
+				align-items: center;
+				margin-inline: 2rem;
+				gap: 1rem 3rem;
+			}
+
+			.referrals img {
+				width: 100%;
+			}
+
+			footer {
+				position: absolute;
+				bottom: 3vh;
+			}
+
+			footer :any-link {
+				color: #222;
+				text-decoration: none;
+			}
+
+			footer :any-link:hover {
+				background-color: #F0F0F0;
+			}
+		</style>
+		<style media="(orientation:landscape)">
+			:root {
+				--h1: 28vh;
+				--h2: 5vh;
+				--h3: 3vh;
+			}
+		</style>
+		<style media="(orientation:portrait)">
+			:root {
+				--h1: 20vw;
+				--h2: 4vw;
+				--h3: 5vw;
+			}
+
+			.referrals {
+				grid-template-columns: none;
+			}
+		</style>
+	</head>
+	<body>
+		<h1><b>GTA</b>tlas</h1>
+		<h2>Work in Progress</h2>
+		<h3>For now, check out one of these:</h3>
+		<div class="referrals">
+			<a href="https://gta-5-map.com" target="_blank" rel="noopener noreferrer">
+				<img alt="MapGenie Logo" src="https://cdn.mapgenie.io/images/mapgenie.png" crossorigin="anonymous"/>
+			</a>
+			<a href="https://gtaweb.eu/gtao-map" target="_blank" rel="noopener noreferrer">
+				<img alt="GTAWeb Logo" src="https://gtaweb.eu/_sources/1658057461/img/logo2.png"/>
+			</a>
+			<a href="https://gtalens.com/map" target="_blank" rel="noopener noreferrer">
+				<img alt="GTALens Logo" src="https://gtalens.com/assets/images/logo-new.1b4a64.png"/>
+			</a>
+		</div>
+		<footer>
+			<a href="https://github.com/qivex/gtatlas" target="_blank" rel="noopener noreferrer">
+				See the current progress
+			</a>
+		</footer>
+		<!-- Embedded SVG background -->
+		<svg xmlns="http://www.w3.org/2000/svg" id="bg">
+			<filter id="camo">
+				<feTurbulence type="fractalNoise" baseFrequency=".01 .02" numOctaves="3"/>
+				<feComponentTransfer>
+					<feFuncR type="discrete" tableValues="0 0 1"/>
+					<feFuncG type="discrete" tableValues="0 0 0 0 1 1 1"/>
+					<feFuncB type="discrete" tableValues="0 1"/>
+				</feComponentTransfer>
+				<feColorMatrix values="1 0 0 0 0 -1 1 0 0 0 -1 -1 1 0 0 0 0 0 0 1"/>
+				<feColorMatrix values=".005 .008 .011 0 0 .005 .008 .011 0 0 .005 .008 .011 0 0 0 0 0 0 1"/>
+			</filter>
+			<rect width="100%" height="100%" filter="url(#camo) blur(1px)"/>
+		</svg>
+		<script>
+			let svgElem = document.getElementById("bg")
+			let svgText = (new XMLSerializer()).serializeToString(svgElem)
+			svgElem.remove()
+			let blob = new Blob([svgText], {type: "image/svg+xml"})
+			document.body.style.backgroundImage = `url(${URL.createObjectURL(blob)})`	// Todo: When to call URL.revokeObjectURL(url)?
+		</script>
+	</body>
+</html>
