@@ -7,7 +7,7 @@
 		"prev": "vite preview --host"
 	},
 	"dependencies": {
-		"vue": "^3.2.37",
+		"vue": "^3.3.4",
 		"leaflet": "1.8.0",
 		"leaflet-arrowheads": "1.4.0"
 	},

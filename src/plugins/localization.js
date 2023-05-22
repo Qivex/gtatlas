@@ -3,7 +3,7 @@ import { ref, unref, computed } from "vue"
 export default {
 	install(app, options) {
 		// Temporary config (default after Vue 3.3)
-		app.config.unwrapInjectedRef = true
+		// app.config.unwrapInjectedRef = true
 
 		// "options" provide translations
 		const translations = options

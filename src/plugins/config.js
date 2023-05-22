@@ -91,7 +91,7 @@ function installWithoutLocalStorage(app, options) {
 export default {
 	install(app, options) {
 		// Temporary config (default after Vue 3.3)
-		app.config.unwrapInjectedRef = true
+		// app.config.unwrapInjectedRef = true
 
 		// Determine if localStorage is accessible
 		const isLocalStorageEnabled = testIfLocalStorageEnabled()
