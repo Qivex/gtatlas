@@ -126,7 +126,7 @@ body {
 	width: 100%;
 	margin: 0px;
 	padding: 0px;
-	background-image: url(/icons/pattern-checker.svg);
+	background-image: url(/icons/patterns/checker.svg);
 	background-size: 24px 24px;
 	color: #fff;	/* Initial org-color for icons (defaults to black) */
 	font-family: arial;

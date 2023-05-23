@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg">
+	<defs>
+		<style>
+			@media (prefers-color-scheme: dark) {
+				#grid1 {
+					fill: #334;
+				}
+				#grid2 {
+					fill: #223;
+				}
+			}
+		</style>
+		<pattern id="checker" viewBox="0 0 2 2" width="24" height="24" patternUnits="userSpaceOnUse">
+			<path id="grid1" d="M0,0 h1 v2 h1 v-1 h-2 z" fill="#dde"/>
+			<path id="grid2" d="M0,2 h1 v-2 h1 v1 h-2 z" fill="none"/>
+		</pattern>
+	</defs>
+	<rect width="100%" height="100%" fill="url(#checker)"/>
+</svg>

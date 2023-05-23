@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg">
+	<defs>
+		<filter id="camo">
+			<feTurbulence type="fractalNoise" baseFrequency=".01 .02" numOctaves="3"/>
+			<feComponentTransfer>
+				<feFuncR type="discrete" tableValues="0 0 1"/>
+				<feFuncG type="discrete" tableValues="0 0 0 0 1 1 1"/>
+				<feFuncB type="discrete" tableValues="0 1"/>
+			</feComponentTransfer>
+			<feColorMatrix values="1 0 0 0 0 -1 1 0 0 0 -1 -1 1 0 0 0 0 0 0 1"/>
+			<feColorMatrix values=".005 .008 .011 0 0 .005 .008 .011 0 0 .005 .008 .011 0 0 0 0 0 0 1"/>
+		</filter>
+	</defs>
+	<rect width="100%" height="100%" filter="url(#camo) blur(1px)"/>
+</svg>

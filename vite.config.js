@@ -8,10 +8,14 @@ export default defineConfig({
 		assetsDir: "bundle",
 		rollupOptions: {
 			input: {
+				"entry": "index.html",
 				"gta5": "gta5.html",
 				"grid": "grid.html",
 				"icons": "icons.html"
 			}
 		}
+	},
+	define: {
+		__BUILD_TIMESTAMP__: JSON.stringify(Date.now())
 	}
 })

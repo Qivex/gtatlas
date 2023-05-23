@@ -70,6 +70,7 @@ export default {
 	top: 0px;
 	left: 0px;
 	background-color: #222;
+	background-image: url(/icons/patterns/camo.svg);
 	box-sizing: border-box;
 	border-bottom: 1px solid #fff;
 }
