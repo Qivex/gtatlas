@@ -1,6 +1,8 @@
 <template>
 	<nav class="navbar">
-		<img id="logo" :src="'icons/settings.svg'"/><!-- TODO placeholder -->
+		<a href="/">
+			<img id="logo" :src="'icons/gtatlas.svg'"/>
+		</a>
 		<NavItem captionID="nav_select"   :onselect="toggleSelect"   :active="isSelectExpanded"/>
 		<NavItem captionID="nav_settings" :onselect="toggleSettings" :active="isSettingsExpanded"/>
 		<NavItem captionID="nav_about"    :onselect="toggleAbout"    :active="isAboutExpanded"/>
@@ -75,7 +77,11 @@ export default {
 	border-bottom: 1px solid #fff;
 }
 
+.navbar a {
+	display: contents;
+}
+
 #logo {
-	margin: 4px;
+	margin: 0.5rem 1rem;
 }
 </style>
