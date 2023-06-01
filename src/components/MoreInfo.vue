@@ -64,7 +64,8 @@ export default {
 	left: 5%;
 	right: 5%;
 	transform: translateY(calc(-100% - var(--moreinfo-icon-size)));
-	background: #222;
+	background-color: #222;
+	background-image: url(/icons/patterns/camo.svg);
 	padding: 1rem;
 	border: 1px solid #fff;
 	border-radius: 1rem;

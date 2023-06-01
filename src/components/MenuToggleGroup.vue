@@ -28,6 +28,7 @@ export default {
 	width: 100%;
 	height: 100%;
 	background-color: #222;
+	background-image: url(/icons/patterns/camo.svg);
 	box-shadow: 0 0 20px 5px #222;
 	border-radius: 1.5rem 1.5rem 0 0;
 	transition: transform 0.5s;
