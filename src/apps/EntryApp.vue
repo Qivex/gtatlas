@@ -1,5 +1,6 @@
 <template>
-	<h1><b>GTA</b>tlas</h1>
+	<!--<h1><b>GTA</b>tlas</h1>-->
+	<img class="logo" :src="'icons/gtatlas.svg'"/>
 	<h2>Locations of Grand Theft Auto</h2>
 	<div class="links">
 		<h3>Choose your map:</h3>
@@ -59,7 +60,7 @@ body {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	/* justify-content: center; */
+	justify-content: center;
 	background-color: #222;
 	background-image: url(/icons/patterns/camo.svg);
 	background-size: 100vw 100vh;
@@ -73,23 +74,22 @@ p,li,h1,h2,h3 {
 	font-weight: 100;
 }
 
-h1 {
-	color: #22D9A5;
-	font-size: 20vmin;
+ul {
+	margin: 0px;
 }
 
-h1 b {
-	font-weight: 300;
+.logo {
+	height: 20vmin;
 }
 
 h2 {
 	font-size: var(--h2);
 	font-weight: 400;
-	transform: translateY(calc(-1 * var(--h2)));
 }
 
 h3 {
 	font-size: var(--h3);
+	margin-block: 2rem 1rem;
 }
 
 .links {
@@ -101,7 +101,6 @@ h3 {
 .maps {
 	display: grid;
 	grid-template-columns: repeat(2, 40vmin);
-	margin-block: 1rem 2rem;
 }
 
 .maps a {
