@@ -21,8 +21,12 @@ export default {
 			return localizedString.replaceAll("{}", nextContent)
 		}
 
+		const userLanguage = window.navigator.language.substring(0,2)	// Only use primary tag
+
 		// Exposed properties
 		const availableLanguages = Object.keys(translations)
+
+		const defaultLanguage = availableLanguages.includes(userLanguage) ? userLanguage : "en"	// Fallback to english if no translations for user language
 
 		const currentLanguage = ref()
 
@@ -32,6 +36,7 @@ export default {
 
 		// Provide to app
 		app.provide("availableLanguages", availableLanguages)
+		app.provide("defaultLanguage", defaultLanguage)
 		app.provide("currentLanguage", computed({
 			get: () => currentLanguage.value,
 			set: (newLanguage) => currentLanguage.value = newLanguage

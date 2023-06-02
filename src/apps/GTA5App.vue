@@ -26,7 +26,7 @@ export default {
 		GTA5Map,
 		MapMenu
 	},
-	inject:	["availableLanguages", "currentLanguage", "getConfigValue", "persistOnClose"],
+	inject:	["availableLanguages", "defaultLanguage", "currentLanguage", "getConfigValue", "persistOnClose"],
 	provide() {
 		return {
 			setInitialVisibleLayers: this.setInitialVisibleLayers,
@@ -67,8 +67,7 @@ export default {
 	},
 	created() {
 		// Setup localization
-		let userLang = window.navigator.language.substring(0,2)	// Only use primary tag
-		this.currentLanguage = this.getConfigValue("lang", "lang", this.availableLanguages.includes(userLang) ? userLang : "en")	// Fallback to "en" if user language has no translations
+		this.currentLanguage = this.getConfigValue("lang", "lang", this.defaultLanguage)
 		this.persistOnClose("lang", () => this.currentLanguage)
 		// Setup tileset
 		this.tileset = this.getConfigValue("tileset", "map-tileset", "render")
