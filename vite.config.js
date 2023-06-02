@@ -9,6 +9,7 @@ export default defineConfig({
 		rollupOptions: {
 			input: {
 				"entry": "index.html",
+				"about": "about.html",
 				"gta5": "gta5.html",
 				"grid": "grid.html",
 				"icons": "icons.html"
