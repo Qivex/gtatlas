@@ -27,7 +27,7 @@ export default {
 @media (pointer: fine) {
 	.about {
 		position: absolute;
-		top: var(--navbar-height);
+		top: var(--navbar-height, 0px);
 		left: 0px;
 		width: 100vw;
 		height: calc(100vh - var(--navbar-height, 0px));

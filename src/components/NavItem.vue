@@ -28,7 +28,7 @@ export default {
 }
 
 .navitem:hover {
-	background-color: #333;
+	background-color: rgba(127,127,127,0.3);
 }
 
 .active h3 {

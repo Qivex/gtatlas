@@ -1,7 +1,7 @@
 <template>
 	<div class="mapmenu">
 		<MenuToggleGroup v-if="isTouchDevice" :menus="menus"/>
-		<NavBar v-else :menus="menus"/>
+		<GTA5NavBar v-else :menus="menus"/>
 		<Submenu ref="select" icon="url(/icons/select.svg)">
 			<LayerSelect/>
 		</Submenu>
@@ -16,7 +16,7 @@
 
 <script>
 import MenuToggleGroup from "./MenuToggleGroup.vue"
-import NavBar from "./NavBar.vue"
+import GTA5NavBar from "./GTA5NavBar.vue"
 import Submenu from "./Submenu.vue"
 import LayerSelect from "./LayerSelect.vue"
 import MapSettings from "./MapSettings.vue"
@@ -26,7 +26,7 @@ export default {
 	name: "MapMenu",
 	components: {
 		MenuToggleGroup,
-		NavBar,
+		GTA5NavBar,
 		Submenu,
 		LayerSelect,
 		MapSettings,
