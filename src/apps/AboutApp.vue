@@ -84,4 +84,13 @@ p,h1,h2,h3,h4,h5,h6 {
 	margin-inline-end: 1rem;
 	background-image: url(icons/back.svg);
 }
+
+/* Offset to NavBar is also required for mobile in this context */
+.about {
+	position: absolute;
+	top: var(--navbar-height, 0px);
+	width: 100vw;
+	height: calc(100vh - var(--navbar-height, 0px));
+	overflow-y: auto;
+}
 </style>

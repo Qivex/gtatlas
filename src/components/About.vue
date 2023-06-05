@@ -1,10 +1,7 @@
 <template>
 	<div class="about">
-		<Section titleID="test_title">
+		<Section titleID="test_title" v-for="i in 10">
 			<p>{{translate("test_string")}}</p>
-		</Section>
-		<Section titleID="test_title">
-			{{translate("test_string")}}
 		</Section>
 	</div>
 </template>

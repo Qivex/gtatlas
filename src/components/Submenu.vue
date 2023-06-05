@@ -51,6 +51,7 @@ export default {
 	/* On Desktop the child-div is transformed (because of display:contents) */
 	.submenu > div {
 		transition: transform 0.5s;
+		overflow-y: auto;
 	}
 
 	/* Submenu defines initial transform, but expanded is always back at origin */
@@ -64,7 +65,7 @@ export default {
 		top: 0px;	/* Avoid spacing from MenuToggleGroup */
 		width: 100%;
 		height: var(--expand-height);
-		overflow-y: scroll;
+		overflow-y: auto;
 	}
 
 	/* Content of submenu should always fill full width */
