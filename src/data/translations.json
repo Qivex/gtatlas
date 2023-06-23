@@ -2,6 +2,7 @@
 	"en": {
 		"test_string": "This is a test string with some length to test content that might wrap to multiple lines.",
 		"test_title": "Test title",
+		"test_multi": "{} and {} and {}",
 		"confirm": "Confirm",
 		"icon_size": "Icon size",
 		"language": "Language",
@@ -15,7 +16,56 @@
 		"nav_select": "Select markers",
 		"nav_settings": "Settings",
 		"nav_about": "About",
-		"about_heading": "About GTAtlas",
+		"about": {
+			"heading": "About GTAtlas",
+			"1": {
+				"h": "What is this site about?",
+				"p": "Here you can find an interactive map showing the location of places important to GTAV and GTA Online. This is an unoffical fan page and in no way affiliated with Rockstar Games."
+			},
+			"2": {
+				"h": "Why was this created?",
+				"p": "<b>TLDR: This map includes things shown on none of the other maps for GTA.</b><br>Several years ago I got totally destroyed while collecting Special Cargo. Frustrated by some of the mission types I decided to write down their locations, so I could be prepared for future occurrences. After I collected quite a lot of coordinates I wondered which warehouse location was best in regards to shortest average path to all missions.<br>Correctly assuming my improvised notes were incomplete I searched online for an overview of all possible mission locations. What I found wasn't as useful as I had hoped: Most unofficial GTA maps at that time only included static stuff, like facilities or collectibles. Not even the GTA Fandom included mission locations (phone quotes are apparently more important?!).<br>That was the reason I first started plotting my own coordinates. My improvised map grew, with more and more locations added over time. After I \"finished\" nearly everything you could do in GTA Online most of my ingame time was, and still is, spent trying to complete my list. However I am against to the usage of data mining to obtain the coordinates or assets directly from the source - I want to make sure my findings are actually observable ingame."
+			},
+			"3": {
+				"h": "Where do the map tiles come from?",
+				"p": "In the beginning this map used the tiles included in the {}. Later it was updated to use the tiles hosted on the Social Club, improving quality and performance.",
+				"a": "GTAV Manual App"
+			},
+			"4": {
+				"h": "Why and how were the marker icons created?",
+				"p": "The obvious choice would have been to just load screenshots of the icons, or even rip the original icons from the game.<br>First I just used screenshots of the icons taken ingame. To get the best result on my 1080p monitor I used AMDs VSR to increase screenshot resolution to 4K. I also made sure to hover over the icons, because they get about 1.28x bigger when selected. Using the screenshots as reference I then recreated the icons in SVG.<br>These recreations are not perfect (especially since SVG uses a different method to round corners), but still way smoother than screenshots. Including the SVG file with all icons is about X times smaller than serving them as separate PNG files. They can also be dynamically styled (without ugly hacks like hue shift), for example to include the business color."
+			},
+			"5": {
+				"h": "How can I use these icons?",
+				"p": "All currently available icons and more detailled instructions on how to use them are found at {}. The icons are all bundled into a single SVG file. For convenience you can generate and download PNG sprites of single icons. However if you need a lot of icons or require dynamic styling I recommend embedding the entire SVG code into your source. Then you can reference the icons with the SVG use-tag and apply styling to them.",
+				"a": "the icon hub"
+			},
+			"6": {
+				"h": "What technologies did you use?",
+				"p": "This website is hosted on Render, is developed using Vite, uses Vue as framework and makes use of Leaflet for the map."
+			},
+			"7": {
+				"h": "Is this project open source?",
+				"p": "Yes, unlike any of the other mentioned maps my website is entirely open source and uses a {} license. Check out the {} if you are interested.",
+				"a1": "TODO",
+				"a2": "source code"
+			},
+			"8": {
+				"h": "How can I contribute?",
+				"p1": "There is a {} where you can leave general feedback, let me know of mistakes and request new coordinates, icons or features.",
+				"p2": "If you want to help with development you can check out the {} on Github. Please note that this project is primarily a coding exercise for my own entertainment and doesn't strive for professionalism. I prefer a minimalistic solution that I wrote myself over using an overbloated library (e.g. my custom plugin used for localization instead of vue-i18n with >1000loc).",
+				"a1": "contact page",
+				"a2": "full source code"
+			},
+			"9": {
+				"h": "Who created this?",
+				"p": "I am just a single person developing and maintaining GTAtlas as a hobby in my spare time. I don't earn anything from this project, nor do I want to. My motivation is my enthusiasm for GTA V - I have played since release on PC and have amassed over 4000 hours of playtime. I am opposed to Data Mining, all coordinates listed here were collected and confirmed by hand."
+			},
+			"10": {
+				"h": "What other alternatives are there?",
+				"p": "If you don't like my page or didn't find what you were looking for there are of course other websites - I recommend you checking out one of these:"
+			}
+		},
 		"tree-all": "All icons",
 		"tree-tests": "For testing",
 		"tree-test1": "Atomic icons",
@@ -38,7 +88,56 @@
 		"nav_select": "Wähle Marker",
 		"nav_settings": "Einstellungen",
 		"nav_about": "Über",
-		"about_heading": "Über GTAtlas",
+		"about": {
+			"heading": "Über GTAtlas",
+			"1": {
+				"h": "Was ist der Inhalt dieser Seite?",
+				"p": "Hier findest Du eine interaktive Karte, welche für GTAV und GTA Online relevante Orte anzeigt. Dies ist eine inoffizelle Fan-Seite und steht in keiner Verbindung mit Rockstar Games."
+			},
+			"2": {
+				"h": "Warum wurde diese Seite erschaffen?",
+				"p": "<b>TLDR: Auf dieser Karte sind Orte eingezeichnet die auf keiner der anderen Websites zu finden sind.</b><br>Vor mehreren Jahren wurde ich beim Einsammeln von Kisten durch NPCs völlig auseinandergenommen. Mehrere Variationen der möglichen Missionen waren sehr frustrierend und ich begann damit, ihre Koordinaten zu notieren, sodass ich in Zukunft besser darauf vorbereitet sein könnte. Nachdem ich eine ganze Menge Koordinaten gesammelt hatte wollte ich wissen, welches Lagerhaus im Durchschnitt am nächsten an allen möglichen Missionen liegt.<br>Da ich mir sicher war, dass meine Notizen unvollständig waren, wollte ich online eine komplette Auflistung finden. Was ich fand war allerdings nicht sonderlich nützlich: Die meisten inoffiziellen Karten für GTA beinhalteten damals nur stationäre Ziele wie Gebäude oder Sammelgegenstände. Nicht einmal das GTA Fandom listet alle möglichen Orte für die Missionen auf (alle Anrufe zu zitieren ist scheinbar wichtiger!?).<br>Also blieb mir nichts anderes übrig als meine gesammelten Koordinaten selber zu visualisieren. Meine improvisierte Karte wuchs immer weiter und entwickelte sich schließlich in diese Webseite. Da ich GTA Online \"durchgespielt\" habe verbringe ich mittlerweile die meiste Ingame-Zeit damit, meine Karte zu erweitern und zu komplettieren. Data-Mining lehne ich dabei ab - ich möchte sichergehen, dass meine Beobachtungen auch tatsächlich im Spiel auftreten."
+			},
+			"3": {
+				"h": "Woher stammen die Kacheln für die Karte?",
+				"p": "Zu Beginn nutzte ich die Kacheln aus der {}. Später wechselte ich zu den Kacheln welche der Social Club hostet, was Qualität und Performanz verbesserte.",
+				"a": "GTAV Manual App"
+			},
+			"4": {
+				"h": "Wie und warum wurden die Icons erstellt?",
+				"p": "Die offensichtliche Lösung wäre es gewesen einfach Screenshots der Icons zu nutzen, oder die Spritesheets aus den Spieldateien zu kopieren.<br>Als Basis nutze ich Screenshots welche ich selbst im Spiel geschossen habe. Um eine ausreichende Auflösung von 4K auf meinem 1080p Monitor zu erzielen nutze ich dabei AMDs VSR. Außerdem profitierte ich davon, dass die Icons 1.28x größer werden wenn man über ihnen hovert. Mit den Screenshots als Referenz bastelte ich die Icons einzeln mit SVG nach.<br>Diese Nachbildungen sind zwar nicht perfekt (vor allem weil SVG die Ecken anders abrundet), aber immer noch wesentlich besser als Screenshots. Das Einbinden aller SVG icons ist etwa Xmal kleiner als alle Icons als PNG zu laden. Das Aussehen dieser Icons kann dadurch auch dynamisch verändert werden (ohne unelegante Hacks wie Hue Shift), zum Beispiel zur Darstellung der Farbe des Unternehmens."
+			},
+			"5": {
+				"h": "Wie kann ich diese Icons selbst nutzen?",
+				"p": "Alle zur Zeit verfügbaren Icons und detaillierte Anleitungen finden sich auf der {}. Die Icons sind alle in eine einzige SVG Datei gebündelt. Für einzelne Icons kannst Du PNG Sprites erstellen lassen und sie anschließend herunterladen. Wenn allerdings eine Menge Icons oder dynamisches Styling benötigt wird empfehle ich, den gesamten SVG Inhalt einzubinden. Anschließend kann man alle Icons mittels SVG use-tag referenzieren und dynamisch stylen.",
+				"a": "Icon Seite"
+			},
+			"6": {
+				"h": "Welche Technologien werden verwendet?",
+				"p": "Diese Webseite wird auf Render gehostet, verwendet Vite zur Entwicklung, nutzt Vue als Framework und Leaflet für die Karte."
+			},
+			"7": {
+				"h": "Ist dieses Projekt Open Source?",
+				"p": "Ja, im Gegensatz zu den bereits erwähnten Alternativen ist der Code für meine Webseite komplett öffentlich einsehbar und nutzt eine {} Lizenz. Schau Dir den {} an falls Du interessiert bist.",
+				"a1": "TODO",
+				"a2": "gesamten Code"
+			},
+			"8": {
+				"h": "Wie kann ich beitragen?",
+				"p1": "Es gibt ein {} wo Du generelles Feedback hinterlassen, mir Fehler mitteilen und neue Features, Icons oder Koordinaten anfragen kannst.",
+				"p2": "Falls Du bei der Entwicklung helfen möchtest findest Du den {} auf Github. Bitte beachte dabei, dass dies primär ein Freizeit-Projekt für meine eigene Unterhaltung ist und in keinster Weise nach Professionalität strebt. Ich bevorzuge stets eine minimalistische Lösung die ich selbst geschrieben habe über irgendeine viel zu komplexe Bibliothek (z.B. meine eigene Lösung zur Übersetzung anstelle von vue-i18n mit >1000loc).",
+				"a1": "Kontaktformular",
+				"a2": "gesamten Quellcode"
+			},
+			"9": {
+				"h": "Wer hat diese Seite erstellt?",
+				"p": "Ich bin nur eine einzelne Person, die GTAtlas in ihrer Freizeit entwickelt und aktuell hält. Ich verdiene nichts an dieser Seite, möchte allerdings auch nichts daran verdienen. Meine Motivation liegt in meinem Enthusiasmus für GTA V - ich spiele seit Release auf PC und habe über 4000 Stunden im Spiel verbracht. Data Mining lehne ich prinzipiell ab, alle hier gelisteten Koordinaten wurden per Hand gesammelt und bestätigt."
+			},
+			"10": {
+				"h": "Welche Alternativen gibt es?",
+				"p": "Falls Dir meine Seite nicht gefällt oder Du etwas nicht finden konntest gibt es natürlich auch andere Webseiten - ich empfehle eine der Folgenden:"
+			}
+		},
 		"tree-all": "Alle Icons",
 		"tree-tests": "Zum Testen",
 		"tree-test1": "Einzelne Icons",

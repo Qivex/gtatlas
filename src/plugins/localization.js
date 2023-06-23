@@ -9,14 +9,20 @@ export default {
 		const translations = options
 
 		// Internal logic
-		const translateInternal = function(langID, stringID, ...content) {
-			let localizedString = translations?.[langID]?.[stringID] || ""
-			if (content.length === 0) {
+		const translateInternal = function(langID, stringID, ...contentForPlaceholders) {
+			// Get localization for selected language
+			let langLocalization = translations?.[langID]
+			// Split stringID and traverse translations (Inspired by https://vuejs.org/guide/reusability/plugins.html#writing-a-plugin)
+			function selectProperty(object, key) {
+				if (object) return object[key]
+			}
+			let localizedString = stringID.split(".").reduce(selectProperty, langLocalization) || ""
+			// Replace placeholders with content
+			if (contentForPlaceholders.length === 0) {
 				return localizedString
 			}
-			// Replace placeholders with content
 			function nextContent() {
-				return content.pop() || ""
+				return contentForPlaceholders.shift() || ""
 			}
 			return localizedString.replaceAll("{}", nextContent)
 		}
@@ -30,8 +36,8 @@ export default {
 
 		const currentLanguage = ref()
 
-		const translate = function(stringID, ...content) {
-			return translateInternal(unref(currentLanguage), stringID, ...content)
+		const translate = function(stringID, ...contentForPlaceholders) {
+			return translateInternal(unref(currentLanguage), stringID, ...contentForPlaceholders)
 		}
 
 		// Provide to app

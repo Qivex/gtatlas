@@ -1,6 +1,6 @@
 <template>
 	<section>
-		<h3>{{translate(titleID)}}</h3>
+		<h3 v-if="titleID">{{translate(titleID)}}</h3>
 		<slot/>
 	</section>
 </template>

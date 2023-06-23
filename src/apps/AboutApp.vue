@@ -1,7 +1,7 @@
 <template>
 	<NavBar class="aboutnav">
 		<a href="/" class="back"/>
-		<h1>{{translate("about_heading")}}</h1>
+		<h1>{{translate("nav_about")}}</h1>
 		<LanguageSelector/>
 	</NavBar>
 	<About class="expanded"/>
@@ -89,7 +89,6 @@ p,h1,h2,h3,h4,h5,h6 {
 .about {
 	position: absolute;
 	top: var(--navbar-height, 0px);
-	width: 100vw;
 	height: calc(100vh - var(--navbar-height, 0px));
 	overflow-y: auto;
 }
