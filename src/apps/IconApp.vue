@@ -18,7 +18,7 @@
 	</div>
 	<div v-else class="icon-overview" :style="{'--colcount': columnCount}">
 		<svg v-for="id in iconIDs">
-			<use :href="toHREF(id)" @click.left="selectIcon(id)"/>
+			<use class="pointer" :href="toHREF(id)" @click.left="selectIcon(id)"/>
 		</svg>
 	</div>
 	<div id="mapicons"></div>
@@ -120,22 +120,11 @@ export default {
 
 
 <style>
+@import url(../style/base.css);
+
 body {
-	position: fixed; /* Fixes shifting viewport on mobile (https://stackoverflow.com/a/68359419) */
-	height: 100%;
-	width: 100%;
-	margin: 0px;
-	padding: 0px;
 	background-image: url(/icons/patterns/checker.svg);
 	background-size: 24px 24px;
-	color: #fff;	/* Initial org-color for icons (defaults to black) */
-	font-family: arial;
-}
-
-p,h1,h2,h3,h4,h5,h6 {
-	margin: 0px;
-	color: #fff;
-	font-weight: normal;
 }
 
 .icon-single {
@@ -187,12 +176,6 @@ p,h1,h2,h3,h4,h5,h6 {
 svg {
 	width: 100%;
 	height: 100%;
-}
-
-@media (any-pointer: fine) {
-	.icon-overview use {
-		cursor: pointer;
-	}
 }
 
 /* SVG symbols */

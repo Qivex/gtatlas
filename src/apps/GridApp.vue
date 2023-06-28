@@ -106,13 +106,7 @@ export default {
 </script>
 
 <style>
-body {
-	position: fixed; /* Fixes shifting viewport on mobile (https://stackoverflow.com/a/68359419) */
-	height: 100%;
-	width: 100%;
-	margin: 0px;
-	padding: 0px;
-}
+@import url(../style/base.css);
 
 /* comparison wrapper */
 .sidebyside {
@@ -132,12 +126,6 @@ body {
 		grid-template-columns: none;
 		grid-template-rows: 50% 50%;
 	}
-}
-
-p {
-	margin: 0;
-	color: white;
-	font-family: Arial, Helvetica, sans-serif;
 }
 
 .sidebyside p {

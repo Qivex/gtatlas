@@ -100,32 +100,7 @@ export default {
 
 
 <style>
-body {
-	position: fixed; /* Fixes shifting viewport on mobile (https://stackoverflow.com/a/68359419) */
-	height: 100%;
-	width: 100%;
-	margin: 0px;
-	padding: 0px;
-	color: #fff;	/* Initial org-color for icons (defaults to black) */
-	font-family: arial;
-}
-
-p,h1,h2,h3,h4,h5,h6 {
-	margin: 0px;
-	color: #fff;
-	font-weight: normal;
-}
-
-a {
-	color: #266bec;
-}
-
-/* Would cause blue outline on mobile (https://stackoverflow.com/a/66209706) */
-@media (pointer: fine) {
-	.pointer {
-		cursor: pointer;
-	}
-}
+@import url(../style/base.css);
 
 /* SVG document with all icons as <symbol> */
 #mapicons {

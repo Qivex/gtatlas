@@ -1,6 +1,6 @@
 <template>
 	<div class="menu-togglegroup">
-		<div class="menu-togglebutton" v-for="menu in menus" :class="{expanded: menu.expanded}" :style="{'--icon': menu.icon}" @click.left="menu.toggleExpanded"/>
+		<div class="menu-togglebutton camo" v-for="menu in menus" :class="{expanded: menu.expanded}" :style="{'--icon': menu.icon}" @click.left="menu.toggleExpanded"/>
 	</div>
 </template>
 
@@ -27,8 +27,6 @@ export default {
 .menu-togglebutton {
 	width: 100%;
 	height: 100%;
-	background-color: #222;
-	background-image: url(/icons/patterns/camo.svg);
 	box-shadow: 0 0 20px 5px #222;
 	border-radius: 1.5rem 1.5rem 0 0;
 	transition: transform 0.5s;

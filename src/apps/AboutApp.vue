@@ -4,7 +4,7 @@
 		<h1>{{translate("nav_about")}}</h1>
 		<LanguageSelector/>
 	</NavBar>
-	<About class="expanded"/>
+	<About class="expanded camo"/>
 </template>
 
 
@@ -29,26 +29,10 @@ export default {
 
 
 <style>
-/* Defaults */
-body {
-	position: fixed; /* Fixes shifting viewport on mobile (https://stackoverflow.com/a/68359419) */
-	height: 100%;
-	width: 100%;
-	margin: 0px;
-	padding: 0px;
-	background-color: #222;
-	background-image: url(/icons/patterns/camo.svg);
-	background-size: 100vw 100vh;
-	background-repeat: no-repeat;
-	color: #fff;	/* Initial org-color for icons (defaults to black) */
-	font-family: arial;
-	--navbar-height: 3rem;
-}
+@import url(../style/base.css);
 
-p,h1,h2,h3,h4,h5,h6 {
-	margin: 0px;
-	color: #fff;
-	font-weight: normal;
+body {
+	--navbar-height: 3rem;
 }
 
 /* From other wrapper components */
@@ -58,12 +42,6 @@ p,h1,h2,h3,h4,h5,h6 {
 
 .selected {
 	outline: white solid 2px;
-}
-
-@media (pointer: fine) {
-	.pointer {
-		cursor: pointer;
-	}
 }
 
 /* Specific styling */

@@ -1,5 +1,4 @@
 <template>
-	<!--<h1><b>GTA</b>tlas</h1>-->
 	<img class="logo" :src="'icons/gtatlas.svg'"/>
 	<h2>Locations of Grand Theft Auto</h2>
 	<div class="links">
@@ -49,29 +48,13 @@ export default {
 </script>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100;300;400&display=swap');
+@import url(../style/base.css);
 
 body {
-	position: fixed;
-	width: 100vw;
-	height: 100%;	/* Mobile Chrome includes search bar in 100vh */
-	margin: 0px;
-	padding: 0px;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	background-color: #222;
-	background-image: url(/icons/patterns/camo.svg);
-	background-size: 100vw 100vh;
-	background-repeat: no-repeat;
-	font-family: 'Outfit', sans-serif;
-}
-
-p,li,h1,h2,h3 {
-	margin: 0px;
-	color: #F0F0F0;
-	font-weight: 100;
 }
 
 ul {

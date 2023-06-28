@@ -1,7 +1,7 @@
 <template>
 	<div class="moreinfo" @mouseleave="closeContent">
 		<div class="moreinfo-icon pointer" @mouseenter="openContent" @click.left="toggleKeepOpen"></div>
-		<div class="moreinfo-content" v-show="open" ref="content">
+		<div class="moreinfo-content camo" v-show="open" ref="content">
 			<slot/>
 		</div>
 	</div>
@@ -64,8 +64,6 @@ export default {
 	left: 5%;
 	right: 5%;
 	transform: translateY(calc(-100% - var(--moreinfo-icon-size)));
-	background-color: #222;
-	background-image: url(/icons/patterns/camo.svg);
 	padding: 1rem;
 	border: 1px solid #fff;
 	border-radius: 1rem;

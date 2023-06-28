@@ -1,5 +1,5 @@
 <template>
-	<NavBar class="gta5nav">
+	<NavBar class="camo">
 		<a href="/" class="logolink">
 			<img class="logo" :src="'icons/gtatlas.svg'"/>
 		</a>
@@ -65,11 +65,6 @@ export default {
 
 
 <style>
-.gta5nav {
-	background-color: #222;
-	background-image: url(/icons/patterns/camo.svg);
-}
-
 .logolink {
 	display: contents;
 }

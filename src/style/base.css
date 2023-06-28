@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100;300;400&display=swap');
+
+body {
+	position: fixed; /* Fixes shifting viewport on mobile (https://stackoverflow.com/a/68359419) */
+	height: 100%;
+	width: 100%;
+	margin: 0px;
+	padding: 0px;
+	font-family: 'Outfit', Arial;
+}
+
+a,p,li,h1,h2,h3,h4,h5,h6 {
+	margin: 0px;
+	color: #fff;
+}
+
+/* Initial business color for icons (SVG defaults to black) */
+use {
+	color: #f0f0f0;
+}
+
+/* Would cause blue outline on mobile (https://stackoverflow.com/a/66209706) */
+@media (pointer: fine) {
+	.pointer {
+		cursor: pointer;
+	}
+}
+
+/* Font weights */
+h1,h2 {
+	font-weight: 400;
+}
+
+h3,b {
+	font-weight: 300;
+}
+
+a,p {
+	font-weight: 200;
+	line-height: 150%;
+}
+
+/* Pattern */
+.camo {
+	background-image: url(/icons/patterns/camo.svg);
+	background-size: 100vw 100vh;	/* "cover" not working in Firefox */
+	background-color: #222;	/* Fallback */
+}

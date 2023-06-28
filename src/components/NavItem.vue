@@ -1,5 +1,5 @@
 <template>
-	<div class="navitem" :class="{active}" @click.left="onselect">
+	<div class="navitem pointer" :class="{active}" @click.left="onselect">
 		<h3>{{translate(captionID)}}</h3>
 	</div>
 </template>
@@ -24,7 +24,6 @@ export default {
 	height: 100%;
 	padding-inline: 1rem;
 	place-items: center;
-	cursor: pointer;
 }
 
 .navitem:hover {
