@@ -7,7 +7,7 @@
 			<a href="/gta5">
 				<img alt="GTA5 Logo" src="https://media-rockstargames-com.akamaized.net/mfe4/__common/img/cc4b8d5c455ccb92dc0c.svg"/>
 			</a>
-			<a href="https://youtu.be/dQw4w9WgXcQ" target="_blank" rel="noopener noreferrer">
+			<a href="https://youtu.be/xvFZjo5PgG0" target="_blank" rel="noopener noreferrer">
 				<FakeLogo/>
 			</a>
 		</div>

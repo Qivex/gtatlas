@@ -112,7 +112,7 @@ export default {
 			)
 		},
 		p4() {
-			return this.translate("about.4.p")
+			return this.translate("about.4.p", "TODO")
 		},
 		p5() {
 			return this.translate(
@@ -156,16 +156,6 @@ export default {
 .about .logo {
 	height: 10vmin;
 }
-
-/* Previously:
-.techpromo {
-	display: grid;
-	min-height: 3rem;
-	grid-template-columns: repeat(4, 1fr);
-	column-gap: 15%;
-	margin-block-start: 0.5rem;
-}
-*/
 
 .techpromo {
 	display: flex;

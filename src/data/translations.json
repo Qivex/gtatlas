@@ -33,7 +33,7 @@
 			},
 			"4": {
 				"h": "Why and how were the marker icons created?",
-				"p": "The obvious choice would have been to just load screenshots of the icons, or even rip the original icons from the game.<br>First I just used screenshots of the icons taken ingame. To get the best result on my 1080p monitor I used AMDs VSR to increase screenshot resolution to 4K. I also made sure to hover over the icons, because they get about 1.28x bigger when selected. Using the screenshots as reference I then recreated the icons in SVG.<br>These recreations are not perfect (especially since SVG uses a different method to round corners), but still way smoother than screenshots. Including the SVG file with all icons is about X times smaller than serving them as separate PNG files. They can also be dynamically styled (without ugly hacks like hue shift), for example to include the business color."
+				"p": "The obvious choice would have been to just load screenshots of the icons, or even rip the original icons from the game.<br>First I just used screenshots of the icons taken ingame. To get the best result on my 1080p monitor I used AMDs VSR to increase screenshot resolution to 4K. I also made sure to hover over the icons, because they get about 1.28x bigger when selected. Using the screenshots as reference I then recreated the icons in SVG.<br>These recreations are not perfect (especially since SVG uses a different method to round corners), but still way smoother than screenshots. Including the SVG file with all icons is about {} times smaller than serving them as separate PNG files. They can also be dynamically styled (without ugly hacks like hue shift), for example to include the business color."
 			},
 			"5": {
 				"h": "How can I use these icons?",
@@ -105,7 +105,7 @@
 			},
 			"4": {
 				"h": "Wie und warum wurden die Icons erstellt?",
-				"p": "Die offensichtliche Lösung wäre es gewesen einfach Screenshots der Icons zu nutzen, oder die Spritesheets aus den Spieldateien zu kopieren.<br>Als Basis nutze ich Screenshots welche ich selbst im Spiel geschossen habe. Um eine ausreichende Auflösung von 4K auf meinem 1080p Monitor zu erzielen nutze ich dabei AMDs VSR. Außerdem profitierte ich davon, dass die Icons 1.28x größer werden wenn man über ihnen hovert. Mit den Screenshots als Referenz bastelte ich die Icons einzeln mit SVG nach.<br>Diese Nachbildungen sind zwar nicht perfekt (vor allem weil SVG die Ecken anders abrundet), aber immer noch wesentlich besser als Screenshots. Das Einbinden aller SVG icons ist etwa Xmal kleiner als alle Icons als PNG zu laden. Das Aussehen dieser Icons kann dadurch auch dynamisch verändert werden (ohne unelegante Hacks wie Hue Shift), zum Beispiel zur Darstellung der Farbe des Unternehmens."
+				"p": "Die offensichtliche Lösung wäre es gewesen einfach Screenshots der Icons zu nutzen, oder die Spritesheets aus den Spieldateien zu kopieren.<br>Als Basis nutze ich Screenshots welche ich selbst im Spiel geschossen habe. Um eine ausreichende Auflösung von 4K auf meinem 1080p Monitor zu erzielen nutze ich dabei AMDs VSR. Außerdem profitierte ich davon, dass die Icons 1.28x größer werden wenn man über ihnen hovert. Mit den Screenshots als Referenz bastelte ich die Icons einzeln mit SVG nach.<br>Diese Nachbildungen sind zwar nicht perfekt (vor allem weil SVG die Ecken anders abrundet), aber immer noch wesentlich besser als Screenshots. Das Einbinden aller SVG icons ist etwa {}mal kleiner als alle Icons als PNG zu laden. Das Aussehen dieser Icons kann dadurch auch dynamisch verändert werden (ohne unelegante Hacks wie Hue Shift), zum Beispiel zur Darstellung der Farbe des Unternehmens."
 			},
 			"5": {
 				"h": "Wie kann ich diese Icons selbst nutzen?",
@@ -120,14 +120,14 @@
 				"h": "Ist dieses Projekt Open Source?",
 				"p": "Ja, im Gegensatz zu den bereits erwähnten Alternativen ist der Code für meine Webseite komplett öffentlich einsehbar und nutzt eine {} Lizenz. Schau Dir den {} an falls Du interessiert bist.",
 				"a1": "TODO",
-				"a2": "gesamten Code"
+				"a2": "Quellcode"
 			},
 			"8": {
 				"h": "Wie kann ich beitragen?",
 				"p1": "Es gibt ein {} wo Du generelles Feedback hinterlassen, mir Fehler mitteilen und neue Features, Icons oder Koordinaten anfragen kannst.",
 				"p2": "Falls Du bei der Entwicklung helfen möchtest findest Du den {} auf Github. Bitte beachte dabei, dass dies primär ein Freizeit-Projekt für meine eigene Unterhaltung ist und in keinster Weise nach Professionalität strebt. Ich bevorzuge stets eine minimalistische Lösung die ich selbst geschrieben habe über irgendeine viel zu komplexe Bibliothek (z.B. meine eigene Lösung zur Übersetzung anstelle von vue-i18n mit >1000loc).",
 				"a1": "Kontaktformular",
-				"a2": "gesamten Quellcode"
+				"a2": "vollständigen Quellcode"
 			},
 			"9": {
 				"h": "Wer hat diese Seite erstellt?",
