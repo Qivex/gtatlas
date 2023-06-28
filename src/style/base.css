@@ -15,7 +15,7 @@ a,p,li,h1,h2,h3,h4,h5,h6 {
 }
 
 /* Initial business color for icons (SVG defaults to black) */
-use {
+svg {
 	color: #f0f0f0;
 }
 
