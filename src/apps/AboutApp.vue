@@ -60,7 +60,7 @@ body {
 	width: 2rem;
 	height: 2rem;
 	margin-inline-end: 1rem;
-	background-image: url(icons/back.svg);
+	background-image: url(/icons/back.svg);
 }
 
 /* Offset to NavBar is also required for mobile in this context */
