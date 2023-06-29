@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100;300;400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500&display=swap');
 
 body {
 	position: fixed; /* Fixes shifting viewport on mobile (https://stackoverflow.com/a/68359419) */
@@ -6,7 +6,7 @@ body {
 	width: 100%;
 	margin: 0px;
 	padding: 0px;
-	font-family: 'Outfit', Arial;
+	font-family: 'Quicksand', Arial;
 }
 
 a,p,li,h1,h2,h3,h4,h5,h6 {
@@ -28,15 +28,15 @@ svg {
 
 /* Font weights */
 h1,h2 {
-	font-weight: 400;
+	font-weight: 500;
 }
 
 h3,b {
-	font-weight: 300;
+	font-weight: 400;
 }
 
 a,p {
-	font-weight: 200;
+	font-weight: 300;
 	line-height: 150%;
 }
 
