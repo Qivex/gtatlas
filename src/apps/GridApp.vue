@@ -1,17 +1,17 @@
 <template>
 	<div class="sidebyside">
-		<div>
-			<GTA5Map id="map" ref="map"/>
-			<p>{{roundFloor(estimatedLatitude, 3) + " | " + roundFloor(estimatedLongitude, 3)}}</p>
-		</div>
 		<div class="pixel" :style="style">
 			<img src="https://igta5.com/images/gtav-map-satellite-huge.jpg"/>
-			<svg viewBox="0,0,20,20">
-				<path d="M0,0 l20,20 M20,0 l-20,20" stroke-width="1">
+			<svg viewBox="0,0,1000,1000">
+				<path d="M500,0 v1000 M0,500 h1000" stroke-width="1">
 					<animate attributeName="stroke" values="#fff;#000" dur="2s" repeatCount="indefinite" calcMode="discrete"/>
 				</path>
 			</svg>
 			<p>{{pixelX + " | " + pixelY}}</p>
+		</div>
+		<div>
+			<GTA5Map id="map" ref="map"/>
+			<p>{{`${crosshairX} | ${crosshairY}`}}</p>
 		</div>
 	</div>
 	<div class="options">
@@ -25,6 +25,18 @@
 <script>
 import GTA5Map from "../components/GTA5Map.vue"
 import Leaflet from "leaflet"
+
+function round(number, stepCount) {
+	// stepSize = 1 / stepCount
+	return Math.round(number * stepCount) / stepCount
+}
+
+function estimateLatLngFromPixel(x, y) {
+	return [
+		-y / 46.27,
+		(x - 1024) / 46.33
+	]
+}
 
 export default {
 	name: "GridApp",
@@ -44,9 +56,13 @@ export default {
 			inputY: 0,
 			pixelX: 0,
 			pixelY: 0,
-			marker: new Leaflet.marker([0,0]),
-			canvasZoom: 11,
-			crosshairSize: 32
+			crosshairLat: 0,
+			crosshairLng: 0,
+			accuracy: 50,	// Number of sub-steps between integer Leaflet-coordinates
+			centerMarker: Leaflet.marker([0,0]),
+			mapZoom: 9,
+			canvasZoom: 11,	// Amount of screen-pixels per image-pixel
+			crosshairSize: 1000
 		}
 	},
 	computed: {
@@ -54,11 +70,11 @@ export default {
 			// Shortcut to Leaflet map (not component!)
 			return this.$refs.map.map.instance	// GTA5Map -> LeafletMap -> Leaflet "Map" class instance
 		},
-		estimatedLatitude() {
-			return -this.pixelY / 46.27
+		crosshairX() {
+			return parseInt(this.crosshairLng * this.accuracy)
 		},
-		estimatedLongitude() {
-			return (this.pixelX - 1024) / 46.33
+		crosshairY() {
+			return parseInt(this.crosshairLat * -this.accuracy)
 		},
 		style() {
 			return {
@@ -73,34 +89,42 @@ export default {
 		selectPixel(x, y) {
 			this.pixelX = x
 			this.pixelY = y
-			// Move map and estimated marker
-			let latlng = [this.estimatedLatitude, this.estimatedLongitude]
-			this.map.setView(latlng, 10)
-			this.marker.setLatLng(latlng)
-			// Add marker if first select
-			if (!this.map.hasLayer(this.marker)) {
-				this.map.addLayer(this.marker)
-			}
-		},
-		roundFloor(f, digits) {
-			let shift = Math.pow(10, digits)
-			return Math.round(f * shift) / shift
+			// Center map roughly on this coordinate
+			let latlng = estimateLatLngFromPixel(x, y)
+			this.map.setView(latlng, this.mapZoom)
+			// Move marker to estimated center
+			this.centerMarker.setLatLng(latlng)
 		}
 	},
 	mounted() {
-		this.map.setMaxZoom(9) // Overwrite default
+		// Disable Zooming & Panning
+		this.map.setMinZoom(this.mapZoom)
+		this.map.setMaxZoom(this.mapZoom)
+		this.map.dragging.disable()
+		// Initialize view
+		this.centerMarker.addTo(this.map)
 		this.selectPixel(4000,6000)
-		// Construct graticule
-		let lines = []
-		let step = 1/20
-		for (let lat = 0; lat > -192; lat -= step) {
-			lines.push([[lat,0],[lat,128]])  // Horizontal lines
+		// Crosshair
+		function crosshairIcon(size) {
+			return Leaflet.divIcon({
+				html: `<svg viewBox="0 0 ${size} ${size}"><path d="M0,${size/2} h${size} M${size/2},0 v${size}" stroke="red"/></svg>`,
+				iconSize: [size, size]
+			})
 		}
-		for (let lng = 0; lng < 128; lng += step) {
-			lines.push([[0,lng],[-192,lng]]) // Vertical lines
-		}
-		let graticule = Leaflet.polyline(lines, {color: "#FFF", weight: 0.7})
-		graticule.addTo(this.map)
+		const normalCH = crosshairIcon(32)
+		const largeCH = crosshairIcon(1024)
+		let crosshair = Leaflet.marker([0,0], {icon: normalCH})
+		crosshair.addTo(this.map)
+		// Change size on mousedown
+		this.map.on("mousedown", e => crosshair.setIcon(largeCH))
+		this.map.on("mouseup", e => crosshair.setIcon(normalCH))
+		// Align crosshair to grid
+		this.map.on("mousemove", e => {
+			let ll = e.latlng
+			this.crosshairLat = round(ll.lat, this.accuracy)
+			this.crosshairLng = round(ll.lng, this.accuracy)
+			crosshair.setLatLng([this.crosshairLat, this.crosshairLng])
+		})
 	}
 }
 </script>
@@ -174,6 +198,11 @@ export default {
 	height: var(--crosshair-size);
 	top: calc(50% - calc(var(--crosshair-size) / 2));
 	left: calc(50% - calc(var(--crosshair-size) / 2));
+}
+
+/* No cursor on map (crosshair-marker instead) */
+.sidebyside :first-child {
+	cursor: none;
 }
 
 .options {
