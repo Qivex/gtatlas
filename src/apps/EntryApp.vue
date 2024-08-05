@@ -8,7 +8,7 @@
 				<img alt="GTA5 Logo" src="https://media-rockstargames-com.akamaized.net/mfe4/__common/img/cc4b8d5c455ccb92dc0c.svg"/>
 			</a>
 			<a href="https://youtu.be/xvFZjo5PgG0" target="_blank" rel="noopener noreferrer">
-				<FakeLogo/>
+				<img alt="GTA6 Logo" src="https://i.imgur.com/b5tfT2R.png"/>
 			</a>
 		</div>
 		<h3>Learn more:</h3>
@@ -26,13 +26,8 @@
 </template>
 
 <script>
-import FakeLogo from "../components/FakeLogo.vue"
-
 export default {
 	name: "EntryApp",
-	components: {
-		FakeLogo
-	},
 	inject: ["buildtimestamp"],
 	data() {
 		return {
@@ -41,8 +36,7 @@ export default {
 	},
 	mounted() {
 		// Todo: Use Intl.RelativeTimeFormat
-		this.buildAge = Math.floor((Date.now() - this.buildtimestamp) / (24 * 3600 * 1000))
-		// window.alert("Days: " + this.buildAge + "\nTimestamp: " + this.buildtimestamp)
+		this.buildAge = Math.floor((Date.now() - this.buildtimestamp) / 864e5)	// 24 * 3600 * 1000
 	}
 }
 </script>
@@ -78,7 +72,6 @@ h3 {
 .links {
 	display: flex;
 	flex-direction: column;
-	/* align-items: center; */
 }
 
 .maps {
@@ -90,8 +83,7 @@ h3 {
 	width: 100%;
 	height: 100%;
 	display: flex;
-	align-items: center;
-	justify-content: center;
+	place-items: center;
 }
 
 /* Margin or padding on parent dont work */
