@@ -21,22 +21,17 @@
 		</div>
 	</div>
 	<footer>
-		<p>Last updated {{buildAge}} days ago</p>
+		<p>Last updated {{buildAge}} day{{buildAge === 1 ? "" : "s"}} ago</p>
 	</footer>
 </template>
 
 <script>
 export default {
 	name: "EntryApp",
-	inject: ["buildtimestamp"],
 	data() {
 		return {
-			buildAge: undefined
+			buildAge: Math.floor((Date.now() - __BUILD_TIMESTAMP__) / 864e5)	// 24 * 3600 * 1000
 		}
-	},
-	mounted() {
-		// Todo: Use Intl.RelativeTimeFormat
-		this.buildAge = Math.floor((Date.now() - this.buildtimestamp) / 864e5)	// 24 * 3600 * 1000
 	}
 }
 </script>

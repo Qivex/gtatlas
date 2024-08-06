@@ -17,6 +17,6 @@ export default defineConfig({
 		}
 	},
 	define: {
-		__BUILD_TIMESTAMP__: JSON.stringify(Date.now())
+		__BUILD_TIMESTAMP__: Date.now().toString()
 	}
 })
