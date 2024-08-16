@@ -138,11 +138,49 @@ export default {
 					return Leaflet.featureGroup(elements)
 				}
 			}
+		},
+		enableCrosshairMode() {
+			// Create crosshair
+			function crosshairIcon(size) {
+				return Leaflet.divIcon({
+					html: `<svg viewBox="0 0 ${size} ${size}"><path d="M0,${size/2} h${size} M${size/2},0 v${size}" stroke="red"/></svg>`,
+					iconSize: [size, size]
+				})
+			}
+			const normalCH = crosshairIcon(50)
+			const largeCH = crosshairIcon(2000)
+			// Add to map
+			let crosshair = Leaflet.marker([0,0], {icon: normalCH})
+			crosshair.addTo(this.instance)
+			// Change map attributes
+			document.body.classList.add("crosshair")
+			this.instance.setMaxZoom(10)
+			// Change size
+			this.instance.on("mousedown", e => crosshair.setIcon(largeCH))
+			this.instance.on("mouseup", e => crosshair.setIcon(normalCH))
+			// Align crosshair to grid
+			function align(coord) {
+				return Math.round(coord * 64) / 64
+			}
+			this.instance.on("mousemove", e => {
+				let ll = e.latlng
+				crosshair.setLatLng([align(ll.lat), align(ll.lng)])
+			})
+			// Insert coordinate into clipboard
+			this.instance.on("contextmenu", e => {
+				let ll = crosshair.getLatLng()
+				window.navigator.clipboard.writeText(`[${64 * ll.lng},${-64 * ll.lat}]`)
+			})
 		}
 	},
 	mounted() {
 		this.instance = Leaflet.map(this.id, this.mapOptions)
 		this.tilelayer = Leaflet.tileLayer(this.tileURL, this.tileOptions).addTo(this.instance)
+		// Debug mode: Used to enter & check coordinates
+		let para = new URLSearchParams(window.location.search)
+		if (para.has("crosshair")) {
+			this.enableCrosshairMode()
+		}
 	}
 }
 </script>
@@ -159,5 +197,10 @@ export default {
 .leaflet-div-icon > svg {
 	width: 100%;
 	height: 100%;
+}
+
+/* Debug mode */
+.crosshair * {
+	cursor: none;
 }
 </style>
