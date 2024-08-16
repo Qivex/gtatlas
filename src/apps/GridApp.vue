@@ -58,7 +58,7 @@ export default {
 			pixelY: 0,
 			crosshairLat: 0,
 			crosshairLng: 0,
-			accuracy: 50,	// Number of sub-steps between integer Leaflet-coordinates
+			accuracy: 64,	// Number of sub-steps between integer Leaflet-coordinates
 			centerMarker: Leaflet.marker([0,0]),
 			mapZoom: 9,
 			canvasZoom: 11,	// Amount of screen-pixels per image-pixel

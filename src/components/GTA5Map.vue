@@ -27,19 +27,6 @@ function constructMapLayers(data, ts) {
 					ts.circle(p[0], 128, "#F0C850", 0.5)
 				])
 				break
-			case "test3":	// Stress test
-				builder = p => {
-					let distance = p[0]
-					let topleft = p[1]
-					let bottomright = p[2]
-					let markers = []
-					for (let x = topleft[0]; x < bottomright[0]; x += distance) {
-						for (let y = topleft[1]; y < bottomright[1]; y += distance) {
-							markers.push(ts.marker([x,y], "mc-meth"))
-						}
-					}
-					return ts.group(markers)
-				}
 		}
 		// Apply the builder-function to all layer components and group them
 		result[layer.id] = ts.group(layer.data.map(builder))

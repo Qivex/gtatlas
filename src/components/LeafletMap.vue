@@ -8,7 +8,12 @@ import "leaflet/dist/leaflet.css"
 import Leaflet from "leaflet"
 import "leaflet-arrowheads"
 
-import { pixel2leaflet } from "../tools/coord-transform.js"
+// Coordinate transform
+function point2latlng(point) {
+	let x = point[0]
+	let y = point[1]
+	return [-y/64, x/64]
+}
 
 // Creation of map icons
 function createMapIcon(id, size) {
@@ -124,14 +129,13 @@ export default {
 			// Shortcuts used for easier construction of layers
 			return {
 				marker(point, iconname) {
-					return Leaflet.marker(pixel2leaflet(point), {icon: createMapIcon(iconname, iconsize)})
+					return Leaflet.marker(point2latlng(point), {icon: createMapIcon(iconname, iconsize)})
 				},
 				line(points) {
-					return Leaflet.polyline(points.map(p => pixel2leaflet(p)), {color: "#FFF"}).arrowheads(arrowConfig)
+					return Leaflet.polyline(points.map(p => point2latlng(p)), {color: "#FFF"}).arrowheads(arrowConfig)
 				},
 				circle(point, radius, color, opacity) {
-					// Todo: Radius transformation in coordinate-transformation module!
-					return Leaflet.circle(pixel2leaflet(point), {radius: radius/46.3, stroke: false, color: color, fillOpacity: opacity})
+					return Leaflet.circle(point2latlng(point), {radius: radius/64, stroke: false, color: color, fillOpacity: opacity})
 				},
 				group(elements) {
 					// Not using "arguments" because input can/should be result of .map()

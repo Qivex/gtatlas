@@ -5,8 +5,7 @@
 			"id": "tests",
 			"children": [
 				{"id": "test1", "icon":"ammunation", "initial": true},
-				{"id": "test2", "icon":"supplies-crate", "initial": true},
-				{"id": "test3", "icon":"mc-meth", "initial": false}
+				{"id": "test2", "icon":"supplies-crate", "initial": true}
 			]
 		}
 	]
