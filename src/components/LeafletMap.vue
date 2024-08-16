@@ -154,14 +154,19 @@ export default {
 			const normalCH = crosshairIcon(50)
 			const largeCH = crosshairIcon(2000)
 			// Add to map
-			let crosshair = Leaflet.marker([0,0], {icon: normalCH})
+			let crosshair = Leaflet.marker([0,0], {icon: normalCH, autoPanOnFocus: false})
 			crosshair.addTo(this.instance)
 			// Change map attributes
 			document.body.classList.add("crosshair")
 			this.instance.setMaxZoom(10)
-			// Change size
-			this.instance.on("mousedown", e => crosshair.setIcon(largeCH))
-			this.instance.on("mouseup", e => crosshair.setIcon(normalCH))
+			// Toggle size
+			this.instance.on("contextmenu", e => {
+				if (crosshair.getIcon() === largeCH) {
+					crosshair.setIcon(normalCH)
+				} else {
+					crosshair.setIcon(largeCH)
+				}
+			})
 			// Align crosshair to grid
 			function align(coord) {
 				return Math.round(coord * 64) / 64
@@ -171,7 +176,7 @@ export default {
 				crosshair.setLatLng([align(ll.lat), align(ll.lng)])
 			})
 			// Insert coordinate into clipboard
-			this.instance.on("contextmenu", e => {
+			this.instance.on("click", e => {
 				let ll = crosshair.getLatLng()
 				window.navigator.clipboard.writeText(`[${64 * ll.lng},${-64 * ll.lat}]`)
 			})
