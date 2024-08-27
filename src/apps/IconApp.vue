@@ -1,7 +1,7 @@
 <template>
 	<div v-if="currentIcon" class="icon-single">
 		<svg id="svg">
-			<use :href="toHREF(currentIcon)"/>
+			<use :href="toHREF(currentIcon)" fill="red" stroke="#000"/>
 		</svg>
 		<div class="icon-menu">
 			<p>{{currentIcon}}</p>
@@ -18,7 +18,7 @@
 	</div>
 	<div v-else class="icon-overview" :style="{'--colcount': columnCount}">
 		<svg v-for="id in iconIDs">
-			<use class="pointer" :href="toHREF(id)" @click.left="selectIcon(id)"/>
+			<use class="pointer" :href="toHREF(id)" @click.left="selectIcon(id)" fill="#F0F0F0" stroke="#000"/>
 		</svg>
 	</div>
 	<div id="mapicons"></div>

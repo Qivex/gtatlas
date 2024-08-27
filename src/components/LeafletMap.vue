@@ -1,5 +1,5 @@
 <template>
-	<div :id="id" class="leaflet-component" :class="`tileset-${tilesetName}`" :style="{'--mapicon-color': iconcolor}"></div>
+	<div :id="id" class="leaflet-component" :class="`tileset-${tilesetName}`" :style="{'color': iconcolor}"></div>
 </template>
 
 
@@ -13,15 +13,6 @@ function point2latlng(point) {
 	let x = point[0]
 	let y = point[1]
 	return [-y/64, x/64]
-}
-
-// Creation of map icons
-function createMapIcon(id, size) {
-	return Leaflet.divIcon({
-		html: `<svg><use href="#icon-${id}" color="var(--mapicon-color)"/></svg>`,
-		iconSize: [size, size]
-		// iconAnchor not needed (centered by default)
-	})
 }
 
 // Recursive update of icon size
@@ -128,8 +119,18 @@ export default {
 			let iconsize = this.iconsize
 			// Shortcuts used for easier construction of layers
 			return {
-				marker(point, iconname) {
-					return Leaflet.marker(point2latlng(point), {icon: createMapIcon(iconname, iconsize)})
+				icon(id, color) {
+					if (!CSS.supports("color", color)) {
+						color = "currentcolor"
+					}
+					return Leaflet.divIcon({
+						html: `<svg><use href="#icon-${id}" color="${color}"/></svg>`,
+						iconSize: [iconsize, iconsize]
+						// iconAnchor not needed (centered by default)
+					})
+				},
+				marker(point, icon) {
+					return Leaflet.marker(point2latlng(point), {icon: icon})
 				},
 				line(points) {
 					return Leaflet.polyline(points.map(p => point2latlng(p)), {color: "#FFF"}).arrowheads(arrowConfig)

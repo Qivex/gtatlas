@@ -100,6 +100,7 @@ export default {
 
 
 <style>
+@import url(../style/gtacolors.css);
 @import url(../style/base.css);
 
 /* SVG document with all icons as <symbol> */

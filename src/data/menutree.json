@@ -4,8 +4,18 @@
 		{
 			"id": "tests",
 			"children": [
-				{"id": "test1", "icon":"ammunation", "initial": true},
-				{"id": "test2", "icon":"supplies-crate", "initial": true}
+				{
+					"id": "test1",
+					"initial": true,
+					"icon":"ammunation",
+					"color":"var(--gta-gray1)"
+				},
+				{
+					"id": "test2",
+					"initial": true,
+					"icon":"supplies-crate",
+					"color":"var(--gta-green)"
+				}
 			]
 		}
 	]

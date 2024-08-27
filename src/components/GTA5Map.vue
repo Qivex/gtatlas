@@ -17,16 +17,20 @@ function constructMapLayers(data, ts) {
 		let builder
 		switch (layer.id) {
 			case "test1":	// Atomic icons
-				builder = p => ts.marker(p, "ammunation")	// More generic: layer.id or layer.icon as iconname!
+				let icon = ts.icon("ammunation", "var(--gta-gray1)")
+				builder = p => ts.marker(p, icon)
 				break
-			case "test2":	// Grouped icons
+			case "test2": {	// Grouped icons
+				let icon = ts.icon("supplies-crate", "var(--gta-green)")
+				let icon2 = ts.icon("warehouse-crates")
 				builder = p => ts.group([
-					ts.marker(p[0], "supplies-crate"),
-					ts.marker(p[1], "warehouse-crates"),
+					ts.marker(p[0], icon),
+					ts.marker(p[1], icon2),
 					ts.line([p[0], p[1]]),
 					ts.circle(p[0], 128, "#F0C850", 0.5)
 				])
 				break
+			}
 		}
 		// Apply the builder-function to all layer components and group them
 		result[layer.id] = ts.group(layer.data.map(builder))
