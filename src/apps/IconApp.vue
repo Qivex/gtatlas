@@ -1,24 +1,29 @@
 <template>
 	<div v-if="currentIcon" class="icon-single">
 		<svg id="svg">
-			<use :href="toHREF(currentIcon)" fill="red" stroke="#000"/>
+			<use :href="toHREF(currentIcon)" :color="color"/>
 		</svg>
 		<div class="icon-menu">
 			<p>{{currentIcon}}</p>
+			<div class="colorpick" @click.left="$refs.colorpick.click()">
+				<input ref="colorpick" type="color" v-model="color"/>
+			</div>
 			<img src="/icons/download.svg" @click.left="openSaveDialog"/>
 			<img src="/icons/close.svg" @click.left="closeIcon"/>
 		</div>
 		<dialog class="save-dialog" ref="pngdialog">
-			<p>Save as PNG</p>
-			<input type="range" min="4" max="12" v-model="sizeStep" style="width:16rem"/>
-			<p>{{pngSize + "x" + pngSize}}</p>
-			<button @click.left="savePNG">Save As...</button>
+			<h2>Save as PNG</h2>
+			<section>
+				<p>Resolution: {{pngSize + "x" + pngSize}}</p>
+				<input type="range" min="4" max="11" v-model="sizeStep" style="width:16rem"/>
+			</section>
+			<button @click.left="savePNG">Save</button>
 			<button @click.left="closeSaveDialog">Cancel</button>
 		</dialog>
 	</div>
 	<div v-else class="icon-overview" :style="{'--colcount': columnCount}">
 		<svg v-for="id in iconIDs">
-			<use class="pointer" :href="toHREF(id)" @click.left="selectIcon(id)" fill="#F0F0F0" stroke="#000"/>
+			<use class="pointer" :href="toHREF(id)" @click.left="selectIcon(id)" :color="color"/>
 		</svg>
 	</div>
 	<div id="mapicons"></div>
@@ -34,6 +39,7 @@ export default {
 			currentIcon: undefined,
 			columnCount: 8,
 			sizeStep: 7,
+			color: "#F0F0F0",
 			svgData: ""
 		}
 	},
@@ -77,7 +83,7 @@ export default {
 			// Use only the selected icon
 			let use = document.createElement("use")
 			use.setAttribute("href", this.toHREF(this.currentIcon))
-			use.setAttribute("color", "#F0F0F0")	// Business color (would be black without this)
+			use.setAttribute("color", this.color)	// Would be black without this
 			svg.appendChild(use)
 			// SVG as Blob
 			let svgBlob = new Blob([svg.outerHTML], {type: "image/svg+xml;charset=utf-8"})
@@ -121,6 +127,7 @@ export default {
 
 <style>
 @import url(../style/base.css);
+@import url(../style/gtacolors.css);
 
 body {
 	background-image: url(/icons/patterns/checker.svg);
@@ -158,6 +165,17 @@ body {
 	grid-template-columns: repeat(var(--colcount), 1fr);
 }
 
+.colorpick {
+	width: 2rem;
+	height: 2rem;
+	border-radius: 2rem;
+	background: conic-gradient(var(--gta-red), var(--gta-yellow), var(--gta-green), var(--gta-blue), var(--gta-purple), var(--gta-red));
+}
+
+.colorpick input {
+	opacity: 0;	/* To open popup at actual location */
+}
+
 .save-dialog {
 	background-color: #222;
 	border: 1px solid #fff;
@@ -171,6 +189,10 @@ body {
 /* Fix for orange outline of dialog-input */
 .save-dialog *:focus {
 	outline: none;
+}
+
+.save-dialog section {
+	margin-block: 1rem;
 }
 
 svg {

@@ -4,7 +4,7 @@
 		<div class="styled-checkbox pointer" @click.left="cycleState"></div>
 		<p>{{translate("tree-"+id)}}</p>
 		<svg class="preview-icon" viewbox="0 0 128 128">
-			<use :href="`#icon-${icon}`"/>
+			<use :href="`#icon-${icon}`" :color="color"/>
 		</svg>
 	</div>
 </template>
@@ -17,7 +17,8 @@ export default {
 	props: {
 		id: String,
 		initial: Boolean,
-		icon: String
+		icon: String,
+		color: String
 	},
 	data() {
 		return {
