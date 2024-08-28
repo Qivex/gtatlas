@@ -19,9 +19,6 @@ export default {
 		structure: Object,
 		onchange: Function
 	},
-	methods: {
-		update() { console.log("Avoid this!") }
-	},
 	provide() {
 		return {
 			onchange: this.onchange

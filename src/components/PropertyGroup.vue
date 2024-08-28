@@ -6,7 +6,7 @@
 			<p>{{translate("tree-"+id)}}</p>
 			<div class="collapse-icon pointer" :class="{collapsed: collapsed}" @click.left="cycleCollapse"></div>
 		</div>
-		<ul v-if="!collapsed">
+		<ul v-show="!collapsed">
 			<li v-for="child in children">
 				<Component :is="child.children ? 'PropertyGroup' : 'Property'" v-bind="child" ref="childcomponents"/>
 			</li>
@@ -82,7 +82,7 @@ export default {
 			}
 			this.state = targetState
 			// Chain up
-			this.$parent.update?.()
+			this.$parent.update?.()	// Optional call (parent might be the wrapping PropertyTree instead of PropertyGroup)
 		}
 	},
 	mounted() {
