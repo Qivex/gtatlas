@@ -74,7 +74,7 @@ export default {
 				},
 				{
 					href: "https://gtaweb.eu/gtao-map",
-					logo: "https://gtaweb.eu/_sources/1658057461/img/logo2.png"
+					logo: "https://pltytus.eu/_sources/1710592126/img/gtaweb.png"
 				},
 				{
 					href: "https://gtalens.com/map",
@@ -83,8 +83,8 @@ export default {
 			],
 			techpromos: [
 				{
-					href: "https://render.com",
-					logo: "https://render.com/favicon.svg"
+					href: "https://pages.cloudflare.com",
+					logo: "https://pages.cloudflare.com/resources/logo/logo.svg"
 				},
 				{
 					href: "https://vitejs.dev",

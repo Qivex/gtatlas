@@ -42,7 +42,7 @@
 			},
 			"6": {
 				"h": "What technologies did you use?",
-				"p": "This website is hosted on Render, is developed using Vite, uses Vue as framework and makes use of Leaflet for the map."
+				"p": "This website is hosted on Cloudflare Pages, is developed using Vite, uses Vue as framework and makes use of Leaflet for the map."
 			},
 			"7": {
 				"h": "Is this project open source?",
@@ -114,7 +114,7 @@
 			},
 			"6": {
 				"h": "Welche Technologien werden verwendet?",
-				"p": "Diese Webseite wird auf Render gehostet, verwendet Vite zur Entwicklung, nutzt Vue als Framework und Leaflet für die Karte."
+				"p": "Diese Webseite wird auf Cloudflare Pages gehostet, verwendet Vite zur Entwicklung, nutzt Vue als Framework und Leaflet für die Karte."
 			},
 			"7": {
 				"h": "Ist dieses Projekt Open Source?",
