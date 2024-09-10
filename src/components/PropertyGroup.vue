@@ -134,7 +134,7 @@ export default {
 
 /* Flip on collapse */
 .collapse-icon.collapsed {
-	transform: rotateX(-180deg);
+	transform: scaleY(-1);
 }
 
 /* Invert icon on hover */

@@ -17,14 +17,6 @@
 					"color":"var(--gta-green)"
 				}
 			]
-		},
-		{
-			"id": "second",
-			"children": [
-				{"id": "1"},
-				{"id": "2", "children": [{"id":"2a"},{"id":"2b"}]},
-				{"id": "3"}
-			]
 		}
 	]
 }
