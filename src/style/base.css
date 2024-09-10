@@ -21,6 +21,13 @@ a,p,li,h1,h2,h3,h4,h5,h6 {
 	}
 }
 
+/* Do not animate if preferred */
+@media (prefers-reduced-motion) {
+	*, ::before, ::after {
+		transition-duration: 0s !important;
+	}
+}
+
 /* Font weights */
 h1,h2 {
 	font-weight: 500;

@@ -29,12 +29,6 @@ export default {
 	transition: transform 0.5s;
 }
 
-@media (prefers-reduced-motion) {
-	.submenu, .submenu > div {
-		transition: transform 0s;
-	}
-}
-
 /* Define background (not directly because of display:contents) */
 .submenu > div {
 	backdrop-filter: blur(5px);

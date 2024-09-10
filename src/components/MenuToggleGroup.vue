@@ -37,12 +37,6 @@ export default {
 	place-items: center;
 }
 
-@media (prefers-reduced-motion) {
-	.menu-togglebutton {
-		transition: transform 0s;
-	}
-}
-
 /* Move just like the menu */
 .menu-togglebutton.expanded {
 	transform: translateY(calc(-1 * calc(var(--expand-height) + var(--toggle-height))));

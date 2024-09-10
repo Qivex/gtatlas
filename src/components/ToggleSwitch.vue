@@ -1,5 +1,5 @@
 <template>
-	<div class="toggleswitch pointer" :class="{active: active}" @click.left="onclick"></div>
+	<div class="toggleswitch pointer" :class="{active}" @click.left="onclick"></div>
 </template>
 
 
@@ -53,12 +53,6 @@ export default {
 	background-color: white;
 	filter: drop-shadow(0px 0.2rem 0.5rem #000);
 	transition: transform 0.3s;
-}
-
-@media (prefers-reduced-motion) {
-	.toggleswitch::after {
-		transition: transform 0s;
-	}
 }
 
 .toggleswitch.active::after {

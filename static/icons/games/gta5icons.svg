@@ -21,7 +21,6 @@
 
 	<defs id="icons">
 		<!-- Colors are as generic as possible: Only differentiate between (usually black) stroke and (usually colorful) fill -->
-	<g color="blue">
 
 		<!-- <use href="#grid" -->
 		<path id="grid" d="M16,0 v128 M32,0 v128 M48,0 v128 M64,0 v128 M80,0 v128 M96,0 v128 M112,0 v128 M0,16 h128 M0,32 h128 M0,48 h128 M0,64 h128 M0,80 h128 M0,96 h128 M0,112 h128" fill="none" stroke="red" stroke-width="0.5"/>
@@ -637,7 +636,6 @@
 			<path d="M56,61 l-17,-7 c-15,21 19,26 17,7 M72,61 l17,-7 c15,21 -19,26 -17,7 M57,88 c1,-22 13,-22 14,0 z"/>
 		</symbol>
 
-	</g>
 	</defs>
 
 </svg>

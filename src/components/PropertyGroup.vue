@@ -4,9 +4,9 @@
 			<input type="checkbox" :id="id" :indeterminate="indeterminate" v-model="state" @click.left="cycleState"/>
 			<div class="styled-checkbox pointer" @click.left="cycleState"></div>
 			<p>{{translate("tree-"+id)}}</p>
-			<div class="collapse-icon pointer" :class="{collapsed: collapsed}" @click.left="cycleCollapse"></div>
+			<div class="collapse-icon pointer" :class="{collapsed}" @click.left="cycleCollapse"></div>
 		</div>
-		<ul v-show="!collapsed">
+		<ul :class="{collapsed}">
 			<li v-for="child in children">
 				<Component :is="child.children ? 'PropertyGroup' : 'Property'" v-bind="child" ref="childcomponents"/>
 			</li>
@@ -99,6 +99,22 @@ export default {
 	padding: 0;
 	margin: 0px;
 	margin-left: 20px;
+	transform-origin: top left;
+	transition: transform 0.3s;
+}
+
+/* Collapse with animation */
+.propertygroup ul.collapsed {
+	transform: scaleY(0);
+}
+
+/* ul's height cant be animated because its not explicit -> Solution: Each child .property is animated */
+.property {
+	transition: height 0.3s;
+}
+
+.collapsed .property {
+	height: 0px;
 }
 
 /* Indeterminate state only possible on groups */
@@ -116,16 +132,9 @@ export default {
 	transition: transform 0.3s;
 }
 
-/* Flip on collapse... */
+/* Flip on collapse */
 .collapse-icon.collapsed {
 	transform: rotateX(-180deg);
-}
-
-/* ... but only if preferred */
-@media (prefers-reduced-motion) {
-	.collapse-icon {
-		transition: transform 0s;
-	}
 }
 
 /* Invert icon on hover */
