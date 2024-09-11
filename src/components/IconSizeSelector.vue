@@ -2,7 +2,7 @@
 	<div class="iconsize">
 		<div class="sampleicons">
 			<svg v-for="icon in icons" viewbox="0 0 128 128" :width="size" :height="size">
-				<use :href="`#icon-${icon.id}`" :color="icon.color"/>
+				<use :href="`icons/games/gta5icons.svg#icon-${icon.id}`" :color="icon.color"/>
 			</svg>
 		</div>
 		<input type="range" v-model="size" :min="min" :max="max"/>

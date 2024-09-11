@@ -80,18 +80,6 @@ export default {
 		this.persistOnClose("map-businesscolor", () => this.businessColor)
 	},
 	mounted() {
-		// Load GTA icons
-		/* Icons are included like this because:
-		- the icons need styling (currentColor) -> Cant use <img> or <view>
-		- also Firefox loads SVG-<view> really inefficiently: https://bugzilla.mozilla.org/show_bug.cgi?id=1121693
-		- <use> is way more efficient than cloning the same SVG into every icon (inline component)
-		- <template src=""> fails with any file extension != html -> Manual fetch needed
-		- https://www.npmjs.com/package/vue-svg-inline-loader isn't compatible with Leaflet's (Div)Icons */
-		fetch("icons/games/gta5icons.svg")
-			.then(res => res.text())
-			.then(data => {
-				document.getElementById("mapicons").innerHTML = data
-			})
 		// Initialize visible layers on Map
 		this.initialvisiblelayers.forEach(id => this.getMap().setLayerVisibility(id, true))
 	}

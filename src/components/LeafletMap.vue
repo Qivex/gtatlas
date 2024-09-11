@@ -124,7 +124,7 @@ export default {
 						color = "currentcolor"
 					}
 					return Leaflet.divIcon({
-						html: `<svg><use href="#icon-${id}" color="${color}"/></svg>`,
+						html: `<svg><use href="icons/games/gta5icons.svg#icon-${id}" color="${color}"/></svg>`,
 						iconSize: [iconsize, iconsize]
 						// iconAnchor not needed (centered by default)
 					})
