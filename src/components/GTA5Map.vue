@@ -1,16 +1,23 @@
 <template>
 	<LeafletMap ref="leafletmap" class="gta5map" v-bind="leafletOptions"/>
+	<LeafletPopup ref="leafletpopup">
+		<Component :is="currentPopup" v-bind="popupData"/>
+	</LeafletPopup>
 </template>
 
 
 <script>
 import LeafletMap from "./LeafletMap.vue"
+import LeafletPopup from "./LeafletPopup.vue"
+
+import Popup1 from "./popups/Popup1.vue"
+import Popup2 from "./popups/Popup2.vue"
 
 import Leaflet from "leaflet"
 
 import mapdata from "../data/mapdata.json"
 
-function constructMapLayers(data, ts) {
+function constructMapLayers(data, ts, bindPopup) {
 	let result = {}
 	data.layers.forEach((layer, index) => {
 		// Decide which builder to use
@@ -33,7 +40,10 @@ function constructMapLayers(data, ts) {
 			}
 		}
 		// Apply the builder-function to all layer components and group them
-		result[layer.id] = ts.group(layer.data.map(builder))
+		let group = ts.group(layer.data.map(builder))
+		// Bind popup (injected from component)
+		bindPopup(group)
+		result[layer.id] = group
 	})
 	return result
 }
@@ -41,7 +51,10 @@ function constructMapLayers(data, ts) {
 export default {
 	name: "GTA5Map",
 	components: {
-		LeafletMap
+		LeafletMap,
+		LeafletPopup,
+		Popup1,
+		Popup2
 	},
 	inject: ["getConfigValue", "persistOnClose", "currentTileset", "currentIconSize", "currentBusinessColor"],
 	computed: {
@@ -52,6 +65,8 @@ export default {
 	},
 	data() {
 		return {
+			currentPopup: null,
+			popupData: null,
 			leafletOptions: {
 				id: "gta5map",
 				tileUrlTemplate: "https://s.rsg.sc/sc/images/games/GTAV/map/{tileset}/{z}/{x}/{y}.jpg",
@@ -87,9 +102,55 @@ export default {
 			}
 		}
 	},
+	methods: {
+		constructMapLayer(layer) {
+			// Use provided methods to create layers
+			let ts = this.map.getToolset()
+			// Use different setup depending on id
+			switch (layer.id) {
+				case "test1": {
+					let icon = ts.icon("ammunation", "var(--gta-gray1)")
+					let group = ts.group(layer.data.map(p => ts.marker(p, icon)))
+					this.bindPopup(group, "Popup1")
+					return group
+				}
+				case "test2": {
+					let icon1 = ts.icon("supplies-crate", "var(--gta-green)")
+					let icon2 = ts.icon("warehouse-crates")
+					let group = ts.group(layer.data.map((p,i) => {
+						let marker1 = ts.marker(p[0], icon1)
+						let marker2 = ts.marker(p[1], icon2)
+						this.bindPopup(marker1, "Popup2", {text: "Source", number: i+1})
+						this.bindPopup(marker2, "Popup2", {text: "Target", number: i+1})
+						return ts.group([
+							marker1,
+							marker2,
+							ts.line([p[0], p[1]]),
+							ts.circle(p[0], 128, "#F0C850", 0.5)
+						])
+					}))
+					return group
+				}
+			}
+		},
+		bindPopup(layer, component, data) {
+			layer.bindPopup(null, {minWidth: 200})
+			layer.on("popupopen", e => {
+				// Mount component
+				this.currentPopup = component
+				this.popupData = data
+				// Move Vue component into Leaflet popup (keeps reactivity!)
+				e.popup.setContent(this.$refs.leafletpopup.$el)
+			})
+			// Unmount component
+			layer.on("popupclose", () => this.currentPopup = null)
+		}
+	},
 	mounted() {
 		// Construct all maplayers from data using tools
-		let maplayers = constructMapLayers(mapdata, this.map.getToolset())
+		let maplayers = {}
+		mapdata.layers.forEach(layer => maplayers[layer.id] = this.constructMapLayer(layer))
+		//let maplayers = constructMapLayers(mapdata, this.map.getToolset(), this.bindPopup)
 		// Provide constructed layers
 		this.map.addLayers(maplayers)
 		// Get initial state
