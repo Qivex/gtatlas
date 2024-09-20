@@ -1,7 +1,6 @@
 <template>
-	<GTA5Map id="gta5map" ref="map"/>
+	<GTA5Map ref="map"/>
 	<MapMenu/>
-	<div id="mapicons"></div>
 </template>
 
 
@@ -90,9 +89,4 @@ export default {
 <style>
 @import url(../style/gtacolors.css);
 @import url(../style/base.css);
-
-/* SVG document with all icons as <symbol> */
-#mapicons {
-	display: none;
-}
 </style>

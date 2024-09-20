@@ -15,11 +15,6 @@
 export default {
 	name: "IconSizeSelector",
 	props: {
-		onconfirm: {
-			type: Function,
-			default() {}
-		},
-		initial: Number,
 		min: Number,
 		max: Number,
 		icons: Array
