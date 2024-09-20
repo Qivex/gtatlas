@@ -17,37 +17,6 @@ import Leaflet from "leaflet"
 
 import mapdata from "../data/mapdata.json"
 
-function constructMapLayers(data, ts, bindPopup) {
-	let result = {}
-	data.layers.forEach((layer, index) => {
-		// Decide which builder to use
-		let builder
-		switch (layer.id) {
-			case "test1":	// Atomic icons
-				let icon = ts.icon("ammunation", "var(--gta-gray1)")
-				builder = p => ts.marker(p, icon)
-				break
-			case "test2": {	// Grouped icons
-				let icon = ts.icon("supplies-crate", "var(--gta-green)")
-				let icon2 = ts.icon("warehouse-crates")
-				builder = p => ts.group([
-					ts.marker(p[0], icon),
-					ts.marker(p[1], icon2),
-					ts.line([p[0], p[1]]),
-					ts.circle(p[0], 128, "#F0C850", 0.5)
-				])
-				break
-			}
-		}
-		// Apply the builder-function to all layer components and group them
-		let group = ts.group(layer.data.map(builder))
-		// Bind popup (injected from component)
-		bindPopup(group)
-		result[layer.id] = group
-	})
-	return result
-}
-
 export default {
 	name: "GTA5Map",
 	components: {
@@ -111,7 +80,7 @@ export default {
 				case "test1": {
 					let icon = ts.icon("ammunation", "var(--gta-gray1)")
 					let group = ts.group(layer.data.map(p => ts.marker(p, icon)))
-					this.bindPopup(group, "Popup1")
+					this.definePopup(group, "Popup1")
 					return group
 				}
 				case "test2": {
@@ -120,8 +89,8 @@ export default {
 					let group = ts.group(layer.data.map((p,i) => {
 						let marker1 = ts.marker(p[0], icon1)
 						let marker2 = ts.marker(p[1], icon2)
-						this.bindPopup(marker1, "Popup2", {text: "Source", number: i+1})
-						this.bindPopup(marker2, "Popup2", {text: "Target", number: i+1})
+						this.definePopup(marker1, "Popup2", {text: "Source", number: i+1})
+						this.definePopup(marker2, "Popup2", {text: "Target", number: i+1})
 						return ts.group([
 							marker1,
 							marker2,
@@ -133,8 +102,8 @@ export default {
 				}
 			}
 		},
-		bindPopup(layer, component, data) {
-			layer.bindPopup(null, {minWidth: 200})
+		definePopup(layer, component, data) {
+			layer.bindPopup(null, {minWidth: 200, maxWidth: 200})
 			layer.on("popupopen", e => {
 				// Mount component
 				this.currentPopup = component
