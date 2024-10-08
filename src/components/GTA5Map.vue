@@ -78,7 +78,12 @@ export default {
 			// Use different setup depending on id
 			switch (layer.id) {
 				case "test1": {
-					let icon = ts.icon("ammunation", "var(--gta-gray1)")
+					// let icon = ts.icon("ammunation", "var(--gta-gray1)")
+					let icon = ts.animatedicon([
+						{id: "ammunation", color: "green"},
+						{id: "orbitalcannon", color: "red"}
+					],
+					0.5)
 					let group = ts.group(layer.data.map(p => ts.marker(p, icon)))
 					this.definePopup(group, "Popup1")
 					return group

@@ -129,6 +129,24 @@ export default {
 						// iconAnchor not needed (centered by default)
 					})
 				},
+				animatedicon(icons, duration) {
+					// Parse array of {id, color} values
+					let hrefs = []
+					let colors = []
+					for (let icon of icons) {
+						hrefs.push("icons/games/gta5icons.svg#icon-" + icon.id)
+						colors.push(icon.color || "currentcolor")
+					}
+					let totalDuration = hrefs.length * duration
+					// Construct animate-tags
+					let animateHref = `<animate attributeName="href" values="${hrefs.join(";")}" dur="${totalDuration}s" repeatCount="indefinite"/>`
+					let animateColor = `<animate attributeName="color" values="${colors.join(";")}" dur="${totalDuration}s" repeatCount="indefinite" calcMode="discrete"/>`
+					// Combine into icon
+					return Leaflet.divIcon({
+						html: `<svg><use>${animateHref}${animateColor}</use></svg>`,
+						iconSize: [iconsize, iconsize]
+					})
+				},
 				marker(point, icon) {
 					return Leaflet.marker(point2latlng(point), {icon: icon})
 				},
