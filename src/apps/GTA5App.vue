@@ -72,7 +72,7 @@ export default {
 		this.tileset = this.getConfigValue("tileset", "map-tileset", "render")
 		this.persistOnClose("map-tileset", () => this.tileset)
 		// Setup icon size
-		this.iconSize = parseInt(this.getConfigValue("iconsize", "map-iconsize", 35))
+		this.iconSize = parseInt(this.getConfigValue("iconsize", "map-iconsize", 32))
 		this.persistOnClose("map-iconsize", () => this.iconSize)
 		// Setup business color
 		this.businessColor = this.getConfigValue("color", "map-businesscolor", "#F0F0F0")

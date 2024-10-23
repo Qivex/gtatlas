@@ -1,7 +1,7 @@
 <template>
 	<div class="mapsettings">
 		<Section titleID="icon_size">
-			<IconSizeSelector :min="20" :max="50" :icons="[{id:'default',color:'var(--gta-yellow)'},{id:'office',color:'var(--gta-white)'},{id:'supplies-crate',color:'var(--gta-green)'},{id:'target',color:'var(--gta-red)'}]"/>
+			<IconSizeSelector :min="16" :max="48" :step="2" :icons="[{id:'default',color:'var(--gta-yellow)'},{id:'office',color:'var(--gta-white)'},{id:'supplies-crate',color:'var(--gta-green)'},{id:'target',color:'var(--gta-red)'}]"/>
 		</Section>
 		<Section titleID="language">
 			<LanguageSelector/>

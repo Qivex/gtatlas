@@ -5,24 +5,29 @@
 				<use :href="`icons/games/gta5icons.svg#icon-${icon.id}`" :color="icon.color"/>
 			</svg>
 		</div>
-		<input type="range" v-model="size" :min="min" :max="max"/>
-		<button @click.left="onClickConfirm">{{translate("confirm")}}</button>
+		<ConfirmSlider v-model="size" @change="onClickConfirm" :min="min" :max="max" :step="step"/>
 	</div>
 </template>
 
 
 <script>
+import ConfirmSlider from "./ConfirmSlider.vue"
+
 export default {
 	name: "IconSizeSelector",
+	components: {
+		ConfirmSlider
+	},
 	props: {
 		min: Number,
 		max: Number,
+		step: Number,
 		icons: Array
 	},
 	inject: ["translate", "currentIconSize"],
 	data() {
 		return {
-			size: this.currentIconSize
+			size: this.currentIconSize.toString()
 		}
 	},
 	methods: {
@@ -40,11 +45,13 @@ export default {
 	width: 100%;
 }
 
-.sampleicons {
+.iconsize .sampleicons {
 	display: grid;
-	grid-template: repeat(auto-fit, 50px) / repeat(auto-fit, 50px);
-	/* grid-auto-flow: column;
-	grid-template-rows: 50px; */
+	grid-template: repeat(auto-fit, 48px) / repeat(auto-fit, 48px);
 	place-items: center;
+}
+
+.iconsize .confirmslider {
+	width: calc(100% - 2rem);
 }
 </style>
